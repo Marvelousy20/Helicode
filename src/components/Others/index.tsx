@@ -5,7 +5,9 @@ const Others = () => {
   return (
     <section className="bg-[#0B0B1E] py-10 text-center w-full">
       <div className="max-w-[34rem] mx-auto">
-        <h1 className="lg:text-[3rem] font-extrabold">Find Others Like You</h1>
+        <h1 className="lg:text-[3rem] text-[1.875rem] font-extrabold">
+          Find Others Like You
+        </h1>
         <p className="mt-4">
           Participate in live events, collaborate in study groups, receive
           guidance, and co-create with fellow aspiring leaders.
