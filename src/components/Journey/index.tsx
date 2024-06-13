@@ -45,12 +45,7 @@ const Journey = () => {
           </div>
 
           <div className="border border-dashed border-[#5D5D5D] px-5 py-6 lg:p-9">
-            <Image
-              src="/knowledge.svg"
-              alt="knowledge"
-              width={376}
-              height={200}
-            />
+            <Image src="/quest.svg" alt="knowledge" width={177} height={177} />
 
             <h3 className="mt-10 font-bold text-2xl">Complete Quests</h3>
             <p className="mt-6">
@@ -60,12 +55,7 @@ const Journey = () => {
           </div>
 
           <div className="border border-dashed border-[#5D5D5D] px-5 py-6 lg:p-9">
-            <Image
-              src="/knowledge.svg"
-              alt="knowledge"
-              width={376}
-              height={200}
-            />
+            <Image src="/reward.svg" alt="knowledge" width={213} height={179} />
 
             <h3 className="mt-10 font-bold text-2xl">Earn Badges/Rewards</h3>
             <p className="mt-6">
