@@ -28,7 +28,12 @@ const Navbar = () => {
             </li>
             <li>
               <Button className="flex items-center gap-3">
-                Apply Now <MdArrowForwardIos size={16} />
+                <a
+                  href="https://tally.so/r/mZd1Za"
+                  className="flex items-center"
+                >
+                  Apply Now <MdArrowForwardIos size={16} className="ml-3" />
+                </a>
               </Button>
             </li>
           </ul>
@@ -44,8 +49,13 @@ const Navbar = () => {
                 <Link href="">Explore Courses</Link>
               </li>
               <li>
-                <Button className="flex items-center gap-3">
-                  Apply Now <MdArrowForwardIos size={16} />
+                <Button className="gap-3">
+                  <a
+                    href="https://tally.so/r/mZd1Za"
+                    className="flex items-center"
+                  >
+                    Apply Now <MdArrowForwardIos size={16} className="ml-3" />
+                  </a>
                 </Button>
               </li>
             </ul>

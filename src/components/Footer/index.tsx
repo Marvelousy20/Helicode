@@ -9,7 +9,7 @@ const Footer = () => {
       <div>
         <ul className="flex gap-8">
           <li>
-            <Link href="">Home</Link>
+            <Link href="/">Home</Link>
           </li>
           <li>
             <Link href="">Courses</Link>
@@ -18,9 +18,16 @@ const Footer = () => {
       </div>
 
       <div className="flex gap-6">
-        <Image src="/twitter.svg" alt="logo" width={24} height={24} />
-        <Image src="/discord.svg" alt="logo" width={24} height={24} />
-        <Image src="/telegram.svg" alt="logo" width={24} height={24} />
+        <a href="https://x.com/Helicodexyz">
+          <Image src="/twitter.svg" alt="logo" width={24} height={24} />
+        </a>
+
+        <a href="https://discord.gg/hYDpdDCe">
+          <Image src="/discord.svg" alt="logo" width={24} height={24} />
+        </a>
+        <a href="https://t.me/+w8hiLIcuh6dmYTI0">
+          <Image src="/telegram.svg" alt="logo" width={24} height={24} />
+        </a>
       </div>
     </section>
   );
