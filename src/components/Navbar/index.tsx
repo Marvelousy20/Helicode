@@ -27,14 +27,11 @@ const Navbar = () => {
               <Link href="">Explore Courses</Link>
             </li>
             <li>
-              <Button className="flex items-center gap-3">
-                <a
-                  href="https://tally.so/r/mZd1Za"
-                  className="flex items-center"
-                >
-                  Apply Now <MdArrowForwardIos size={16} className="ml-3" />
-                </a>
-              </Button>
+              <a href="https://tally.so/r/mZd1Za" className="flex items-center">
+                <Button className="flex items-center gap-3">
+                  Apply Now <MdArrowForwardIos size={16} className="" />
+                </Button>
+              </a>
             </li>
           </ul>
         </div>
@@ -49,14 +46,14 @@ const Navbar = () => {
                 <Link href="">Explore Courses</Link>
               </li>
               <li>
-                <Button className="gap-3">
-                  <a
-                    href="https://tally.so/r/mZd1Za"
-                    className="flex items-center"
-                  >
-                    Apply Now <MdArrowForwardIos size={16} className="ml-3" />
-                  </a>
-                </Button>
+                <a
+                  href="https://tally.so/r/mZd1Za"
+                  className="flex items-center"
+                >
+                  <Button className="flex items-center gap-3">
+                    Apply Now <MdArrowForwardIos size={16} className="" />
+                  </Button>
+                </a>
               </li>
             </ul>
           </div>

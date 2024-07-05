@@ -18,11 +18,13 @@ const Hero = () => {
           industry leading experts.
         </h3>
 
-        <Button className="mt-12 lg:mt-10">
-          <a href="https://tally.so/r/mZd1Za" className="flex items-center">
-            Apply Now <MdArrowForwardIos size={16} className="ml-3" />
+        <div className="flex justify-center mt-10">
+          <a href="https://tally.so/r/mZd1Za">
+            <Button className="flex items-center gap-3">
+              Apply Now <MdArrowForwardIos size={16} className="" />
+            </Button>
           </a>
-        </Button>
+        </div>
       </div>
     </section>
   );

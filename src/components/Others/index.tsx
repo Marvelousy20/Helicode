@@ -14,9 +14,11 @@ const Others = () => {
         </p>
 
         <div className="mt-12 flex justify-center">
-          <Button className="flex gap-3 items-center">
-            Join Telegram Community <MdArrowForwardIos size={16} />
-          </Button>
+          <a href="https://t.me/+w8hiLIcuh6dmYTI0" className="">
+            <Button className="flex items-center gap-3">
+              Join Telegram Community <MdArrowForwardIos size={16} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>
