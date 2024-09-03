@@ -3,7 +3,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 const Others = () => {
   return (
-    <section className="bg-[#0B0B1E] py-10 text-center w-full">
+    <section className="bg-others-gradient py-10 text-center w-full mt-32">
       <div className="max-w-[34rem] mx-auto">
         <h1 className="lg:text-[3rem] text-[1.875rem] font-extrabold">
           Find Others Like You
@@ -26,3 +26,5 @@ const Others = () => {
 };
 
 export default Others;
+
+// background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(153, 153, 153, 0) 100%);

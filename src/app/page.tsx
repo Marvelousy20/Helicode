@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Journey from "@/components/Journey";
 import Others from "@/components/Others";
 import WorkWithUs from "@/components/WorkWithUs";
+import Testimonial from "@/components/Testimonial";
 
 export default function Home() {
   return (
@@ -10,8 +11,9 @@ export default function Home() {
       <Hero />
       <Journey />
       <WorkWithUs />
+      <Testimonial />
       <Others />
-      <DontMissOut />
+      {/* <DontMissOut /> */}
     </main>
   );
 }
