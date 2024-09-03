@@ -56,7 +56,7 @@ const Footer = () => {
 
           <div className="flex items-center gap-2.5">
             <a
-              href="https://discord.gg/hYDpdDCe"
+              href="https://www.linkedin.com/company/helicode/"
               className="flex items-center gap-2.5"
             >
               <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center">
@@ -68,7 +68,7 @@ const Footer = () => {
 
           <div className="flex items-center gap-2.5">
             <a
-              href="https://discord.gg/hYDpdDCe"
+              href="https://www.instagram.com/helicodeacademy?igsh=YWxxbWc3NGxmdDhv"
               className="flex items-center gap-2.5"
             >
               <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center">
