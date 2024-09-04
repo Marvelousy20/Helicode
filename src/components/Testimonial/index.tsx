@@ -5,21 +5,21 @@ const testimonials = [
     name: "Udochukwy Chikere",
     role: "Frontend Engineering",
     testimonial:
-      "Helicode is a Web3 academy that will train and give you practical insight on different skill sets in the blockchain space. It is a great opportunity to be part to it. It is the beginning of something great.",
+      "Helicode is a Web3 academy that provides training and practical insights into various skill sets in the blockchain space. It is a great opportunity to be part of it, marking the beginning of something significant.",
     avatar: "/udo.svg",
   },
   {
     name: "Sean D",
     role: "Blockchain Basics",
     testimonial:
-      "I have thoroughly enjoyed the free classes offered by Helicode.  As a novie, they gave me a solid understanding of blockchain and crypto.  I am looking forward to the crypto/blockchain training classes that they will offer in the future.",
+      "I have thoroughly enjoyed the free classes offered by Helicode. As a novice, they gave me a solid understanding of blockchain and crypto.  I am looking forward to the crypto/blockchain training classes that they will offer in the future.",
     avatar: "/sean.svg",
   },
   {
     name: "Odun Adekunle",
     role: "UX Design",
     testimonial:
-      "Thanks to the Super team at Helicode Academy, my understanding of blockchain is now expanding far beyond just exchange and swapping. Their classes have taught me about true ownership and real-world applications of blockchain technology. ",
+      "Thanks to the Super team at Helicode Academy, my understanding of blockchain is now expanding far beyond just exchange and swapping. Their classes have taught me about true ownership and real-world applications of blockchain technology.",
     avatar: "/odun.svg",
   },
 ];
