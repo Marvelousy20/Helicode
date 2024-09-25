@@ -1,17 +1,17 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
-      center: true,
+      // center: 'true',
       padding: "2rem",
       screens: {
         "2xl": "1400px",
@@ -54,7 +54,14 @@ const config = {
         },
       },
       backgroundImage: {
-        "others-gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(153, 153, 153, 0) 100%)",
+        "others-gradient":
+          "linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(153, 153, 153, 0) 100%)",
+        "custom-gradient": `
+          linear-gradient(0deg, rgba(212, 232, 255, 0.08), rgba(212, 232, 255, 0.08)),
+          linear-gradient(180deg, rgba(212, 232, 255, 0.08) 0%, rgba(212, 232, 255, 0) 100%)
+        `,
+        "newsletter-gradient":
+          "linear-gradient(172.01deg, #570AFF -101.1%, #8044FF 79.42%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -63,13 +70,37 @@ const config = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
+        // 'accordion-down': {
+        // 	from: {
+        // 		height: '0'
+        // 	},
+        // 	to: {
+        // 		height: 'var(--radix-accordion-content-height)'
+        // 	}
+        // },
+        // 'accordion-up': {
+        // 	from: {
+        // 		height: 'var(--radix-accordion-content-height)'
+        // 	},
+        // 	to: {
+        // 		height: '0'
+        // 	}
+        // }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -78,6 +109,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
