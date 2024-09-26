@@ -26,7 +26,7 @@ const testimonials = [
 
 export default function Testimonial() {
   return (
-    <section className="text-center w-full flex justify-center pt-[3.8rem] lg:pt-[11.5rem]">
+    <section className="text-center w-full flex justify-center">
       <div className="mx-auto">
         <h1 className="lg:text-[3rem] text-[1.875rem] font-semibold">
           What Our Students say about us

@@ -130,7 +130,7 @@ export default function page() {
         </h1>
         <Career />
       </section>
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto">
+      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Pricing
         </h1>
