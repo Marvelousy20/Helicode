@@ -23,7 +23,10 @@ export default function Career() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {steps.map((step, i) => (
-        <div key={i} className="border border-dashed border-[#343434] p-6">
+        <div
+          key={i}
+          className="border border-dashed border-[#343434] p-6 space-y-[0.813rem]"
+        >
           <div className="flex space-x-2.5 items-center">
             <Image src={step.image} alt={step.image} width={40} height={40} />
             <p className="font-medium text-2xl">{step.title}</p>

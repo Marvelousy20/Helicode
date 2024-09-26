@@ -26,9 +26,9 @@ const testimonials = [
 
 export default function Testimonial() {
   return (
-    <section className="text-center w-full">
+    <section className="text-center w-full flex justify-center pt-[3.8rem] lg:pt-[11.5rem]">
       <div className="mx-auto">
-        <h1 className="lg:text-[3rem] text-[1.875rem] font-extrabold">
+        <h1 className="lg:text-[3rem] text-[1.875rem] font-semibold">
           What Our Students say about us
         </h1>
 
@@ -36,7 +36,7 @@ export default function Testimonial() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-[#0B0B1E] max-w-[24.3rem] h-[22.5rem] p-8 flex flex-col"
+              className="border border-[#676767] border-dashed bg[#0B0B1E] max-w-[24.3rem] h[22.5rem] h-[27rem] p-8 flex flex-col"
             >
               <div>
                 <svg
@@ -53,11 +53,9 @@ export default function Testimonial() {
                 </svg>
               </div>
 
-              <h1 className="leading-[22px] text-left mt-8">
+              <h1 className="leading-[22px] text-left mt-10">
                 {testimonial.testimonial}
               </h1>
-
-              
 
               <div className="flex-1"></div>
               <div className="flex items-center gap-2">
@@ -68,7 +66,7 @@ export default function Testimonial() {
                   height={44}
                 />
                 <div className="">
-                  <h1 className="text-left font-semibold md:text-lg">
+                  <h1 className="text-left font-normal md:text-lg">
                     {testimonial.name}
                   </h1>
                   <h1 className="text-left text-sm text-opacity-60 text-white">
