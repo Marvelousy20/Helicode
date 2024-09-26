@@ -87,7 +87,7 @@ const Footer = () => {
               className="flex items-center gap-2.5"
             >
               {/* <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center"> */}
-              <Image src="/Twitter.svg" alt="logo" width={20} height={20} />
+              <Image src="/twitter.svg" alt="logo" width={20} height={20} />
               {/* </span> */}
               {/* <p className="text-[#A0A4A0] font-medium">Twitter</p> */}
             </a>
@@ -101,7 +101,7 @@ const Footer = () => {
               className="flex items-center gap-2.5"
             >
               {/* <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center"> */}
-              <Image src="/Instagram.svg" alt="logo" width={20} height={20} />
+              <Image src="/instagram.svg" alt="logo" width={20} height={20} />
               {/* </span> */}
               {/* <p className="text-[#A0A4A0] font-medium">Instagram</p> */}
             </a>
@@ -115,7 +115,7 @@ const Footer = () => {
               className="flex items-center gap-2.5"
             >
               {/* <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center"> */}
-              <Image src="/Discord.svg" alt="logo" width={20} height={20} />
+              <Image src="/discord.svg" alt="logo" width={20} height={20} />
               {/* </span> */}
               {/* <p className="text-[#A0A4A0] font-medium">LinkedIn</p> */}
             </a>
