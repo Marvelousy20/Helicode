@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NewsLetter() {
   return (
-    <section className="max-w-7xl mx-auto lg:px-24    pt-[3.8rem] lg:pt-[7.5rem]">
+    <section className="max-w-7xl mx-auto lg:px-24 pt-[3.8rem] lg:pt-[7.5rem]">
       <div className="bg-newsletter-gradient py-10 text-center rounded-[10px] relative overflow-hidden">
         <div className="absolute top-0 overflow-hidden hidden lg:block">
           <Image src="/biggest.svg" alt="img" width={1524} height={1205} />
@@ -46,13 +46,15 @@ export default function NewsLetter() {
             updates. Don&apos;t worry, we hate spam too.
           </p>
 
-          <div className="flex justify-center gap-2 mt-10">
+          <div className="flex justify-center gap-2 mt-10 max-w-[]">
             <input
               type="text"
               placeholder="Email Address"
-              className="bg-[#6830E1] text-white text-sm h-[44px] rounded-[8px] border border-[#8D58FF] placeholder:text-white px-6"
+              className="w-[60%] md:w-[288px] bg-[#6830E1] text-white text-sm h-[44px] rounded-[8px] border border-[#8D58FF] placeholder:text-white px-6"
+              // className="bg-[#6830E1] text-white text-sm h-[44px] rounded-[8px] border border-[#8D58FF] placeholder:text-white px-6"
             />
-            <button className="flex items-center text-sm border-4 border-[#D4E8FF0A] rounded-[8px] px-5 bg-[#A382FF]">
+            {/* <button className="> */}
+            <button className="w-[40%] md:w-[114px] flex items-center h-[44px] text-sm border-4 border-[#D4E8FF0A] rounded-[8px] px-5 bg-[#A382FF]">
               Subscribe <ChevronRight size={18} />
             </button>
           </div>
