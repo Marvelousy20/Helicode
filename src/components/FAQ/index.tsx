@@ -7,7 +7,7 @@ import {
 
 export default function FAQ() {
   return (
-    <div className="max-w-[77rem] mx-auto text-center lg:px-6 px-3 pt-28">
+    <div className="max-w-[77rem] mx-auto text-center lg:px-6 pt-28">
       <div>
         <h1 className="lg:text-[3rem] text-[1.875rem] font-semibold">
           Frequently Asked Questions
