@@ -1,7 +1,7 @@
-// "use client";
+"use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
@@ -72,9 +72,12 @@ const courses = [
   },
 ];
 
-export default function page() {
+export default function Page() {
+  const router = useRouter();
+
   const handleApplyClick = () => {
     console.log("Clicked");
+    router.push("/payment");
   };
 
   return (
