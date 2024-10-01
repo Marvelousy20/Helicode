@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NewsLetter() {
   return (
-    <section className="max-w-7xl mx-auto lg:px-24 pt-[3.8rem] lg:pt-[7.5rem]">
+    <section className="max-w-7xl mx-auto lg:px-24">
       <div className="bg-newsletter-gradient py-10 text-center rounded-[10px] relative overflow-hidden">
         <div className="absolute top-0 overflow-hidden hidden lg:block">
           <Image src="/biggest.svg" alt="img" width={1524} height={1205} />

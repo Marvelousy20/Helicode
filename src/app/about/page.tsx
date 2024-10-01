@@ -7,10 +7,10 @@ export default function page() {
   return (
     <section className="pt-24">
       <div className="text-center flex flex-col justify-center items-center h-full">
-        <h1 className=" text-[2.5rem] lg:text-[5rem] font-semibold">
+        <h1 className=" text-[4.5rem] lg:text-[5rem] leading-[5rem] font-semibold">
           About Helicode
         </h1>
-        <p className="lg:text-lg">
+        <p className="mt-[0.65rem] lg: text-lg">
           Upgrade your skills and join the next wave of Global Web3 talent from
           Africa
         </p>
@@ -24,13 +24,13 @@ export default function page() {
         </Link>
       </div>
       {/* Our Vision & Our Mission */}
-      <div className="flex flex-col lg:flex-row gap-7 pt-28 lg:pt-36 pb-20">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-7 pt-[3.95rem] lg:pt-36 pb-[2.5rem] lg:pb-[7.5rem] ">
         {/* left */}
         <div className="w-full lg:w-1/2">
-          <h1 className="font-medium text-2xl border-b border-[#383838] pb-4 text-center lg:text-left">
+          <h1 className="font-medium text-2xl border-b border-[#383838] pb-4 text-left">
             Our Vision
           </h1>
-          <p className="pt-[1.7rem] lg:pt-[3.15rem] max-w[37rem] font-light">
+          <p className="pt-[3.15rem] max-w[37rem] font-light">
             Helicode envisions a future where African web3 professionals lead
             global technological innovation. One where our academy is the number
             one source for accessing quality and affordable talent for global
@@ -44,10 +44,10 @@ export default function page() {
         </div>
         {/* right */}
         <div className="w-full lg:w-1/2">
-          <h1 className="font-medium text-2xl border-b border-[#383838] pb-4 text-center lg:text-left">
+          <h1 className="font-medium text-2xl border-b border-[#383838] pb-4 text-left">
             Our Mission
           </h1>
-          <p className="pt-[1.7rem] lg:pt-[3.15rem] max-w[37rem] font-light">
+          <p className="pt[1.7rem] pt-[3.15rem] max-w[37rem] font-light">
             At Helicode, we aim to empower African talent with cutting-edge web3
             skills to enable access to global job opportunities. We are
             committed towards providing top-notch, affordable education
@@ -59,7 +59,9 @@ export default function page() {
           </p>
         </div>
       </div>
-      <NewsLetter />
+      <div className="pb-[4.63rem]">
+        <NewsLetter />
+      </div>
     </section>
   );
 }
