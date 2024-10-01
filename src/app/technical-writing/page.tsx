@@ -163,8 +163,12 @@ export default function page() {
         </div>
       </section>
       <Testimonial />
-      <FAQ />
-      <NewsLetter />
+      <div className="pt-28">
+        <FAQ />
+      </div>
+      <div className="pt-[3.8rem] lg:pt-[7.5rem]">
+        <NewsLetter />
+      </div>
     </main>
   );
 }
