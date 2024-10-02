@@ -1,15 +1,13 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { schema } from "@/app/payment/page";
 import { z } from "zod";
 
 interface CourseProps {
   title: string;
   desc: string;
-  onSubmit: (values: z.infer<typeof schema>) => void;
 }
 
-export default function CourseInfo({ title, desc, onSubmit }: CourseProps) {
+export default function CourseInfo({ title, desc }: CourseProps) {
   return (
     <div>
       <h1 className="text-3xl font-medium">Course Information</h1>
@@ -44,12 +42,13 @@ export default function CourseInfo({ title, desc, onSubmit }: CourseProps) {
         </div>
 
         <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
-          <div
+          <button
             className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center"
             role="button"
+            type="submit"
           >
-            Make Payments <ChevronRight size={20} />
-          </div>
+            Make Payment <ChevronRight size={20} />
+          </button>
         </div>
       </div>
     </div>
