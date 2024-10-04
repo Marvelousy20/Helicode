@@ -164,7 +164,6 @@ export default function Page() {
             features={["Everything included in Basic", "Mentorship Support"]}
             currentPrice={30}
             buttonLabel="Apply Now"
-            onClick={handleApplyClick}
           />
         </div>
       </section>

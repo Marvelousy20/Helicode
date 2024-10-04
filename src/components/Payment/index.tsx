@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Input } from "../ui/input";
-import { z } from "zod";
+import { object, z } from "zod";
 import CourseInfo from "./courseInfo";
 
 type Country = {
@@ -25,6 +25,57 @@ type State = {
   code: string;
 };
 
+type CourseInfo = {
+  name: string;
+  fullPayment: number;
+  monthlyPayment: number;
+  description: string;
+};
+
+// Course information
+export const coursesInfo: Record<string, CourseInfo> = {
+  "Blockchain Cybersecurity": {
+    name: "Blockchain Cybersecurity",
+    fullPayment: 100,
+    monthlyPayment: 75,
+    description: "Learn to secure blockchain systems and smart contracts.",
+  },
+  "Technical Writing": {
+    name: "Technical Writing",
+    fullPayment: 150,
+    monthlyPayment: 105,
+    description:
+      "Master the art of writing clear and concise technical documentation.",
+  },
+  "Smart Contract Auditing": {
+    name: "Smart Contract Auditing",
+    fullPayment: 120,
+    monthlyPayment: 80,
+    description:
+      "Gain skills to audit and secure smart contracts on various blockchain platforms.",
+  },
+  "Zero Knowledge Proofs": {
+    name: "Zero Knowledge Proofs",
+    fullPayment: 110,
+    monthlyPayment: 60,
+    description:
+      "Explore the fascinating world of cryptographic zero-knowledge proofs.",
+  },
+  "Product Design": {
+    name: "Product Design",
+    fullPayment: 140,
+    monthlyPayment: 80,
+    description: "Learn to create user-centered designs for digital products.",
+  },
+  Marketing: {
+    name: "Marketing",
+    fullPayment: 140,
+    monthlyPayment: 80,
+    description:
+      "Develop strategies for effective digital marketing campaigns.",
+  },
+};
+
 // Data for dropdowns
 const ageRanges = ["18-24", "25-34", "35-44", "45+"] as const;
 const cohorts = [
@@ -33,11 +84,7 @@ const cohorts = [
   "July 2025",
   "October 2025",
 ] as const;
-const courses = [
-  "Web3 UI/UX Design",
-  "Blockchain Development",
-  "Smart Contract Auditing",
-] as const;
+const courses = Object.keys(coursesInfo);
 const referralSources = [
   "AIESEC Ghana",
   "Social Media",
@@ -93,9 +140,24 @@ export default function ContactInfo() {
     formState: { errors },
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      ageRange: "18-24",
+      country: "",
+      state: "",
+      courseOfInterest: courses[0],
+      cohort: "January 2025",
+      referralSource: "Social Media",
+      paymentPlan: "Full Payment",
+      paymentMethod: "Credit card",
+    },
   });
 
   const watchCountry = watch("country");
+  const watchCourse = watch("courseOfInterest");
+  const watchPaymentPlan = watch("paymentPlan");
 
   // Fetch countries
   const { data: countries, isLoading: isLoadingCountries } = useQuery({
@@ -463,12 +525,7 @@ export default function ContactInfo() {
         </div>
 
         <div className="col-span-2 bg-[#080821] p-10 border border-[#232323]">
-          <CourseInfo
-            title="Marketing"
-            desc="Embark on a visually detailed journey into the ecosystem of web3 design
-        with Helicode's UI/UX program. This immersive 3-month course is for
-        aspiring designers ready to take the decentralized web space head-on."
-          />
+          <CourseInfo course={watchCourse} paymentPlan={watchPaymentPlan} />
         </div>
       </form>
     </div>
