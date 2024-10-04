@@ -84,7 +84,17 @@ const cohorts = [
   "July 2025",
   "October 2025",
 ] as const;
-const courses = Object.keys(coursesInfo);
+
+// const courses = Object.keys(coursesInfo);
+const courses = [
+  "Blockchain Cybersecurity",
+  "Technical Writing",
+  "Smart Contract Auditing",
+  "Zero Knowledge Proofs",
+  "Product Design",
+  "Marketing",
+] as const;
+
 const referralSources = [
   "AIESEC Ghana",
   "Social Media",
