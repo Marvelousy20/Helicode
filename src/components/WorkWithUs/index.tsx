@@ -11,19 +11,15 @@ const WorkWithUs = () => {
             Work With Us!
           </h1>
 
-          <h4 className="mt-6 px-4">
+          <h4 className="mt-6 px-4 text-[#8B8B8B]">
             Partner with us at HeliCode as we embark on a mission to empower
             businesses and companies eager to venture into the space of
-            blockchain technology. Together, we&apos;ll navigate the intricacies
-            of this innovative landscape, providing tailored training and
-            support to ensure your successful integration into the blockchain
-            ecosystem. Let&apos;s work together to unlock the full potential of
-            blockchain for your organization&apos;s growth and success.
+            blockchain technology.
           </h4>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 lg:mt-16 text-start">
-          <div className="border border-dashed border-[#5D5D5D] p-10 lg:p-9">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 lg:mt-16 text-start">
+          <div className="border border-[#232323] bg-[#080821] rounded-[1.255rem] p-10 lg:p-9">
             <Image
               src="/businesses.svg"
               alt="knowledge"
@@ -32,7 +28,7 @@ const WorkWithUs = () => {
             />
 
             <h3 className="mt-10 font-bold text-2xl">For Businesses</h3>
-            <p className="mt-6">
+            <p className="mt-6 text-[#8B8B8B]">
               Tailored solutions for businesses seeking to harness the power of
               cutting-edge technologies, driving innovation, efficiency, and
               growth.
@@ -43,11 +39,11 @@ const WorkWithUs = () => {
             </Button>
           </div>
 
-          <div className="border border-dashed border-[#5D5D5D] p-10 lg:p-9">
+          <div className="border border-[#232323] bg-[#080821] rounded-[1.255rem] p-10 lg:p-9">
             <Image src="/talents.svg" alt="test" width={69} height={60} />
 
             <h3 className="mt-10 font-bold text-2xl">For Talents</h3>
-            <p className="mt-6">
+            <p className="mt-6 text-[#8B8B8B]">
               Unlock your potential with opportunities tailored for talents
               seeking to thrive in dynamic and rewarding environments, where
               innovation meets passion.
