@@ -3,10 +3,10 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <section className="flex flex-col gap-24 md:justify-between py-14 border-[#242424] mt-10 md:mt-20">
+    <section className="flex flex-col gap-24 md:justify-between py-14 border-[#242424] mt-10 md:mt-20 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:justify-between gap-y-10">
         <div>
-          <Image src="/logo.svg" alt="logo" width={140} height={32} />
+          <Image src="/logo.svg" alt="logo" width={130} height={32} />
           {/* <p className="text-[#AEB0AF] text-base mt-4 max-w-[397px]">
           Training the next billion Africans in advanced tech skills.
         </p> */}
@@ -15,15 +15,21 @@ const Footer = () => {
         <div className="flex flex-col gap-10 md:flex-row md:gap-[4.6rem]">
           <div>
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
-              <li className="text-[#D4E8FF80]">School</li>
+              <li className="text-[#D4E8FF80]">Featured Courses</li>
               <li className="font-medium">
-                <Link href="/">School of Design</Link>
+                <Link href="/">Blockchain Cybersecurity</Link>
               </li>
               <li>
-                <Link href="/">School of Development</Link>
+                <Link href="/">Smart Contract Development</Link>
               </li>
               <li>
-                <Link href="">School of Engineering</Link>
+                <Link href="/">Web3 Product Design</Link>
+              </li>
+              <li>
+                <Link href="/">Web3 Technical Writing</Link>
+              </li>
+              <li>
+                <Link href="/">Web3 Marketing</Link>
               </li>
             </ul>
           </div>
@@ -37,9 +43,6 @@ const Footer = () => {
               <li>
                 <Link href="">Contact us</Link>
               </li>
-              <li>
-                <Link href="">Help Desk</Link>
-              </li>
             </ul>
           </div>
 
@@ -47,13 +50,10 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
               <li className="text-[#D4E8FF80]">Resources</li>
               <li>
-                <Link href="/">Courses</Link>
+                <Link href="/">Blog</Link>
               </li>
               <li>
-                <Link href="">Contact us</Link>
-              </li>
-              <li>
-                <Link href="">Our Blog</Link>
+                <Link href="">FAQ</Link>
               </li>
             </ul>
           </div>

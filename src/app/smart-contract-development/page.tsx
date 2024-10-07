@@ -100,7 +100,7 @@ export default function page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                Smart Contract Auditing
+                Smart Contract Development
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
                 Zero Knowledge Proofs enable privacy-preserving transactions and

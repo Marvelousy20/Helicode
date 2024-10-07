@@ -8,12 +8,15 @@ import { Button } from "../ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 
 const courses = [
-  { id: 1, href: "zero-knowledge-proofs", name: "Zero Knowledge Proofs" },
-  { id: 2, href: "blockchain-cybersecurity", name: "Blockchain Cybersecurity" },
+  { id: 1, href: "blockchain-cybersecurity", name: "Blockchain Cybersecurity" },
+  {
+    id: 2,
+    href: "smart-contract-development",
+    name: "Smart Contract Development",
+  },
   { id: 3, href: "product-design", name: "Web3 Product Design" },
-  { id: 4, href: "smart-contract-auditing", name: "Smart Contract Auditing" },
+  { id: 4, href: "technical-writing", name: "Web3 Technical Writing" },
   { id: 5, href: "marketing", name: "Web3 Marketing" },
-  { id: 6, href: "technical-writing", name: "Web3 Technical Writing" },
 ];
 
 const Navbar = () => {
@@ -55,7 +58,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold">
-              <Image src="/logo.svg" alt="logo" width={140} height={32} />
+              <Image src="/logo.svg" alt="logo" width={130} height={32} />
             </Link>
           </div>
           <div className="hidden md:block">
@@ -73,7 +76,7 @@ const Navbar = () => {
                 <button
                   ref={buttonRef}
                   onClick={toggleDropdown}
-                  className="hover:bg-slate-900 px-3 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-offset-1focus:ring-offset-gray-800 focus:ring-slate-900 inline-flex items-center"
+                  className="hover:bg-slate-900 px-3 py-2 rounded-md focus:outline-none focus:ring-1focus:ring-offset-1focus:ring-offset-gray-800 focus:ring-slate-900 inline-flex items-center"
                 >
                   Explore Courses
                   {showDropdown ? (
@@ -98,7 +101,7 @@ const Navbar = () => {
                           key={course.id}
                           // href={course.href}
                           href="/"
-                          className="block px-4 py2 py-4 text-[0.9rem] text-white hover:bg-slate-900"
+                          className="block px-4 py2 py-4 text-[0.9rem] textwhite text-gray-600 cursor-not-allowed hover:bg-slate-900"
                           role="menuitem"
                           onClick={() => setShowDropdown(false)}
                         >
@@ -138,10 +141,11 @@ const Navbar = () => {
           <div className="hidden md:flex">
             <Link
               href="https://tally.so/r/mZd1Za"
-              className="flex items-center"
+              target="_blank"
+              className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
             >
-              <Button className="flex items-center gap-3">
-                Apply Now <MdArrowForwardIos size={16} className="" />
+              <Button className="py-3">
+                Apply Now <MdArrowForwardIos size={16} className="ml-1" />
               </Button>
             </Link>
           </div>
@@ -153,6 +157,10 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href="/"
+              onClick={() => {
+                setIsOpen(false);
+                setShowMobileCourses(false);
+              }}
               className="block hover:bg-slate-950 px-3 py-2 rounded-md"
             >
               Home
@@ -176,7 +184,7 @@ const Navbar = () => {
                       key={course.id}
                       // href={course.href}
                       href="/"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-950"
+                      className="block px-3 py-2 rounded-md text-base font-medium textgray-300 text-gray-600 hover:bg-slate-900"
                       onClick={() => {
                         setIsOpen(false);
                         setShowMobileCourses(false);
@@ -190,9 +198,23 @@ const Navbar = () => {
             </div>
             <Link
               href="/about"
+              onClick={() => {
+                setIsOpen(false);
+                setShowMobileCourses(false);
+              }}
               className="block hover:bg-slate-950 px-3 py-2 rounded-md"
             >
               About Us
+            </Link>
+
+            <Link
+              href="https://tally.so/r/mZd1Za"
+              target="_blank"
+              className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
+            >
+              <Button className="py-3">
+                Apply Now <MdArrowForwardIos size={16} className="ml-1" />
+              </Button>
             </Link>
           </div>
         </div>

@@ -19,9 +19,9 @@ const Journey = () => {
           </h4>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 lg:mt-16 text-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 lg:mt-16 text-start">
           {/* <MovingBorderWrapper> */}
-          <div className="border border-[#232323] px-5 py-6 lg:p-9 backdrop-blur-xl rounded-[10px]">
+          <div className="border border-[#232323] bg-[#080821] px-5 py-6 lg:p-9 backdrop-blur-xl rounded-[10px]">
             <Image
               src="/knowledge.svg"
               alt="knowledge"
@@ -38,7 +38,7 @@ const Journey = () => {
           </div>
           {/* </MovingBorderWrapper> */}
 
-          <div className="border border-[#232323] px-5 py-6 lg:p-9 rounded-[10px]">
+          <div className="border border-[#232323] bg-[#080821] px-5 py-6 lg:p-9 rounded-[10px]">
             <Image
               src="/card.svg"
               alt="test"
@@ -54,7 +54,7 @@ const Journey = () => {
             </p>
           </div>
 
-          <div className="border border-[#232323] px-5 py-6 lg:p-9 rounded-[10px]">
+          <div className="border border-[#232323] bg-[#080821] px-5 py-6 lg:p-9 rounded-[10px]">
             <Image src="/quest.svg" alt="knowledge" width={147} height={200} />
 
             <h3 className="mt-10 font-bold text-2xl">Mentorship</h3>
@@ -64,7 +64,7 @@ const Journey = () => {
             </p>
           </div>
 
-          <div className="border border-[#232323] px-5 py-6 lg:p-9 rounded-[10px]">
+          <div className="border border-[#232323] bg-[#080821] px-5 py-6 lg:p-9 rounded-[10px]">
             <Image src="/badge.svg" alt="knowledge" width={200} height={200} />
 
             <h3 className="mt-10 font-bold text-2xl">Job Placement</h3>

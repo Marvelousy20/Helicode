@@ -1,6 +1,6 @@
 export default function Part() {
   return (
-    <div className="mt-20 lg:mt-[6.5rem] bg-part-gradient rounded-[16px] px-4 py-10 lg:p-20">
+    <div className="mt-20 lg:mt-[6.5rem] bg-part-gradient rounded-[16px] px-4 py10 lg:p-20 max-w-7xl mx-auto">
       <div className="flex flex-wrap md:flex-nowrap gap-y-7">
         <h1 className="text-2xl lg:text-3xl font-semibold w-full">
           Be a part of <br /> Something Big
