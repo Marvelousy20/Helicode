@@ -74,3 +74,28 @@
       @apply bg-background text-foreground;
     }
   }
+
+.rounded-gradient-border {
+  position: relative;
+  border-radius: 9999px; /* Fully rounded */
+  overflow: hidden;
+}
+
+.rounded-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9999px; /* Fully rounded */
+  padding: 1px; /* Border width */
+  background: linear-gradient(90deg, rgba(153, 169, 255, 0.24) 0%, rgba(153, 192, 255, 0.24) 50%, rgba(204, 234, 255, 0.24) 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+

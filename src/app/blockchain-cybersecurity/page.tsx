@@ -161,7 +161,7 @@ export default function page() {
             features={["Everything included in Basic", "Mentorship Support"]}
             currentPrice={126}
             buttonLabel="Apply Now"
-            onClick={handleApplyClick}
+            // onClick={handleApplyClick}
           />
           <PricingCard
             planType="Monthly"
@@ -169,7 +169,7 @@ export default function page() {
             features={["Tailored Homework", "Mentorship Support"]}
             currentPrice={70}
             buttonLabel="Apply Now"
-            onClick={handleApplyClick}
+            // onClick={handleApplyClick}
           />
         </div>
       </section>

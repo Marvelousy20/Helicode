@@ -59,13 +59,16 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-center space-x-4">
               <Link
                 href="/"
                 className="hover:bg-slate-900 px-3 py-2 rounded-md"
               >
                 Home
               </Link>
+
+              <div className="h-0.5 w-0.5 bg-white rounded-full"></div>
+
               <div className="relative">
                 <button
                   ref={buttonRef}
@@ -105,6 +108,9 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+
+              <div className="h-0.5 w-0.5 bg-white rounded-full"></div>
+
               <Link
                 href="/about"
                 className="hover:bg-slate-900 px-3 py-2 rounded-md"

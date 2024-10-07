@@ -1,6 +1,7 @@
+"use client";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 
 interface PricingCardProps {
   planType: "One-time payment" | "Monthly";
@@ -9,7 +10,6 @@ interface PricingCardProps {
   currentPrice: number;
   originalPrice?: number;
   buttonLabel: string;
-  onClick: () => void;
 }
 const PricingCard: React.FC<PricingCardProps> = ({
   planType,
@@ -18,8 +18,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
   currentPrice,
   originalPrice,
   buttonLabel,
-  onClick,
+  // onClick,
 }) => {
+  const router = useRouter();
   return (
     <div className="bg-[#080821] p-6 border border-[#343434] border-dashed max-w-sm text-white">
       <Image src="/crown.svg" alt="crown" width={28} height={24} />
@@ -60,14 +61,14 @@ const PricingCard: React.FC<PricingCardProps> = ({
       >
         {buttonLabel} <ChevronRight size={18} />
       </button> */}
-      <Link
-        href="/"
-        className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center"
+      <div
+        className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center cursor-pointer"
+        onClick={() => router.push("/payment")}
       >
         <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center">
           {buttonLabel} <ChevronRight size={20} />
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

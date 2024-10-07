@@ -53,10 +53,6 @@ const courses = [
 ];
 
 export default function page() {
-  const handleApplyClick = () => {
-    console.log("Clicked");
-  };
-
   return (
     <main className="lg:py-5 mt-12">
       <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
@@ -141,7 +137,6 @@ export default function page() {
             features={["Everything included in Basic", "Mentorship Support"]}
             currentPrice={126}
             buttonLabel="Apply Now"
-            onClick={handleApplyClick}
           />
           <PricingCard
             planType="Monthly"
@@ -149,7 +144,6 @@ export default function page() {
             features={["Tailored Homework", "Mentorship Support"]}
             currentPrice={70}
             buttonLabel="Apply Now"
-            onClick={handleApplyClick}
           />
         </div>
       </section>
