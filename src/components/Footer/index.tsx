@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <section className="flex flex-col gap-24 md:justify-between py-14 border-t border-[#242424] mt-10 md:mt-20">
+    <section className="flex flex-col gap-24 md:justify-between py-14 border-[#242424] mt-10 md:mt-20">
       <div className="flex flex-col md:flex-row md:justify-between gap-y-10">
         <div>
           <Image src="/logo.svg" alt="logo" width={140} height={32} />
