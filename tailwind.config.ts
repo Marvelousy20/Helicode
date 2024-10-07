@@ -62,7 +62,10 @@ const config = {
         `,
         "newsletter-gradient":
           "linear-gradient(172.01deg, #570AFF -101.1%, #8044FF 79.42%)",
+        "uni-gradient":
+          "linear-gradient(90deg, rgba(153, 169, 255, 0.24) 0%, rgba(153, 192, 255, 0.24) 50%, rgba(204, 234, 255, 0.24) 100%)",
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
