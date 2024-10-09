@@ -144,7 +144,7 @@ const Navbar = () => {
               target="_blank"
               className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
             >
-              <Button className="py-3">
+              <Button className="py-3 transition-colors duration-300">
                 Apply Now <MdArrowForwardIos size={16} className="ml-1" />
               </Button>
             </Link>
