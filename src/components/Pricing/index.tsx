@@ -55,9 +55,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </button> */}
       <div
         className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center cursor-pointer"
-        onClick={() => router.push("/payment")}
+        // onClick={() => router.push("/payment")}
       >
-        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center">
+        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center text-sm">
           {buttonLabel} <ChevronRight size={20} />
         </div>
       </div>

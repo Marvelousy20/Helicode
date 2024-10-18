@@ -192,7 +192,7 @@ export default function page() {
               </p>
             </div>
             <Link
-              href="/"
+              href="/blockchain-cybersecurity"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
@@ -207,13 +207,8 @@ export default function page() {
         modules={blockchainModules}
         title="Blockchain Cybersecurity"
       />
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Start Your New Career Faster
-        </h1>
-        <Career />
-      </section>
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+
+      <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Pricing
         </h1>
@@ -228,7 +223,7 @@ export default function page() {
               "Live Classes and Hands-on Projects",
             ]}
             currentPrice={162}
-            buttonLabel="Apply Now"
+            buttonLabel="Coming Soon"
             // onClick={handleApplyClick}
           />
           <PricingCard
@@ -242,12 +237,22 @@ export default function page() {
             ]}
             currentPrice={70}
             noOfMonths="(3 months)"
-            buttonLabel="Apply Now"
+            buttonLabel="Coming Soon"
             // onClick={handleApplyClick}
           />
         </div>
       </section>
-      <Testimonial />
+
+      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
+        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+          Start Your New Career Faster
+        </h1>
+        <Career />
+      </section>
+
+      <div className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+        <Testimonial />
+      </div>
       <div className="pt-28">
         <FAQ />
       </div>

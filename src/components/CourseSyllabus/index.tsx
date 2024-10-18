@@ -50,7 +50,7 @@ export default function CourseSyllabus({
                   />
                   <div>
                     <h2 className="text-xl font-normal">
-                      Module {module.number}
+                      Week {module.number}
                     </h2>
                     <h4 className="font-semibold text-2xl md:text-3xl">
                       {module.title}

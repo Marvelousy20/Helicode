@@ -14,12 +14,12 @@ const info = [
   {
     imgLink: "/Hashtag-Square.svg",
     heading: "Start Date",
-    text: "October 21st, 2024",
+    text: "Coming Soon",
   },
   {
     imgLink: "/Time.svg",
     heading: "Duration",
-    text: "2 Months",
+    text: "1 Months",
   },
   {
     imgLink: "/Location.svg",
@@ -29,46 +29,133 @@ const info = [
   {
     imgLink: "/Dollar.svg",
     heading: "Average Salary",
-    text: "120,000",
+    text: "60,000",
   },
 ];
 
-const courses = [
+const web3MarketingModules = [
   {
-    heading: "Web3 Fundamentals",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 1,
+    title: "Introduction to Web3",
+    topics: [
+      {
+        content:
+          "Overview of Web3: Learn the Evolution from Web1 and Web2 to Web3 and the key concepts of decentralization, blockchain and smart contracts.",
+      },
+      {
+        content:
+          "Core Technologies: Understand the basics of Blockchain Technology, Cryptocurrencies and Decentralized Applications.",
+      },
+      {
+        content:
+          "Web3 Ecosystem: Deep dive into the Key Players of the Web3 Ecosystem such as Ethereum, Binance Smart Chain, Solana, Optimism. Learn about DAOs and NFTs.",
+      },
+    ],
   },
   {
-    heading: "Decentralized Marketing Strategies",
-    text: "Gain expertise in Figma, a leading design tool, to craft stunning and interactive prototypes that bring your design ideas to life.",
+    number: 2,
+    title: "Web3 Marketing Fundamentals",
+    topics: [
+      {
+        content:
+          "Principles of Web3 Marketing: Understand the strategies used in decentralized marketing and how to take community centric approaches to build Transparency and trust in Marketing.",
+      },
+      {
+        content:
+          "Target Audience: Identify and Understand Web3 users and how to segment the Web3 Market.",
+      },
+      {
+        content:
+          "Branding and Positioning: You will learn how to develop a Web3 brand Identity and how to craft a unique value proposition.",
+      },
+    ],
   },
   {
-    heading: "Tokenomics and Marketing",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 3,
+    title: "Content and Community Management",
+    topics: [
+      {
+        content:
+          "Content Creation for Web3: Learn how to create educational, promotional and thought leadership content used to engage members in decentralized communities.",
+      },
+      {
+        content:
+          "Discover social media strategies that drives the growth of Web3 platforms such as Twitter, Reddit and Discord by leveraging influencer partnerships and collaborations to successfully scale multiple Web3 projects.",
+      },
+      {
+        content:
+          "Platforms for content distribution: Medium, Substack and YouTube.",
+      },
+    ],
   },
   {
-    heading: "Blockchain Analytics for Marketers",
-    text: "Become a skilled UX designer, proficient in understanding user needs, creating customer journey maps, and designing optimal user experiences.",
+    number: 4,
+    title: "Marketing Channels and Tools",
+    topics: [
+      {
+        content:
+          "Web3 Advertising: Learn the native ads in Decentralized Applications and Blockchain Networks.",
+      },
+      {
+        content:
+          "SEO and SEM: Learn how to optimize for blockchain-related search queries and how to use paid search strategies and ad placements to increase traffic and visibility from organic search results.",
+      },
+      {
+        content:
+          "Email Marketing and Newsletters: We will cover the process of building and managing a Web3 email list and learn how to create effective newsletters and campaigns.",
+      },
+    ],
   },
   {
-    heading: "Web3 Content Marketing",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 5,
+    title: "Metrics and Analytics",
+    topics: [
+      {
+        content:
+          "Key Performance Indicators: Learn how to measure engagement and growth in the contexts of Web3. You will also learn how to track a token and NFT performance.",
+      },
+      {
+        content:
+          "Tools for Web3 Analytics: You will get used to the tools for blockchain analytics platforms, social media and community metrics.",
+      },
+      {
+        content:
+          "Data Privacy and Security: You will learn how to ensure user data is protected and how compliance work in the decentralized data regulation space.",
+      },
+    ],
   },
   {
-    heading: "Influencer Marketing in Web3",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 6,
+    title: "Case Studies and Practical Applications",
+    topics: [
+      {
+        content:
+          "Successful Web3 Campaigns: Learn how to analyze successful marketing campaigns and their strategies to improve business growth, increase brand awareness, attract new customers and generate more sales.",
+      },
+      {
+        content:
+          "Hands-On Projects: Learn how to create and launch a mock marketing campaign typically used for promotional purposes. You will gain hands on experience on how to build and manage a community.",
+      },
+      {
+        content:
+          "Future Trends and Innovation: We will explore the emerging trends in Web3 marketing and how to prepare for future developments in Blockchain Technology.",
+      },
+    ],
   },
   {
-    heading: "Legal and Ethical Considerations",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
-  },
-  {
-    heading: "Web3 Social Media Strategies",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
-  },
-  {
-    heading: "Measuring Success in Web3 Marketing",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 7,
+    title: "Assessment and Certification",
+    topics: [
+      {
+        content: "Quizzes and assignments at the end of each module.",
+      },
+      {
+        content: "Final Project: Comprehensive Web3 marketing plan.",
+      },
+      {
+        content: "Certification upon successful completion of course.",
+      },
+    ],
   },
 ];
 
@@ -130,12 +217,13 @@ export default function Page() {
                 Web3 Marketing
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
-                Zero Knowledge Proofs enable privacy-preserving transactions and
-                computations on public blockchains
+                For a Web3 product to scale, it has to be marketed properly to
+                the right audience, or it risks failing before it has even
+                begun.
               </p>
             </div>
             <Link
-              href="/"
+              href="/marketing"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
@@ -146,13 +234,8 @@ export default function Page() {
         </div>
       </div>
       <CourseInfo info={info} />
-      <CourseSyllabus courses={courses} />
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Start Your New Career Faster
-        </h1>
-        <Career />
-      </section>
+      <CourseSyllabus modules={web3MarketingModules} title="Web3 Marketing" />
+
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Pricing
@@ -160,14 +243,29 @@ export default function Page() {
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
             planType="One-time payment"
-            description="Unlock maximum value with a one-time payment and save 10%"
-            features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice={30}
-            buttonLabel="Apply Now"
+            description="Offering a significant discount for individuals who can pay the full amount at the start of the program."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            currentPrice={50}
+            noOfMonths="(1 month)"
+            buttonLabel="Coming Soon"
           />
         </div>
       </section>
-      <Testimonial />
+      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
+        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+          Start Your New Career Faster
+        </h1>
+        <Career />
+      </section>
+
+      <div className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+        <Testimonial />
+      </div>
       <div className="pt-28">
         <FAQ />
       </div>
