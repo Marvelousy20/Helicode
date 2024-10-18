@@ -49,10 +49,10 @@ export default function CourseSyllabus({
                     alt="graduate-icon"
                   />
                   <div>
-                    <h2 className="text-xl font-normal">
+                    <h2 className="text-lg md:text-xl font-normal">
                       Week {module.number}
                     </h2>
-                    <h4 className="font-semibold text-2xl md:text-3xl">
+                    <h4 className="font-semibold text-xl md:text-3xl">
                       {module.title}
                     </h4>
                   </div>
