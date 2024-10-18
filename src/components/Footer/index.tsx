@@ -17,7 +17,9 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
               <li className="text-[#D4E8FF80]">Featured Courses</li>
               <li className="font-medium">
-                <Link href="/">Blockchain Cybersecurity</Link>
+                <Link href="/blockchain-cybersecurity">
+                  Blockchain Cybersecurity
+                </Link>
               </li>
               <li>
                 <Link href="/">Smart Contract Development</Link>
@@ -26,10 +28,10 @@ const Footer = () => {
                 <Link href="/">Web3 Product Design</Link>
               </li>
               <li>
-                <Link href="/">Web3 Technical Writing</Link>
+                <Link href="/technical-writing">Web3 Technical Writing</Link>
               </li>
               <li>
-                <Link href="/">Web3 Marketing</Link>
+                <Link href="/marketing">Web3 Marketing</Link>
               </li>
             </ul>
           </div>
@@ -38,10 +40,10 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
               <li className="text-[#D4E8FF80]">Company</li>
               <li>
-                <Link href="/">About Us</Link>
+                <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="">Contact us</Link>
+                <Link href="/">Contact us</Link>
               </li>
             </ul>
           </div>
@@ -53,7 +55,7 @@ const Footer = () => {
                 <Link href="/">Blog</Link>
               </li>
               <li>
-                <Link href="">FAQ</Link>
+                <Link href="/">FAQ</Link>
               </li>
             </ul>
           </div>
@@ -65,7 +67,7 @@ const Footer = () => {
                 <Link href="/">Terms & Conditions</Link>
               </li>
               <li>
-                <Link href="">Privacy Policy</Link>
+                <Link href="/">Privacy Policy</Link>
               </li>
             </ul>
           </div>

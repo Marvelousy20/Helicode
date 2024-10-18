@@ -111,7 +111,7 @@ const web3TechnicalWritingModules = [
 export default function page() {
   return (
     <main className="lg:py-5 mt-12">
-      <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
+      <div className="h-[77dvh] lg:h-[82vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
         <div className="relative z-0 h-full">
           <div className="absolute left-0 top-10 lg:top-16 w-full h-[0.7px] w[2px] bg-[#343434]" />
           <div className="absolute left-6 lg:left-20 top-0 w-[0.7px] h-full w[2px] bg-[#343434]">
@@ -128,11 +128,11 @@ export default function page() {
             background:
               "linear-gradient(180deg, #080821 0%, rgba(0, 0, 0, 0) 100%)",
           }}
-          className=" relativeflexjustify-centeritems-center hfull z-0 border[0.7px] border-[#343434] border-l-0 bgblack absolute right-6 lg:right-20 left-6 lg:left-20 top-10 lg:top-16 bottom-10 lg:bottom-16 m-[1.4px]"
+          className="relativeflexjustify-centeritems-center hfull z-0 border[0.7px] border-[#343434] border-l-0 bgblack absolute right-6 lg:right-20 left-6 lg:left-20 top-10 lg:top-16 bottom-10 lg:bottom-16 m-[1.4px]"
         >
           <div className="relative flex flex-col justify-center items-center h-full text-center">
             <div className="flex items-center border border[#9960FF]/[20] border-[#99A9FF3D] py-[6px] px-3 rounded-full">
-              <span className=" mr-2">
+              <span className="mr-2">
                 <svg
                   width="22"
                   height="22"
@@ -182,7 +182,7 @@ export default function page() {
         modules={web3TechnicalWritingModules}
         title="Technical Writing"
       />
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+      <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Pricing
         </h1>
@@ -209,7 +209,11 @@ export default function page() {
         </h1>
         <Career />
       </section>
-      <Testimonial />
+
+      <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+        <Testimonial />
+      </section>
+
       <div className="pt-28">
         <FAQ />
       </div>
