@@ -8,15 +8,31 @@ import { Button } from "../ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 
 const courses = [
-  { id: 1, href: "blockchain-cybersecurity", name: "Blockchain Cybersecurity" },
+  {
+    id: 1,
+    href: "blockchain-cybersecurity",
+    name: "Blockchain Cybersecurity",
+    allowed: true,
+  },
+  { id: 5, href: "marketing", name: "Web3 Marketing", allowed: true },
+  {
+    id: 4,
+    href: "technical-writing",
+    name: "Web3 Technical Writing",
+    allowed: true,
+  },
   {
     id: 2,
     href: "smart-contract-development",
     name: "Smart Contract Development",
+    allowed: false,
   },
-  { id: 3, href: "product-design", name: "Web3 Product Design" },
-  { id: 4, href: "technical-writing", name: "Web3 Technical Writing" },
-  { id: 5, href: "marketing", name: "Web3 Marketing" },
+  {
+    id: 3,
+    href: "product-design",
+    name: "Web3 Product Design",
+    allowed: false,
+  },
 ];
 
 const Navbar = () => {
@@ -99,9 +115,13 @@ const Navbar = () => {
                       {courses.map((course) => (
                         <Link
                           key={course.id}
-                          // href={course.href}
-                          href="/"
-                          className="block px-4 py2 py-4 text-[0.9rem] textwhite text-gray-600 cursor-not-allowed hover:bg-slate-900"
+                          href={course.allowed ? course.href : "/"}
+                          // href="/"
+                          className={`block px-4 py2 py-4 text-[0.9rem] textwhite ${
+                            course.allowed
+                              ? "text-white"
+                              : "text-gray-600 cursor-not-allowed hover:bg-slate-900"
+                          }`}
                           role="menuitem"
                           onClick={() => setShowDropdown(false)}
                         >
