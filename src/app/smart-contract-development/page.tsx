@@ -33,22 +33,100 @@ const info = [
   },
 ];
 
-const courses = [
+const smartContractModules = [
   {
-    heading: "Basics of Blockchain",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 1,
+    title: "Basic Concepts of Blockchain",
+    topics: [
+      {
+        content:
+          "Introduction to Blockchain: Understand the types of blockchain, the consensus algorithm such as PoW, PoS, DPoS, PBFT.",
+      },
+      {
+        content:
+          "Smart Contract: Learn the concepts, writing languages and functions.",
+      },
+      {
+        content:
+          "Decentralized Application: Learn the process of smart contract development and its architecture",
+      },
+    ],
   },
   {
-    heading: "Diving Deeper Into Smart Contract Concepts",
-    text: "Gain expertise in Figma, a leading design tool, to craft stunning and interactive prototypes that bring your design ideas to life.",
+    number: 2,
+    title: "Blockchain Security Foundation",
+    topics: [
+      {
+        content:
+          "Security in blockchain architecture: Understand the architecture of onchain and offchain security.",
+      },
+      {
+        content:
+          "Blockchain Attack Surface Analysis: Learn the consensus layer, P2P network layer and smart contract layer. Explore the common blockchain vulnerabilities types.",
+      },
+      {
+        content:
+          "Public Key Encryption and harsh Algorithm: SHA-256, ECDSA etc",
+      },
+    ],
   },
   {
-    heading: "Integration and Mastery of skills learnt",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 3,
+    title: "Smart Contract Security Audit Basics",
+    topics: [
+      {
+        content:
+          "Deep dive into the Analysis of Common Vulnerabilities in Smart Contracts, Reentrancy Attacks, Overflow/Underflow, Unsafe Function Calls and Random Number Generation and Security Practices in Solidity Development.",
+      },
+    ],
   },
   {
-    heading: "Bug Bounty Practice",
-    text: "Become a skilled UX designer, proficient in understanding user needs, creating customer journey maps, and designing optimal user experiences.",
+    number: 4,
+    title: "Blockchain Security Testing Technology",
+    topics: [
+      {
+        content:
+          "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
+      },
+    ],
+  },
+  {
+    number: 5,
+    title: "Comprehensive Security Audit of Blockchain Projects",
+    topics: [
+      {
+        content:
+          "Understand the compliance and regulatory framework, risk assessment methods and third-party audit / certification process. You will learn the code base management and security monitoring in continuous integration.",
+      },
+    ],
+  },
+  {
+    number: 6,
+    title: "Case analysis and practical exercises",
+    topics: [
+      {
+        content:
+          "Learn the vulnerability analysis cases of real blockchain projects such as The DAO and Poly Network.",
+      },
+      {
+        content:
+          "Explore and conduct complete audits of blockchain projects. Work on penetration test simulation like using test tools to find and fix vulnerabilities in projects. Learn how to conduct blockchain security audits in enterprises.",
+      },
+    ],
+  },
+  {
+    number: 7,
+    title: "Career Development and Industry Trends",
+    topics: [
+      {
+        content:
+          "Learn the career prospects for blockchain security by introducing you to positions such as auditors, developers and test engineers.",
+      },
+      {
+        content:
+          "Industry Trends: Explore the security challenges in Web3, DeFi, GameFi, Layer 2 and other fields.",
+      },
+    ],
   },
 ];
 
@@ -119,7 +197,7 @@ export default function page() {
         </div>
       </div>
       <CourseInfo info={info} />
-      <CourseSyllabus courses={courses} />
+      <CourseSyllabus modules={smartContractModules} title="Smart Contract" />
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Start Your New Career Faster
@@ -139,7 +217,7 @@ export default function page() {
             buttonLabel="Apply Now"
           />
           <PricingCard
-            planType="Monthly"
+            planType="Monthly Payment"
             description="Flexibility with our convenient payment plan tailored to suit your budget"
             features={["Tailored Homework", "Mentorship Support"]}
             currentPrice={70}

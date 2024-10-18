@@ -4,12 +4,13 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
 interface PricingCardProps {
-  planType: "One-time payment" | "Monthly";
+  planType: "One-time payment" | "Monthly Payment";
   description: string;
   features: string[];
   currentPrice: number;
   originalPrice?: number;
   buttonLabel: string;
+  noOfMonths?: string;
 }
 const PricingCard: React.FC<PricingCardProps> = ({
   planType,
@@ -18,6 +19,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   currentPrice,
   originalPrice,
   buttonLabel,
+  noOfMonths,
   // onClick,
 }) => {
   const router = useRouter();
@@ -31,19 +33,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
       <hr className="border-[#2D2F32] mt-6" />
 
-      <ul className="mt-6">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-center mt-2 text-lg">
-            <span className="mr-2">
-              <Image src="/check.svg" alt="check" width={12.5} height={10.5} />
-            </span>
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      <hr className="border-[#2D2F32] mt-6" />
-
       <div className="mt-6">
         {originalPrice && (
           <span className="line-through text-[#2D2F32] text-[3.5rem] lg:text-[3.75rem] font-medium">
@@ -51,7 +40,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </span>
         )}
         <span className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
-          ${currentPrice}
+          ${currentPrice}{" "}
+          <span className="text-2xl font-normal">
+            {noOfMonths ? noOfMonths : ""}
+          </span>
         </span>
       </div>
 
@@ -63,12 +55,25 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </button> */}
       <div
         className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center cursor-pointer"
-        onClick={() => router.push("/payment")}
+        // onClick={() => router.push("/payment")}
       >
-        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center">
+        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center text-sm">
           {buttonLabel} <ChevronRight size={20} />
         </div>
       </div>
+
+      <hr className="border-[#2D2F32] mt-6" />
+
+      <ul className="mt-6">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-center mt-2 text-lg">
+            <span className="mr-2">
+              <Image src="/check.svg" alt="check" width={12.5} height={10.5} />
+            </span>
+            {feature}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

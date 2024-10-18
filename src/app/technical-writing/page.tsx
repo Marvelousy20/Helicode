@@ -14,12 +14,12 @@ const info = [
   {
     imgLink: "/Hashtag-Square.svg",
     heading: "Start Date",
-    text: "October 21st, 2024",
+    text: "Comming Soon",
   },
   {
     imgLink: "/Time.svg",
     heading: "Duration",
-    text: "2 Months",
+    text: "1 Month",
   },
   {
     imgLink: "/Location.svg",
@@ -29,34 +29,82 @@ const info = [
   {
     imgLink: "/Dollar.svg",
     heading: "Average Salary",
-    text: "120,000",
+    text: "80,000",
   },
 ];
 
-const courses = [
+const web3TechnicalWritingModules = [
   {
-    heading: "Blockchain Fundamentals for Writers",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 1,
+    title: "Introduction to Technical Writing",
+    topics: [
+      {
+        content:
+          "Introduction to Technical Writing: Understand the concepts, scope and real-world applications in technical writing.",
+      },
+      {
+        content:
+          "Writing for Different Audiences: Learn how to identify your audience such as Developers, end-users, stakeholders and using the right terminology.",
+      },
+      {
+        content:
+          "Structuring Technical Writing: Learn the best practices for organizing technical documents and structuring contents.",
+      },
+    ],
   },
   {
-    heading: "DApp Documentation Best Practices",
-    text: "Gain expertise in Figma, a leading design tool, to craft stunning and interactive prototypes that bring your design ideas to life.",
+    number: 2,
+    title: "Writing Essentials and Documentation Types",
+    topics: [
+      {
+        content:
+          "Clarity, Simplicity, and Style in Technical Writing: You will learn how to simplify technical jargon without sacrificing accuracy, writing in an active voice, using concise sentences and avoiding redundancy.",
+      },
+      {
+        content:
+          "Writing Product Manuals & User Guides: You will learn how to create user-centered documentation, step-by-step instructions, prerequisites, and troubleshooting sections. Explore the formatting guides for readability and clarity.",
+      },
+      {
+        content:
+          "API Documentation: Learn how to structure API documentation and the tools used for API documentation.",
+      },
+    ],
   },
   {
-    heading: "Smart Contract Explanation Techniques",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 3,
+    title: "Visuals, Collaboration, and Self-Editing",
+    topics: [
+      {
+        content:
+          "Visual Elements in Technical Writing: Learn how to to add visual elements like diagrams, tables and flowcharts into a technical document and how they can enhance comprehension.",
+      },
+      {
+        content:
+          "Reviewing, Editing, and Refining Technical Documents: Learn self-editing techniques, peer reviews and the tools for version control and collaboration (GitHub, Conference).",
+      },
+      {
+        content:
+          "Advanced Writing Techniques: Master the tone and style for different document types, writing FAQs, structuring long-form content and managing multiple.",
+      },
+    ],
   },
   {
-    heading: "Whitepaper Creation and Structuring",
-    text: "Become a skilled UX designer, proficient in understanding user needs, creating customer journey maps, and designing optimal user experiences.",
-  },
-  {
-    heading: "API Documentation for Web3 Projects",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
-  },
-  {
-    heading: "Community Engagement and Tutorial Writing",
-    text: "Master Human-Centered Design principles, Design Thinking, and User Research to create intuitive and user-friendly products that address real user needs.",
+    number: 4,
+    title: "Capstone Project and Final Assessment",
+    topics: [
+      {
+        content:
+          "Capstone Project Planning: Choose a product (hardware, software, or service) for documentation. Work on the project structure like Audience analysis, technical descriptions, step-by-step guides, and visuals. You will also get to set up a group or individual project.",
+      },
+      {
+        content:
+          "Group Peer Review and Feedback: Peer reviews on the capstone projects with feedback and revisions.",
+      },
+      {
+        content:
+          "Capstone Project Submission and Presentation: There will be final reviews and presentation of the capstone projects.",
+      },
+    ],
   },
 ];
 
@@ -111,12 +159,15 @@ export default function page() {
                 Web3 Technical Writing
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
-                Zero Knowledge Proofs enable privacy-preserving transactions and
-                computations on public blockchains
+                This 4-week intensive course equips participants with the skills
+                to write clear, concise, and effective technical documentation.
+                By the end of the course, learners will be able to produce user
+                manuals, API documentation, and reports, all while focusing on
+                audience needs, clarity, and accuracy.
               </p>
             </div>
             <Link
-              href="/"
+              href="/technical-writing"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
@@ -127,13 +178,10 @@ export default function page() {
         </div>
       </div>
       <CourseInfo info={info} />
-      <CourseSyllabus courses={courses} />
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Start Your New Career Faster
-        </h1>
-        <Career />
-      </section>
+      <CourseSyllabus
+        modules={web3TechnicalWritingModules}
+        title="Technical Writing"
+      />
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Pricing
@@ -142,19 +190,24 @@ export default function page() {
           <PricingCard
             planType="One-time payment"
             description="Unlock maximum value with a one-time payment and save 10%"
-            features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice={54}
-            originalPrice={60}
-            buttonLabel="Apply Now"
-          />
-          <PricingCard
-            planType="Monthly"
-            description="Flexibility with our convenient payment plan tailored to suit your budget"
-            features={["Tailored Homework", "Mentorship Support"]}
-            currentPrice={30}
-            buttonLabel="Apply Now"
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            currentPrice={70}
+            noOfMonths="(1 month)"
+            buttonLabel="Coming Soon"
           />
         </div>
+      </section>
+
+      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
+        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+          Start Your New Career Faster
+        </h1>
+        <Career />
       </section>
       <Testimonial />
       <div className="pt-28">

@@ -1,15 +1,24 @@
 import Image from "next/image";
 
-interface CourseProp {
-  heading: string;
-  text: string;
+interface Topic {
+  content: string;
 }
 
-interface CoursesComponentProps {
-  courses: CourseProp[];
+interface Module {
+  number: number;
+  title: string;
+  topics: Topic[];
 }
 
-export default function CourseSyllabus({ courses }: CoursesComponentProps) {
+interface CourseSyllabusProps {
+  title: string;
+  modules: Module[];
+}
+
+export default function CourseSyllabus({
+  modules,
+  title,
+}: CourseSyllabusProps) {
   return (
     <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-32 max-w5xl mx-auto">
       <div className="border border-dashed border-[#343434] px-5 py-10 lg:p-10">
@@ -22,27 +31,43 @@ export default function CourseSyllabus({ courses }: CoursesComponentProps) {
               alt="course-icon"
             />
           </span>
-          <p className=" text-[28px]">Course Syllabus</p>
+          <p className=" text-[28px]">{title} Curriculum</p>
         </div>
         {/* List of courses */}
         <div className=" mt-6 space-y-4">
-          {courses.map((course, index) => (
+          {modules.map((module, index) => (
             <div
               key={index}
-              className=" border border-[#232323] bg-[#080821] flex flex-col lg:flex-row items-center p-4 lg:p-6 text-left space-y-6 lg:space-y-0"
+              className="border border-[#232323] bg-[#080821] flex flex-col p-4 lg:p-6 text-left space-y-6"
             >
-              <span className=" mr-auto lg:mr-6">
-                <Image
-                  src="/Graduate.svg"
-                  width={40}
-                  height={25}
-                  alt="graduate-icon"
-                />
-              </span>
-              <div className="text-left space-y-3">
-                <h1 className=" text-xl font-medium">{course.heading}</h1>
-                <p className="text-[#B3B3B3] leading-6">{course.text}</p>
+              <div>
+                <div className="flex items-center space-x-4">
+                  <Image
+                    src="/Graduate.svg"
+                    width={40}
+                    height={25}
+                    alt="graduate-icon"
+                  />
+                  <div>
+                    <h2 className="text-xl font-normal">
+                      Week {module.number}
+                    </h2>
+                    <h4 className="font-semibold text-2xl md:text-3xl">
+                      {module.title}
+                    </h4>
+                  </div>
+                </div>
               </div>
+
+              <hr className="opacity-30" />
+
+              <ul className="space-y-4">
+                {module.topics.map((topic, topicIndex) => (
+                  <li key={topicIndex} className="text-white leading-6">
+                    {topic.content}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

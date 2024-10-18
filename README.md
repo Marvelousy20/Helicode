@@ -33,4 +33,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Capstone Project Planning: Choose a product (hardware, software, or service) for documentation. Work on the project structure like Audience analysis, technical descriptions, step-by-step guides, and visuals. You will also get to set up a group or individual project. Group Peer Review and Feedback: Peer reviews on the capstone projects with feedback and revisions. Capstone Project Submission and Presentation: There will be final reviews and presentation of the capstone projects.
