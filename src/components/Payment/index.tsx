@@ -107,10 +107,16 @@ const courses = [
 ] as const;
 
 const referralSources = [
+  "Google",
+  "Linkedin",
+  "Twitter",
   "AIESEC Ghana",
-  "Social Media",
-  "Friend Referral",
-  "Online Ad",
+  "Delppy",
+  "Web3 Global Conference",
+  "AIESEC Togo",
+  "AIESEC Nigeria",
+  "3VO",
+  "Other",
 ] as const;
 
 // Zod schema
@@ -154,7 +160,7 @@ export default function ContactInfo() {
       state: "",
       course: "",
       // cohort: "",
-      referralSource: "Social Media",
+      referralSource: "Twitter",
       paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
