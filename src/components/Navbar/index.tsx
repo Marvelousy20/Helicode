@@ -30,7 +30,7 @@ const courses = [
   {
     id: 3,
     href: "product-design",
-    name: "Web3 Product Design",
+    name: "Web3 Research",
     allowed: false,
   },
 ];

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import FAQ from "@/components/FAQ";
+import Web3MarketingFAQ from "@/components/Web3MarketingFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
@@ -291,7 +291,7 @@ export default function Page() {
         <Testimonial />
       </div>
       <div className="pt-28">
-        <FAQ />
+        <Web3MarketingFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />

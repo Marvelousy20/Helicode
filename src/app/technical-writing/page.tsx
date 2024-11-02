@@ -5,7 +5,7 @@ import Link from "next/link";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import FAQ from "@/components/FAQ";
+import Web3TechnicalWritingFAQ from "@/components/TechnicalWritingFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
@@ -239,7 +239,7 @@ export default function Page() {
       </section>
 
       <div className="pt-28">
-        <FAQ />
+        <Web3TechnicalWritingFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />
