@@ -1,37 +1,19 @@
-// "use client";
+"use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import FAQ from "@/components/FAQ";
+import BlockchainCyberSecurityFAQ from "@/components/BlockchainSecurityFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
-
-const info = [
-  {
-    imgLink: "/Hashtag-Square.svg",
-    heading: "Start Date",
-    text: "Coming Soon",
-  },
-  {
-    imgLink: "/Time.svg",
-    heading: "Duration",
-    text: "3 Months",
-  },
-  {
-    imgLink: "/Location.svg",
-    heading: "Location",
-    text: "Virtual",
-  },
-  {
-    imgLink: "/Dollar.svg",
-    heading: "Average Salary",
-    text: "120,000",
-  },
-];
+import {
+  useGetAllCoursesQuery,
+  useGetCyberSecurtyQuery,
+} from "@/redux/feature/courses/courseApi";
+import { useRouter } from "next/navigation";
 
 const blockchainModules = [
   {
@@ -130,11 +112,41 @@ const blockchainModules = [
   },
 ];
 
-export default function page() {
+export default function Page() {
+  const router = useRouter();
+  const { data, isFetching, isLoading } = useGetCyberSecurtyQuery();
+
+  console.log("cyber", data);
+
+  const info = [
+    {
+      imgLink: "/Hashtag-Square.svg",
+      heading: "Start Date",
+      text: `${data?.data?.map((item) => item?.startDate)}`,
+    },
+    {
+      imgLink: "/Time.svg",
+      heading: "Duration",
+
+      text: `${data?.data?.map((item) => item?.duration)}`,
+    },
+    {
+      imgLink: "/Location.svg",
+      heading: "Location",
+      text: "Virtual",
+    },
+    {
+      imgLink: "/Dollar.svg",
+      heading: "Average Salary",
+      text: "120,000",
+    },
+  ];
+
   const handleApplyClick = () => {
-    console.log("Clicked");
+    router.push("/payment");
   };
 
+  isFetching && <p>Loading</p>;
   return (
     <main className="lg:py-5 mt-12">
       <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
@@ -182,7 +194,7 @@ export default function page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                Blockchain Cybersecurity
+                {`${data?.data?.map((item) => item.name)}`}
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
                 Learn the fundamentals of blockchain security, including how
@@ -195,17 +207,18 @@ export default function page() {
               href="/blockchain-cybersecurity"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
-              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
+              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
             </Link>
           </div>
         </div>
       </div>
+
       <CourseInfo info={info} />
       <CourseSyllabus
         modules={blockchainModules}
-        title="Blockchain Cybersecurity"
+        title={`${data?.data?.map((item) => item.name)}`}
       />
 
       <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
@@ -222,8 +235,9 @@ export default function page() {
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            currentPrice={162}
-            buttonLabel="Coming Soon"
+            nairaPrice={`${data?.data?.map((item) => item?.price?.NGN)}`}
+            currentPrice={`${data?.data?.map((item) => item?.price?.USD)}`}
+            buttonLabel="Apply now"
             // onClick={handleApplyClick}
           />
           <PricingCard
@@ -235,9 +249,16 @@ export default function page() {
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            currentPrice={70}
-            noOfMonths="(3 months)"
-            buttonLabel="Coming Soon"
+            nairaPrice={`${data?.data?.map(
+              (item) => item?.recurrentPrice?.NGN
+            )}`}
+            currentPrice={`${data?.data?.map(
+              (item) => item?.recurrentPrice?.USD
+            )}`}
+            noOfMonths={`(${data?.data?.map(
+              (item) => item?.recurrentPrice?.frequency
+            )})`}
+            buttonLabel="Apply now"
             // onClick={handleApplyClick}
           />
         </div>
@@ -254,7 +275,7 @@ export default function page() {
         <Testimonial />
       </div>
       <div className="pt-28">
-        <FAQ />
+        <BlockchainCyberSecurityFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />

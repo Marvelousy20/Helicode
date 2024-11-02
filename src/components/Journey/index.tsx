@@ -13,9 +13,8 @@ const Journey = () => {
 
           <h4 className="mt-6 px-4 text-[#8B8B8B]">
             Helicode is committed to preparing every Web3 explorer for their
-            adventure in the crypto world. With the Academy platform,
-            you&apos;ll confidently take your first step into this new
-            territory.
+            adventure in the crypto world. With the Academic platform,
+            you&apos;ll confidently take your first step into this new career.
           </h4>
         </div>
 

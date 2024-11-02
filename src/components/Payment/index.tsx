@@ -14,6 +14,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Input } from "../ui/input";
 import { object, z } from "zod";
 import CourseInfo from "./courseInfo";
+import {
+  useGetAllCourseDetalsQuery,
+  useGetAllCoursesQuery,
+  useGetCountryQuery,
+  useGetStateQuery,
+  usePaymentMutation,
+} from "@/redux/feature/courses/courseApi";
+import { Button } from "../ui/button";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { handleError } from "@/lib/handle-error";
 
 type Country = {
   name: string;
@@ -110,39 +121,23 @@ const schema = z.object({
   ageRange: z.enum(ageRanges),
   country: z.string().min(1, { message: "Please select a country" }),
   state: z.string().min(1, { message: "Please select a state" }),
-  courseOfInterest: z.enum(courses),
-  cohort: z.enum(cohorts),
+  // courseOfInterest: z.enum(courses),
+  course: z.string().min(1, { message: "Please select a course of interest" }),
+  // cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
   paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
-  paymentMethod: z.enum(["Credit card", "Bank Transfer", "Crypto"]),
+  paymentType: z.enum(["recurrent", "fixed"]),
+  paymentCurrency: z.enum(["NGN", "USD"]),
+
+  // paymentMethod: z.enum(["Credit card", "Bank Transfer", "Crypto"]),
 });
 
-const fetchCountries = async (): Promise<Country[]> => {
-  const response = await axios.get("https://restcountries.com/v3.1/all");
-  return response.data
-    .map((country: any) => ({
-      name: country.name.common,
-      code: country.cca2,
-    }))
-    .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
-};
-
-const fetchStates = async (countryCode: string): Promise<State[]> => {
-  const response = await axios.get(
-    `https://api.countrystatecity.in/v1/countries/${countryCode}/states`,
-    {
-      headers: {
-        "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
-      },
-    }
-  );
-  return response.data.map((state: any) => ({
-    name: state.name,
-    code: state.iso2 || state.name,
-  }));
-};
-
 export default function ContactInfo() {
+  const { data: countries, isLoading } = useGetCountryQuery();
+
+  const { data: allCourses, isLoading: coursesLoading } =
+    useGetAllCoursesQuery();
+
   const {
     control,
     handleSubmit,
@@ -157,42 +152,106 @@ export default function ContactInfo() {
       ageRange: "18-24",
       country: "",
       state: "",
-      courseOfInterest: courses[0],
-      cohort: "January 2025",
+      course: "",
+      // cohort: "",
       referralSource: "Social Media",
       paymentPlan: "Full Payment",
-      paymentMethod: "Credit card",
+      paymentCurrency: "NGN",
+      // paymentMethod: "Credit card",
+      paymentType: "fixed",
     },
   });
 
   const watchCountry = watch("country");
-  const watchCourse = watch("courseOfInterest");
+  const selectedCountry = watch("country");
+  const watchCourse = watch("course");
   const watchPaymentPlan = watch("paymentPlan");
+  const currencyName = watch("paymentCurrency");
+  const paymentType = watch("paymentType");
 
-  // Fetch countries
-  const { data: countries, isLoading: isLoadingCountries } = useQuery({
-    queryKey: ["getCountries"],
-    queryFn: fetchCountries,
-  });
+  const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
+    selectedCountry,
+    { skip: !selectedCountry }
+  );
 
-  // this function gets triggered when the value of the country changes. This is so because we are "watching" for changes in the country state.
-  const { data: states, isLoading: isLoadingStates } = useQuery({
-    queryKey: ["getStates", watchCountry],
-    queryFn: () => fetchStates(watchCountry),
-    enabled: !!watchCountry,
-  });
+  // Get Course Details
+  const { data: courseDetail, isLoading: detailLoading } =
+    useGetAllCourseDetalsQuery(watchCourse);
+
+  const [
+    payment,
+    { data: paymentData, isSuccess, isLoading: paymentLoading, error, isError },
+  ] = usePaymentMutation();
+
+  // if (isSuccess) {
+  //   console.log(
+  //     "User payment:",
+  //     paymentData?.message,
+  //     paymentData?.data?.authorization_url
+  //   );
+  //   window.open(paymentData?.data?.authorization_url);
+  // }
+
+  useEffect(() => {
+    if (isSuccess) {
+      const message = paymentData?.message || "Payment successful";
+      toast.success(<span>{message}</span>, {
+        style: {
+          border: "1px solid #22C55E",
+          padding: "16px",
+          color: "#0A0A0A",
+        },
+        iconTheme: {
+          primary: "#22C55E",
+          secondary: "#FAFAFA",
+        },
+        duration: 5000,
+      });
+      window.open(paymentData?.data?.authorization_url);
+    }
+
+    if (error) {
+      handleError(error);
+      console.log(error);
+    }
+  }, [paymentData?.message, isSuccess, error]);
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    console.log(values);
+    // const {
+    //   country,
+    //   courseOfInterest,
+    //   email,
+    //   fullName,
+    //   paymentType,
+    //   phoneNumber,
+    //   ageRange,
+    //   currencyName,
+    //   state,
+    // } = values;
+
+    // const allValues = {
+    //   email,
+    //   fullName,
+    //   phoneNumber,
+    //   ageRange,
+    //   state,
+    //   country,
+    //   course: courseOfInterest,
+    //   paymentType,
+    //   paymentCurrency: currencyName,
+    // };
+
+    console.log("Allvalues:", values);
+    payment(values);
   };
 
   return (
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-5 gap-6 mt-8 items-start"
+        className="grid md:grid-cols-5 gap-6 mt-8 items-start"
       >
-        <div className="col-span-3 bg-[#080821] border border-[#232323] py-10">
+        <div className="md:col-span-3 bg-[#080821] border border-[#232323] py-10">
           <h1 className="text-3xl font-medium px-10 mb-10">
             Contact Information
           </h1>
@@ -266,7 +325,7 @@ export default function ContactInfo() {
 
             <div className="space-y-2">
               <label htmlFor="ageRange" className="font-medium text-2xl block">
-                Age Ranges*
+                Age Range*
               </label>
               <Controller
                 name="ageRange"
@@ -295,58 +354,64 @@ export default function ContactInfo() {
             </div>
 
             <div className="flex space-x-4">
-              <Controller
-                name="country"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
-                      <SelectValue placeholder="Select your country" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {isLoadingCountries ? (
-                        <SelectItem value="loading">
-                          Loading countries...
-                        </SelectItem>
-                      ) : (
-                        countries?.map((country) => (
-                          <SelectItem key={country.code} value={country.name}>
-                            {country.name}
+              <div className="flex flex-col gap-2 w-full">
+                <p className="font-medium text-2xl block">Country</p>
+                <Controller
+                  name="country"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
+                        <SelectValue placeholder="Select your country" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {isLoading ? (
+                          <SelectItem value="loading">
+                            Loading countries...
                           </SelectItem>
-                        ))
-                      )}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
+                        ) : (
+                          countries?.map((country: any) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              {country.name}
+                            </SelectItem>
+                          ))
+                        )}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </div>
 
-              <Controller
-                name="state"
-                control={control}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
-                      <SelectValue placeholder="State" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {isLoadingStates ? (
-                        <SelectItem value="loading">
-                          Loading states...
-                        </SelectItem>
-                      ) : (
-                        states?.map((state) => (
-                          <SelectItem key={state.code} value={state.name}>
-                            {state.name}
+              <div className="w-full flex flex-col gap-2">
+                <p className="font-medium text-2xl block">State</p>
+                <Controller
+                  name="state"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
+                        <SelectValue placeholder="State" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {stateLoading ? (
+                          <SelectItem value="loading">
+                            Loading states...
                           </SelectItem>
-                        ))
-                      )}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
+                        ) : (
+                          stateData?.map((state) => (
+                            <SelectItem key={state.iso2} value={state.name}>
+                              {state.name}
+                            </SelectItem>
+                          ))
+                        )}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -357,7 +422,7 @@ export default function ContactInfo() {
                 Course of interest*
               </label>
               <Controller
-                name="courseOfInterest"
+                name="course"
                 control={control}
                 render={({ field }) => (
                   <Select
@@ -368,23 +433,21 @@ export default function ContactInfo() {
                       <SelectValue placeholder="Select your course of interest" />
                     </SelectTrigger>
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {courses.map((course) => (
-                        <SelectItem key={course} value={course}>
-                          {course}
+                      {allCourses?.data?.map((course, i) => (
+                        <SelectItem key={i} value={course?.name}>
+                          {course?.name}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 )}
               />
-              {errors.courseOfInterest && (
-                <p className="text-red-500">
-                  {errors.courseOfInterest.message}
-                </p>
+              {errors.course && (
+                <p className="text-red-500">{errors.course.message}</p>
               )}
             </div>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label htmlFor="cohort" className="font-medium text-2xl block">
                 Cohort (Start Month)*
               </label>
@@ -399,12 +462,19 @@ export default function ContactInfo() {
                     <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
                       <SelectValue placeholder="Select your Cohort" />
                     </SelectTrigger>
+
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {cohorts.map((cohort) => (
-                        <SelectItem key={cohort} value={cohort}>
-                          {cohort}
+                      {detailLoading ? (
+                        <SelectItem value="loading">
+                          Loading cohort...
                         </SelectItem>
-                      ))}
+                      ) : (
+                        courseDetail?.data?.map((cohort, i) => (
+                          <SelectItem key={i} value={cohort?.cohort}>
+                            {cohort?.cohort}
+                          </SelectItem>
+                        ))
+                      )}
                     </SelectContent>
                   </Select>
                 )}
@@ -412,7 +482,7 @@ export default function ContactInfo() {
               {errors.cohort && (
                 <p className="text-red-500">{errors.cohort.message}</p>
               )}
-            </div>
+            </div> */}
 
             <div className="space-y-2">
               <label
@@ -464,7 +534,11 @@ export default function ContactInfo() {
                     className="grid-cols-2"
                   >
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="Full Payment" id="full-payment" />
+                      <RadioGroupItem
+                        value="Full Payment"
+                        id="full-payment"
+                        className="text-white"
+                      />
                       <label htmlFor="full-payment" className="text-white">
                         Full Payment
                       </label>
@@ -473,6 +547,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="Monthly Payment"
                         id="monthly-payment"
+                        className="text-white"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         Monthly Payment
@@ -485,13 +560,107 @@ export default function ContactInfo() {
                 <p className="text-red-500">{errors.paymentPlan.message}</p>
               )}
             </div>
+
+            {/* currency name */}
+
+            <div className="space-y-2">
+              <label
+                htmlFor="referralSource"
+                className="font-medium text-2xl block"
+              >
+                Currency*
+              </label>
+              <Controller
+                name="paymentCurrency"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="grid-cols-2"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value="NGN"
+                        id="NGN"
+                        className="text-white"
+                      />
+                      <label htmlFor="full-payment" className="text-white">
+                        NGN
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value="USD"
+                        id="USD"
+                        className="text-white"
+                      />
+                      <label htmlFor="monthly-payment" className="text-white">
+                        USD
+                      </label>
+                    </div>
+                  </RadioGroup>
+                )}
+              />
+              {errors.paymentCurrency && (
+                <p className="text-red-500">
+                  {errors.paymentCurrency?.message}
+                </p>
+              )}
+            </div>
+
+            {/* payment type */}
+
+            <div className="space-y-2">
+              <label
+                htmlFor="referralSource"
+                className="font-medium text-2xl block"
+              >
+                Payment Type*
+              </label>
+              <Controller
+                name="paymentType"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="grid-cols-2"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value="recurrent"
+                        id="recurrent"
+                        className="text-white"
+                      />
+                      <label htmlFor="full-payment" className="text-white">
+                        Recurrent
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value="fixed"
+                        id="fixed"
+                        className="text-white"
+                      />
+                      <label htmlFor="monthly-payment" className="text-white">
+                        Fixed
+                      </label>
+                    </div>
+                  </RadioGroup>
+                )}
+              />
+              {errors.paymentPlan && (
+                <p className="text-red-500">{errors.paymentType?.message}</p>
+              )}
+            </div>
           </div>
 
-          <div className="py-10">
+          {/* <div className="py-10">
             <hr className="border-[#454545]" />
-          </div>
+          </div> */}
 
-          <div className="space-y-2 px-10">
+          {/* <div className="space-y-2 px-10">
             <label
               htmlFor="referralSource"
               className="font-medium text-2xl block mb-10"
@@ -531,11 +700,22 @@ export default function ContactInfo() {
             {errors.paymentMethod && (
               <p className="text-red-500">{errors.paymentMethod.message}</p>
             )}
-          </div>
+          </div> */}
+
+          {/* <div className="px-10">
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </div> */}
         </div>
 
-        <div className="col-span-2 bg-[#080821] p-10 border border-[#232323]">
-          <CourseInfo course={watchCourse} paymentPlan={watchPaymentPlan} />
+        <div className="md:col-span-2 bg-[#080821] p-10 border border-[#232323]">
+          <CourseInfo
+            courses={courseDetail}
+            paymentPlan={watchPaymentPlan}
+            currencyName={currencyName}
+            isLoading={paymentLoading}
+          />
         </div>
       </form>
     </div>

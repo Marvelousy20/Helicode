@@ -7,7 +7,8 @@ interface PricingCardProps {
   planType: "One-time payment" | "Monthly Payment";
   description: string;
   features: string[];
-  currentPrice: number;
+  currentPrice: string;
+  nairaPrice?: string;
   originalPrice?: number;
   buttonLabel: string;
   noOfMonths?: string;
@@ -17,6 +18,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   description,
   features,
   currentPrice,
+  nairaPrice,
   originalPrice,
   buttonLabel,
   noOfMonths,
@@ -39,12 +41,17 @@ const PricingCard: React.FC<PricingCardProps> = ({
             ${originalPrice}
           </span>
         )}
-        <span className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
-          ${currentPrice}{" "}
-          <span className="text-2xl font-normal">
-            {noOfMonths ? noOfMonths : ""}
+        <div className="flex flex-col gap-2">
+          <p className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
+            &#8358;{nairaPrice}
+          </p>
+          <span className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
+            ${currentPrice}
+            <span className="text-2xl font-normal">
+              {noOfMonths ? noOfMonths : ""}
+            </span>
           </span>
-        </span>
+        </div>
       </div>
 
       {/* <button
@@ -55,9 +62,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </button> */}
       <div
         className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center cursor-pointer"
-        // onClick={() => router.push("/payment")}
+        onClick={() => router.push("/payment")}
       >
-        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center text-sm">
+        <div className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center text-sm transition-colors duration-300 hover:bg-primary/90">
           {buttonLabel} <ChevronRight size={20} />
         </div>
       </div>

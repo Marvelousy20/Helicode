@@ -189,7 +189,7 @@ export default function page() {
               href="/"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
-              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
+              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
             </Link>
@@ -213,14 +213,14 @@ export default function page() {
             planType="One-time payment"
             description="Unlock maximum value with a one-time payment and save 10%"
             features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice={126}
+            currentPrice="60"
             buttonLabel="Apply Now"
           />
           <PricingCard
             planType="Monthly Payment"
             description="Flexibility with our convenient payment plan tailored to suit your budget"
             features={["Tailored Homework", "Mentorship Support"]}
-            currentPrice={70}
+            currentPrice="70"
             buttonLabel="Apply Now"
           />
         </div>
