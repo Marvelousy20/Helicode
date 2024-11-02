@@ -240,7 +240,11 @@ export default function Page() {
             nairaPrice={
               data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
             }
-            currentPrice={`$${data?.data?.[0]?.price?.USD}` || "N/A"}
+            currentPrice={
+              data?.data?.[0]?.price?.USD
+                ? `$${data.data[0].price?.USD}`
+                : "N/A"
+            }
             buttonLabel="Apply now"
             // onClick={handleApplyClick}
           />
@@ -258,7 +262,11 @@ export default function Page() {
                 ? `₦${data.data[0].recurrentPrice.NGN}`
                 : "N/A"
             }
-            currentPrice={`$${data?.data?.[0]?.recurrentPrice?.USD}` || "N/A"}
+            currentPrice={
+              data?.data?.[0]?.recurrentPrice?.USD
+                ? `$${data?.data[0].recurrentPrice?.USD}`
+                : "N/A"
+            }
             noOfMonths={
               data?.data?.[0]?.recurrentPrice?.frequency
                 ? `(${data.data[0].recurrentPrice.frequency})`

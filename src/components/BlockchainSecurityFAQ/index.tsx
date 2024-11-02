@@ -12,9 +12,6 @@ export default function BlockchainCyberSecurityFAQ() {
         <h1 className="lg:text-[3rem] text-[1.875rem] font-semibold">
           Frequently Asked Questions
         </h1>
-        <p className="font-medium text-[#8B8B8B] leading-[-2em] mt-3">
-          Everything you need to know about Helicode
-        </p>
       </div>
 
       <Accordion type="single" collapsible className="w-full space-y-2">
