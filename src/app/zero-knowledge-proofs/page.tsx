@@ -213,7 +213,7 @@ export default function page() {
             planType="One-time payment"
             description="Unlock maximum value with a one-time payment and save 10%"
             features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice={270}
+            currentPrice={"270"}
             originalPrice={300}
             buttonLabel="Apply Now"
           />
@@ -221,7 +221,7 @@ export default function page() {
             planType="Monthly Payment"
             description="Flexibility with our convenient payment plan tailored to suit your budget"
             features={["Tailored Homework", "Mentorship Support"]}
-            currentPrice={100}
+            currentPrice={"100"}
             //   originalPrice={200}
             buttonLabel="Apply Now"
           />

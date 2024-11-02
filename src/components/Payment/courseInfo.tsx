@@ -3,6 +3,7 @@ import Image from "next/image";
 import { z } from "zod";
 import { coursesInfo } from ".";
 import { Single } from "@/redux/type";
+import { FaSpinner } from "react-icons/fa";
 
 // interface CourseProps {
 //   title: string;
@@ -34,12 +35,14 @@ interface CoursesProps {
   courses: Single | undefined;
   paymentPlan: string;
   currencyName: string;
+  isLoading: boolean;
 }
 
 export default function CourseInfo({
   courses,
   paymentPlan,
   currencyName,
+  isLoading,
 }: CoursesProps) {
   // const price =
   //   paymentPlan === "Full Payment" && currencyName === "NGN"
@@ -111,11 +114,17 @@ export default function CourseInfo({
 
         <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
           <button
-            className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 w-full flex justify-center items-center"
+            className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
             role="button"
             type="submit"
           >
-            Make Payment <ChevronRight size={20} />
+            {isLoading ? (
+              <FaSpinner className="animate-spin" />
+            ) : (
+              <p className="flex items-center gap-2">
+                Make Payment <ChevronRight size={20} />
+              </p>
+            )}
           </button>
         </div>
       </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import FAQ from "@/components/FAQ";
+import Web3TechnicalWritingFAQ from "@/components/TechnicalWritingFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
@@ -86,7 +86,7 @@ const web3TechnicalWritingModules = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   const { data, isFetching, isLoading } = useGetTechnicalWritingQuery();
   const info = [
     {
@@ -171,7 +171,7 @@ export default function page() {
               href="/technical-writing"
               className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
             >
-              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6">
+              <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
             </Link>
@@ -239,7 +239,7 @@ export default function page() {
       </section>
 
       <div className="pt-28">
-        <FAQ />
+        <Web3TechnicalWritingFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />

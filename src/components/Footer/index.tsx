@@ -21,12 +21,12 @@ const Footer = () => {
                   Blockchain Cybersecurity
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/">Smart Contract Development</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link href="/">Web3 Product Design</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/technical-writing">Web3 Technical Writing</Link>
               </li>
@@ -54,9 +54,9 @@ const Footer = () => {
               <li>
                 <Link href="/">Blog</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/">FAQ</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

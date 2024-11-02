@@ -5,19 +5,19 @@ export default function Career() {
     {
       title: "Learn the Skills",
       image: "/Book.svg",
-      desc: "This expertly curated career path gives you all the knowledge and experience you need to start this career.",
+      desc: "Excel in the skills that top industries need. Our expertly curated career path sets you apart for excellence.",
     },
 
     {
       title: "Prep for interviews",
       image: "/Dialog.svg",
-      desc: "This expertly curated career path gives you all the knowledge and experience you need to start this career.",
+      desc: "Our program includes personalised interview prep sessions, so you’re fully equipped to showcase your skills and expertise.",
     },
 
     {
-      title: "Learn the Skills",
+      title: "Access to Mentorship",
       image: "/Hand_Stars.svg",
-      desc: "This expertly curated career path gives you all the knowledge and experience you need to start this career.",
+      desc: "Our lifetime access to mentorship program pairs you with top web3 industry leaders who will guide you from the basics to the most advanced skills, supporting you at every step of your journey.",
     },
   ];
   return (

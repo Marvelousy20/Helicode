@@ -21,18 +21,18 @@ const courses = [
     name: "Web3 Technical Writing",
     allowed: true,
   },
-  {
-    id: 2,
-    href: "smart-contract-development",
-    name: "Smart Contract Development",
-    allowed: false,
-  },
-  {
-    id: 3,
-    href: "product-design",
-    name: "Web3 Product Design",
-    allowed: false,
-  },
+  // {
+  //   id: 2,
+  //   href: "smart-contract-development",
+  //   name: "Smart Contract Development",
+  //   allowed: false,
+  // },
+  // {
+  //   id: 3,
+  //   href: "product-design",
+  //   name: "Web3 Research",
+  //   allowed: false,
+  // },
 ];
 
 const Navbar = () => {

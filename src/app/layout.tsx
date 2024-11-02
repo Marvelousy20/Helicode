@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/lib/providers";
-
+import { Toaster } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
           <main className="px-5 lg:px-20 bg-[#010115] text-white">
             <Navbar />
             {children}
+            <Toaster position="top-right" reverseOrder={false} />
             <Footer />
           </main>
         </Providers>
