@@ -2,31 +2,73 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { z } from "zod";
 import { coursesInfo } from ".";
+import { Single } from "@/redux/type";
 
 // interface CourseProps {
 //   title: string;
 //   desc: string;
 // }
-interface CourseProps {
-  course: string;
+interface payment {
+  // course: string;
   paymentPlan: string;
 }
 
-export default function CourseInfo({ course, paymentPlan }: CourseProps) {
-  const courseData = coursesInfo[course];
+interface Course {
+  id: string;
+  price: {
+    USD: string;
+    NGN: string;
+  };
+  recurrentPrice: {
+    USD: string;
+    NGN: string;
+    frequency: number;
+  };
+  name: string;
+  duration: string;
+  startDate: string;
+  cohort: string;
+}
+
+interface CoursesProps {
+  courses: Single | undefined;
+  paymentPlan: string;
+  currencyName: string;
+}
+
+export default function CourseInfo({
+  courses,
+  paymentPlan,
+  currencyName,
+}: CoursesProps) {
+  // const price =
+  //   paymentPlan === "Full Payment" && currencyName === "NGN"
+  //     ? courses?.data?.map((plan) => plan?.price?.NGN)
+  //     : paymentPlan === "Full Payment" && currencyName === "USD"
+  //     ? courses?.data?.map((plan) => plan?.price?.USD)
+  //     : paymentPlan === "Monthly Payment" && currencyName === "NGN"
+  //     ? courses?.data?.map((plan) => plan?.recurrentPrice?.NGN)
+  //     : paymentPlan === "Monthly Payment" && currencyName === "USD"
+  //     ? courses?.data?.map((plan) => plan?.recurrentPrice?.USD)
+  //     : "";
+
   const price =
-    paymentPlan === "Full Payment"
-      ? courseData.fullPayment
-      : courseData.monthlyPayment;
+    paymentPlan === "Full Payment" && currencyName === "NGN"
+      ? courses?.data[0].price?.NGN
+      : paymentPlan === "Full Payment" && currencyName === "USD"
+      ? courses?.data[0].price?.USD
+      : paymentPlan === "Monthly Payment" && currencyName === "NGN"
+      ? courses?.data[0].recurrentPrice?.NGN
+      : paymentPlan === "Monthly Payment" && currencyName === "USD"
+      ? courses?.data[0].recurrentPrice?.USD
+      : "";
 
   return (
     <div>
       <h1 className="text-3xl font-medium">Course Information</h1>
 
-      <h1 className="font-medium mt-10">{courseData.name}</h1>
-      <p className="text-[#8B8B8B] leading-[28px] mt-5">
-        {courseData.description}
-      </p>
+      <h1 className="font-medium mt-10">{courses?.data[0].name}</h1>
+      {/* <p className="text-[#8B8B8B] leading-[28px] mt-5">{`description`}</p> */}
 
       <div className="space-y-10 mt-5">
         <div className="flex justify-between">
@@ -41,18 +83,31 @@ export default function CourseInfo({ course, paymentPlan }: CourseProps) {
 
         <div className="flex justify-between">
           <h3 className="font-normal">Price</h3>
-          <p className="font-semibold">${price}</p>
+          <p className="font-semibold">
+            {paymentPlan === "Full Payment" && currencyName === "NGN" ? (
+              <span>&#8358;</span>
+            ) : paymentPlan === "Full Payment" && currencyName === "USD" ? (
+              `$`
+            ) : paymentPlan === "Monthly Payment" && currencyName === "NGN" ? (
+              <span>&#8358;</span>
+            ) : paymentPlan === "Monthly Payment" && currencyName === "USD" ? (
+              `$`
+            ) : (
+              ""
+            )}{" "}
+            {price}
+          </p>
         </div>
 
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <h3 className="font-normal">Charges</h3>
           <p className="font-semibold">$0</p>
-        </div>
+        </div> */}
 
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <h3 className="font-normal">Total</h3>
-          <p className="font-semibold">${price}</p>
-        </div>
+          <p className="font-semibold">${100}</p>
+        </div> */}
 
         <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
           <button

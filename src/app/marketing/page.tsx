@@ -9,29 +9,7 @@ import FAQ from "@/components/FAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
-
-const info = [
-  {
-    imgLink: "/Hashtag-Square.svg",
-    heading: "Start Date",
-    text: "Coming Soon",
-  },
-  {
-    imgLink: "/Time.svg",
-    heading: "Duration",
-    text: "1 Months",
-  },
-  {
-    imgLink: "/Location.svg",
-    heading: "Location",
-    text: "Virtual",
-  },
-  {
-    imgLink: "/Dollar.svg",
-    heading: "Average Salary",
-    text: "60,000",
-  },
-];
+import { useGetMarketingQuery } from "@/redux/feature/courses/courseApi";
 
 const web3MarketingModules = [
   {
@@ -161,12 +139,33 @@ const web3MarketingModules = [
 
 export default function Page() {
   const router = useRouter();
+  const { data, isFetching, isLoading } = useGetMarketingQuery();
 
   const handleApplyClick = () => {
-    console.log("Clicked");
     router.push("/payment");
   };
-
+  const info = [
+    {
+      imgLink: "/Hashtag-Square.svg",
+      heading: "Start Date",
+      text: `${data?.data?.map((item) => item?.startDate)}`,
+    },
+    {
+      imgLink: "/Time.svg",
+      heading: "Duration",
+      text: `${data?.data?.map((item) => item?.duration)}`,
+    },
+    {
+      imgLink: "/Location.svg",
+      heading: "Location",
+      text: "Virtual",
+    },
+    {
+      imgLink: "/Dollar.svg",
+      heading: "Average Salary",
+      text: "80,000",
+    },
+  ];
   return (
     <main className="lg:py-5 mt-12">
       <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
@@ -214,7 +213,7 @@ export default function Page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                Web3 Marketing
+                {`${data?.data?.map((item) => item.name)}`}
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
                 For a Web3 product to scale, it has to be marketed properly to
@@ -234,7 +233,10 @@ export default function Page() {
         </div>
       </div>
       <CourseInfo info={info} />
-      <CourseSyllabus modules={web3MarketingModules} title="Web3 Marketing" />
+      <CourseSyllabus
+        modules={web3MarketingModules}
+        title={`${data?.data?.map((item) => item.name)}`}
+      />
 
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
@@ -250,9 +252,31 @@ export default function Page() {
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            currentPrice={50}
-            noOfMonths="(1 month)"
-            buttonLabel="Coming Soon"
+            nairaPrice={`${data?.data?.map((item) => item?.price?.NGN)}`}
+            currentPrice={`${data?.data?.map((item) => item?.price?.USD)}`}
+            buttonLabel="Apply now"
+            // onClick={handleApplyClick}
+          />
+          <PricingCard
+            planType="Monthly Payment"
+            description="Allowing for flexible budgeting over the course duration. The fee can be paid up to 3 installments."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            nairaPrice={`${data?.data?.map(
+              (item) => item?.recurrentPrice?.NGN
+            )}`}
+            currentPrice={`${data?.data?.map(
+              (item) => item?.recurrentPrice?.USD
+            )}`}
+            noOfMonths={`(${data?.data?.map(
+              (item) => item?.recurrentPrice?.frequency
+            )})`}
+            buttonLabel="Apply now"
+            // onClick={handleApplyClick}
           />
         </div>
       </section>
