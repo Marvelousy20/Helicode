@@ -43,10 +43,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
         )}
         <div className="flex flex-col gap-2">
           <p className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
-            &#8358;{nairaPrice}
+            {nairaPrice}
           </p>
           <span className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
-            ${currentPrice}
+            {currentPrice}
             <span className="text-2xl font-normal">
               {noOfMonths ? noOfMonths : ""}
             </span>

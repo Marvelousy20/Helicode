@@ -148,12 +148,14 @@ export default function Page() {
     {
       imgLink: "/Hashtag-Square.svg",
       heading: "Start Date",
-      text: `${data?.data?.map((item) => item?.startDate)}`,
+      // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
+      text: "2024-11-11",
     },
     {
       imgLink: "/Time.svg",
       heading: "Duration",
-      text: `${data?.data?.map((item) => item?.duration)}`,
+      // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
+      text: "1 Month",
     },
     {
       imgLink: "/Location.svg",
@@ -213,7 +215,8 @@ export default function Page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                {`${data?.data?.map((item) => item.name)}`}
+                {/* {`${data?.data?.map((item) => item.name)}`} */}
+                Web3 Marketing
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
                 For a Web3 product to scale, it has to be marketed properly to
@@ -252,12 +255,14 @@ export default function Page() {
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            nairaPrice={`${data?.data?.map((item) => item?.price?.NGN)}`}
-            currentPrice={`${data?.data?.map((item) => item?.price?.USD)}`}
+            nairaPrice={
+              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
+            }
+            currentPrice={`$${data?.data?.[0]?.price?.USD}` || "N/A"}
             buttonLabel="Apply now"
             // onClick={handleApplyClick}
           />
-          <PricingCard
+          {/* <PricingCard
             planType="Monthly Payment"
             description="Allowing for flexible budgeting over the course duration. The fee can be paid up to 3 installments."
             features={[
@@ -266,18 +271,20 @@ export default function Page() {
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            nairaPrice={`${data?.data?.map(
-              (item) => item?.recurrentPrice?.NGN
-            )}`}
-            currentPrice={`${data?.data?.map(
-              (item) => item?.recurrentPrice?.USD
-            )}`}
-            noOfMonths={`(${data?.data?.map(
-              (item) => item?.recurrentPrice?.frequency
-            )})`}
+            nairaPrice={
+              data?.data?.[0]?.recurrentPrice?.NGN
+                ? `₦${data.data[0].recurrentPrice.NGN}`
+                : "N/A"
+            }
+            currentPrice={`$${data?.data?.[0]?.recurrentPrice?.USD}` || "N/A"}
+            noOfMonths={
+              data?.data?.[0]?.recurrentPrice?.frequency
+                ? `(${data.data[0].recurrentPrice.frequency})`
+                : ""
+            }
             buttonLabel="Apply now"
             // onClick={handleApplyClick}
-          />
+          /> */}
         </div>
       </section>
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
