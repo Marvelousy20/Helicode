@@ -22,6 +22,9 @@ import {
   usePaymentMutation,
 } from "@/redux/feature/courses/courseApi";
 import { Button } from "../ui/button";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { handleError } from "@/lib/handle-error";
 
 type Country = {
   name: string;
@@ -129,46 +132,11 @@ const schema = z.object({
   // paymentMethod: z.enum(["Credit card", "Bank Transfer", "Crypto"]),
 });
 
-// const fetchCountries = async (): Promise<Country[]> => {
-//   const response = await axios.get("https://restcountries.com/v3.1/all");
-//   return response.data
-//     .map((country: any) => ({
-//       name: country.name.common,
-//       code: country.cca2,
-//     }))
-//     .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
-// };
-
-// const fetchStates = async (countryCode: string): Promise<State[]> => {
-//   const response = await axios.get(
-//     `https://api.countrystatecity.in/v1/countries/${countryCode}/states`,
-//     {
-//       headers: {
-//         "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
-//       },
-//     }
-//   );
-//   return response.data.map((state: any) => ({
-//     name: state.name,
-//     code: state.iso2 || state.name,
-//   }));
-// };
-
 export default function ContactInfo() {
-  // const { data, isFetching, isLoading } = useGetCountryQuery();
-  // const countries = data
-  //   ?.map((country: any) => ({
-  //     name: country.name.common,
-  //     code: country.cca2,
-  //   }))
-  //   .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
-  // console.log("all country:", data);
-
   const { data: countries, isLoading } = useGetCountryQuery();
 
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
-  // console.log("Allcourses:", allCourses);
 
   const {
     control,
@@ -201,9 +169,6 @@ export default function ContactInfo() {
   const currencyName = watch("paymentCurrency");
   const paymentType = watch("paymentType");
 
-  // const { data: stateData, isLoading: stateLoading } =
-  //   useGetStateQuery(watchCountry);
-
   const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
     selectedCountry,
     { skip: !selectedCountry }
@@ -212,26 +177,44 @@ export default function ContactInfo() {
   // Get Course Details
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
-  // console.log("courseDetails:", courseDetail);
-
-  // console.log("Allstates:", stateData);
-  // Fetch countries
-  // const { data: countries, isLoading: isLoadingCountries } = useQuery({
-  //   queryKey: ["getCountries"],
-  //   queryFn: fetchCountries,
-  // });
-
-  // this function gets triggered when the value of the country changes. This is so because we are "watching" for changes in the country state.
-  // const { data: states, isLoading: isLoadingStates } = useQuery({
-  //   queryKey: ["getStates", watchCountry],
-  //   queryFn: () => fetchStates(watchCountry),
-  //   enabled: !!watchCountry,
-  // });
 
   const [
     payment,
     { data: paymentData, isSuccess, isLoading: paymentLoading, error, isError },
   ] = usePaymentMutation();
+
+  // if (isSuccess) {
+  //   console.log(
+  //     "User payment:",
+  //     paymentData?.message,
+  //     paymentData?.data?.authorization_url
+  //   );
+  //   window.open(paymentData?.data?.authorization_url);
+  // }
+
+  useEffect(() => {
+    if (isSuccess) {
+      const message = paymentData?.message || "Payment successful";
+      toast.success(<span>{message}</span>, {
+        style: {
+          border: "1px solid #22C55E",
+          padding: "16px",
+          color: "#0A0A0A",
+        },
+        iconTheme: {
+          primary: "#22C55E",
+          secondary: "#FAFAFA",
+        },
+        duration: 5000,
+      });
+      window.open(paymentData?.data?.authorization_url);
+    }
+
+    if (error) {
+      handleError(error);
+      console.log(error);
+    }
+  }, [paymentData?.message, isSuccess, error]);
 
   const onSubmit = (values: z.infer<typeof schema>) => {
     // const {
@@ -342,7 +325,7 @@ export default function ContactInfo() {
 
             <div className="space-y-2">
               <label htmlFor="ageRange" className="font-medium text-2xl block">
-                Age Ranges*
+                Age Range*
               </label>
               <Controller
                 name="ageRange"
@@ -731,6 +714,7 @@ export default function ContactInfo() {
             courses={courseDetail}
             paymentPlan={watchPaymentPlan}
             currencyName={currencyName}
+            isLoading={paymentLoading}
           />
         </div>
       </form>
