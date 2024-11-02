@@ -86,7 +86,7 @@ const web3TechnicalWritingModules = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   const { data, isFetching, isLoading } = useGetTechnicalWritingQuery();
   const info = [
     {

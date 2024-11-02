@@ -112,7 +112,7 @@ const blockchainModules = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const { data, isFetching, isLoading } = useGetCyberSecurtyQuery();
 
