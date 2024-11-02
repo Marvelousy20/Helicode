@@ -121,7 +121,7 @@ const schema = z.object({
   // courseOfInterest: z.enum(courses),
   course: z.string().min(1, { message: "Please select a course of interest" }),
   // cohort: z.string().min(1, { message: "Please select a cohort" }),
-  // referralSource: z.enum(referralSources),
+  referralSource: z.enum(referralSources),
   paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
   paymentType: z.enum(["recurrent", "fixed"]),
   paymentCurrency: z.enum(["NGN", "USD"]),
@@ -155,18 +155,20 @@ const schema = z.object({
 // };
 
 export default function ContactInfo() {
-  const { data, isFetching, isLoading } = useGetCountryQuery();
-  const countries = data
-    ?.map((country: any) => ({
-      name: country.name.common,
-      code: country.cca2,
-    }))
-    .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
-  console.log("all country:", data);
+  // const { data, isFetching, isLoading } = useGetCountryQuery();
+  // const countries = data
+  //   ?.map((country: any) => ({
+  //     name: country.name.common,
+  //     code: country.cca2,
+  //   }))
+  //   .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
+  // console.log("all country:", data);
+
+  const { data: countries, isLoading } = useGetCountryQuery();
 
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
-  console.log("Allcourses:", allCourses);
+  // console.log("Allcourses:", allCourses);
 
   const {
     control,
@@ -184,7 +186,7 @@ export default function ContactInfo() {
       state: "",
       course: "",
       // cohort: "",
-      // referralSource: "Social Media",
+      referralSource: "Social Media",
       paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
@@ -193,20 +195,26 @@ export default function ContactInfo() {
   });
 
   const watchCountry = watch("country");
+  const selectedCountry = watch("country");
   const watchCourse = watch("course");
   const watchPaymentPlan = watch("paymentPlan");
   const currencyName = watch("paymentCurrency");
   const paymentType = watch("paymentType");
 
-  const { data: stateData, isLoading: stateLoading } =
-    useGetStateQuery(watchCountry);
+  // const { data: stateData, isLoading: stateLoading } =
+  //   useGetStateQuery(watchCountry);
+
+  const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
+    selectedCountry,
+    { skip: !selectedCountry }
+  );
 
   // Get Course Details
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
-  console.log("courseDetails:", courseDetail);
+  // console.log("courseDetails:", courseDetail);
 
-  console.log("Allstates:", stateData);
+  // console.log("Allstates:", stateData);
   // Fetch countries
   // const { data: countries, isLoading: isLoadingCountries } = useQuery({
   //   queryKey: ["getCountries"],
@@ -383,7 +391,7 @@ export default function ContactInfo() {
                           </SelectItem>
                         ) : (
                           countries?.map((country: any) => (
-                            <SelectItem key={country.code} value={country.name}>
+                            <SelectItem key={country.code} value={country.code}>
                               {country.name}
                             </SelectItem>
                           ))
@@ -411,7 +419,7 @@ export default function ContactInfo() {
                           </SelectItem>
                         ) : (
                           stateData?.map((state) => (
-                            <SelectItem key={state.code} value={state.name}>
+                            <SelectItem key={state.iso2} value={state.name}>
                               {state.name}
                             </SelectItem>
                           ))
@@ -493,7 +501,7 @@ export default function ContactInfo() {
               )}
             </div> */}
 
-            {/* <div className="space-y-2">
+            <div className="space-y-2">
               <label
                 htmlFor="referralSource"
                 className="font-medium text-2xl block"
@@ -524,7 +532,7 @@ export default function ContactInfo() {
               {errors.referralSource && (
                 <p className="text-red-500">{errors.referralSource.message}</p>
               )}
-            </div> */}
+            </div>
 
             <div className="space-y-2">
               <label
