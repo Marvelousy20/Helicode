@@ -249,9 +249,9 @@ export default function ContactInfo() {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-5 gap-6 mt-8 items-start"
+        className="grid md:grid-cols-5 gap-6 mt-8 items-start"
       >
-        <div className="col-span-3 bg-[#080821] border border-[#232323] py-10">
+        <div className="md:col-span-3 bg-[#080821] border border-[#232323] py-10">
           <h1 className="text-3xl font-medium px-10 mb-10">
             Contact Information
           </h1>
@@ -656,9 +656,9 @@ export default function ContactInfo() {
             </div>
           </div>
 
-          <div className="py-10">
+          {/* <div className="py-10">
             <hr className="border-[#454545]" />
-          </div>
+          </div> */}
 
           {/* <div className="space-y-2 px-10">
             <label
@@ -709,7 +709,7 @@ export default function ContactInfo() {
           </div> */}
         </div>
 
-        <div className="col-span-2 bg-[#080821] p-10 border border-[#232323]">
+        <div className="md:col-span-2 bg-[#080821] p-10 border border-[#232323]">
           <CourseInfo
             courses={courseDetail}
             paymentPlan={watchPaymentPlan}
