@@ -73,7 +73,7 @@ export default function Web3MarketingFAQ() {
             Can I start working as a Web3 marketer after this?
           </AccordionTrigger>
           <AccordionContent>
-            Yes, you&apos;ll have the skills to market wWeb3 products and
+            Yes, you&apos;ll have the skills to market Web3 products and
             understand the unique aspects of blockchain marketing.
           </AccordionContent>
         </AccordionItem>

@@ -55,7 +55,7 @@ export default function NewsLetter() {
             />
             {/* <button className="> */}
             {/* <div className="bg-[#D4E8FF1F] inline-flex rounded-[12px] p-1.5"> */}
-            <button className="w-[40%] md:w-[114px] flex items-center h-[44px] text-sm border-4 border-[#D4E8FF1F] rounded-[8px] px-5 bg-[#A382FF]">
+            <button className="w-[40%] md:w-[114px] flex items-center h-[44px] text-sm border-4 border-[#D4E8FF1F] rounded-[8px] px-5 bg-[#A382FF] transition-colors duration-300 hover:bg-primary/90">
               Subscribe <ChevronRight size={18} />
             </button>
             {/* </div> */}
