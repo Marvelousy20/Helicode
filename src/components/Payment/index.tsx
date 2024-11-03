@@ -131,7 +131,7 @@ const schema = z.object({
   course: z.string().min(1, { message: "Please select a course of interest" }),
   // cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
-  paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
+  // paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
   paymentType: z.enum(["recurrent", "fixed"]),
   paymentCurrency: z.enum(["NGN", "USD"]),
 
@@ -161,7 +161,7 @@ export default function ContactInfo() {
       course: "",
       // cohort: "",
       referralSource: "Twitter",
-      paymentPlan: "Full Payment",
+      // paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
       paymentType: "fixed",
@@ -171,9 +171,9 @@ export default function ContactInfo() {
   const watchCountry = watch("country");
   const selectedCountry = watch("country");
   const watchCourse = watch("course");
-  const watchPaymentPlan = watch("paymentPlan");
+  // const watchPaymentPlan = watch("paymentPlan");
   const currencyName = watch("paymentCurrency");
-  const paymentType = watch("paymentType");
+  const watchPaymentType = watch("paymentType");
 
   const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
     selectedCountry,
@@ -211,9 +211,9 @@ export default function ContactInfo() {
           primary: "#22C55E",
           secondary: "#FAFAFA",
         },
-        duration: 5000,
+        // duration: 5000,
       });
-      window.open(paymentData?.data?.authorization_url);
+      window.open(paymentData?.data?.authorization_url, "_blank");
     }
 
     if (error) {
@@ -223,30 +223,6 @@ export default function ContactInfo() {
   }, [paymentData?.message, isSuccess, error]);
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    // const {
-    //   country,
-    //   courseOfInterest,
-    //   email,
-    //   fullName,
-    //   paymentType,
-    //   phoneNumber,
-    //   ageRange,
-    //   currencyName,
-    //   state,
-    // } = values;
-
-    // const allValues = {
-    //   email,
-    //   fullName,
-    //   phoneNumber,
-    //   ageRange,
-    //   state,
-    //   country,
-    //   course: courseOfInterest,
-    //   paymentType,
-    //   paymentCurrency: currencyName,
-    // };
-
     console.log("Allvalues:", values);
     payment(values);
   };
@@ -523,7 +499,7 @@ export default function ContactInfo() {
               )}
             </div>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label
                 htmlFor="referralSource"
                 className="font-medium text-2xl block"
@@ -543,7 +519,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="Full Payment"
                         id="full-payment"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
                         Full Payment
@@ -553,7 +529,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="Monthly Payment"
                         id="monthly-payment"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         Monthly Payment
@@ -565,7 +541,7 @@ export default function ContactInfo() {
               {errors.paymentPlan && (
                 <p className="text-red-500">{errors.paymentPlan.message}</p>
               )}
-            </div>
+            </div> */}
 
             {/* currency name */}
 
@@ -589,7 +565,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="NGN"
                         id="NGN"
-                        className="text-white"
+                        className=" border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
                         NGN
@@ -599,7 +575,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="USD"
                         id="USD"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         USD
@@ -637,7 +613,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="recurrent"
                         id="recurrent"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
                         Recurrent
@@ -647,7 +623,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="fixed"
                         id="fixed"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         Fixed
@@ -656,7 +632,7 @@ export default function ContactInfo() {
                   </RadioGroup>
                 )}
               />
-              {errors.paymentPlan && (
+              {errors.paymentType && (
                 <p className="text-red-500">{errors.paymentType?.message}</p>
               )}
             </div>
@@ -718,7 +694,7 @@ export default function ContactInfo() {
         <div className="md:col-span-2 bg-[#080821] p-10 border border-[#232323]">
           <CourseInfo
             courses={courseDetail}
-            paymentPlan={watchPaymentPlan}
+            paymentType={watchPaymentType}
             currencyName={currencyName}
             isLoading={paymentLoading}
           />
