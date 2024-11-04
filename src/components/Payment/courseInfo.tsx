@@ -5,12 +5,7 @@ import { coursesInfo } from ".";
 import { Single } from "@/redux/type";
 import { FaSpinner } from "react-icons/fa";
 
-// interface CourseProps {
-//   title: string;
-//   desc: string;
-// }
 interface payment {
-  // course: string;
   paymentPlan: string;
 }
 
@@ -33,14 +28,14 @@ interface Course {
 
 interface CoursesProps {
   courses: Single | undefined;
-  paymentPlan: string;
+  paymentType: string;
   currencyName: string;
   isLoading: boolean;
 }
 
 export default function CourseInfo({
   courses,
-  paymentPlan,
+  paymentType,
   currencyName,
   isLoading,
 }: CoursesProps) {
@@ -56,13 +51,13 @@ export default function CourseInfo({
   //     : "";
 
   const price =
-    paymentPlan === "Full Payment" && currencyName === "NGN"
+    paymentType === "fixed" && currencyName === "NGN"
       ? courses?.data[0].price?.NGN
-      : paymentPlan === "Full Payment" && currencyName === "USD"
+      : paymentType === "fixed" && currencyName === "USD"
       ? courses?.data[0].price?.USD
-      : paymentPlan === "Monthly Payment" && currencyName === "NGN"
+      : paymentType === "recurrent" && currencyName === "NGN"
       ? courses?.data[0].recurrentPrice?.NGN
-      : paymentPlan === "Monthly Payment" && currencyName === "USD"
+      : paymentType === "recurrent" && currencyName === "USD"
       ? courses?.data[0].recurrentPrice?.USD
       : "";
 
@@ -87,13 +82,13 @@ export default function CourseInfo({
         <div className="flex justify-between">
           <h3 className="font-normal">Price</h3>
           <p className="font-semibold">
-            {paymentPlan === "Full Payment" && currencyName === "NGN" ? (
+            {paymentType === "fixed" && currencyName === "NGN" ? (
               <span>&#8358;</span>
-            ) : paymentPlan === "Full Payment" && currencyName === "USD" ? (
+            ) : paymentType === "fixed" && currencyName === "USD" ? (
               `$`
-            ) : paymentPlan === "Monthly Payment" && currencyName === "NGN" ? (
+            ) : paymentType === "recurrent" && currencyName === "NGN" ? (
               <span>&#8358;</span>
-            ) : paymentPlan === "Monthly Payment" && currencyName === "USD" ? (
+            ) : paymentType === "recurrent" && currencyName === "USD" ? (
               `$`
             ) : (
               ""

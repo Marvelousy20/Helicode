@@ -58,7 +58,7 @@ export interface Payment {
   phoneNumber: string;
   ageRange: string;
   country: string;
-  //   state: string;
+  state: string;
   course: string;
   paymentType: string;
   paymentCurrency: string;

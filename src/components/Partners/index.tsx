@@ -7,15 +7,15 @@ export default function Partners() {
 
       <div className="flex items-center justify-between mt-9">
         <div>
-          <Image src="/aie.svg" alt="aie" width={234} height={48} />
+          <Image src="/aie.png" alt="aie" width={234} height={48} />
         </div>
 
         <div>
-          <Image src="/monocast.svg" alt="monocast" width={193} height={62} />
+          <Image src="/monocast.png" alt="monocast" width={193} height={62} />
         </div>
 
         <div>
-          <Image src="/3vo.svg" alt="3vo" width={168} height={48} />
+          <Image src="/3vo.png" alt="3vo" width={168} height={48} />
         </div>
       </div>
     </div>

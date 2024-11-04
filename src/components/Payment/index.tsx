@@ -2,6 +2,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -9,8 +18,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { Input } from "../ui/input";
 import { object, z } from "zod";
 import CourseInfo from "./courseInfo";
@@ -22,9 +29,10 @@ import {
   usePaymentMutation,
 } from "@/redux/feature/courses/courseApi";
 import { Button } from "../ui/button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { handleError } from "@/lib/handle-error";
+import Link from "next/link";
 
 type Country = {
   name: string;
@@ -131,7 +139,7 @@ const schema = z.object({
   course: z.string().min(1, { message: "Please select a course of interest" }),
   // cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
-  paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
+  // paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
   paymentType: z.enum(["recurrent", "fixed"]),
   paymentCurrency: z.enum(["NGN", "USD"]),
 
@@ -160,20 +168,22 @@ export default function ContactInfo() {
       state: "",
       course: "",
       // cohort: "",
-      referralSource: "Google",
-      paymentPlan: "Full Payment",
+      referralSource: "Twitter",
+      // paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
       paymentType: "fixed",
     },
   });
 
+  const [show, setShow] = useState(false);
+
   const watchCountry = watch("country");
   const selectedCountry = watch("country");
   const watchCourse = watch("course");
-  const watchPaymentPlan = watch("paymentPlan");
+  // const watchPaymentPlan = watch("paymentPlan");
   const currencyName = watch("paymentCurrency");
-  const paymentType = watch("paymentType");
+  const watchPaymentType = watch("paymentType");
 
   const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
     selectedCountry,
@@ -213,7 +223,8 @@ export default function ContactInfo() {
         },
         duration: 5000,
       });
-      window.open(paymentData?.data?.authorization_url);
+      // window.open(paymentData?.data?.authorization_url, "_blank");
+      setShow(true);
     }
 
     if (error) {
@@ -223,33 +234,13 @@ export default function ContactInfo() {
   }, [paymentData?.message, isSuccess, error]);
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    // const {
-    //   country,
-    //   courseOfInterest,
-    //   email,
-    //   fullName,
-    //   paymentType,
-    //   phoneNumber,
-    //   ageRange,
-    //   currencyName,
-    //   state,
-    // } = values;
-
-    // const allValues = {
-    //   email,
-    //   fullName,
-    //   phoneNumber,
-    //   ageRange,
-    //   state,
-    //   country,
-    //   course: courseOfInterest,
-    //   paymentType,
-    //   paymentCurrency: currencyName,
-    // };
-
     console.log("Allvalues:", values);
     payment(values);
   };
+
+  // useEffect(() => {
+  //   setShow(true);
+  // }, []);
 
   return (
     <div>
@@ -438,12 +429,19 @@ export default function ContactInfo() {
                     <SelectTrigger className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
                       <SelectValue placeholder="Select your course of interest" />
                     </SelectTrigger>
+
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {allCourses?.data?.map((course, i) => (
-                        <SelectItem key={i} value={course?.name}>
-                          {course?.name}
+                      {coursesLoading ? (
+                        <SelectItem value="loading">
+                          <p>Loading courses...</p>
                         </SelectItem>
-                      ))}
+                      ) : (
+                        allCourses?.data?.map((course, i) => (
+                          <SelectItem key={i} value={course?.name}>
+                            {course?.name}
+                          </SelectItem>
+                        ))
+                      )}
                     </SelectContent>
                   </Select>
                 )}
@@ -523,7 +521,7 @@ export default function ContactInfo() {
               )}
             </div>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label
                 htmlFor="referralSource"
                 className="font-medium text-2xl block"
@@ -553,7 +551,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="Monthly Payment"
                         id="monthly-payment"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         Monthly Payment
@@ -565,7 +563,7 @@ export default function ContactInfo() {
               {errors.paymentPlan && (
                 <p className="text-red-500">{errors.paymentPlan.message}</p>
               )}
-            </div>
+            </div> */}
 
             {/* currency name */}
 
@@ -589,7 +587,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="NGN"
                         id="NGN"
-                        className="text-white"
+                        className=" border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
                         NGN
@@ -599,7 +597,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="USD"
                         id="USD"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
                         USD
@@ -637,26 +635,26 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="recurrent"
                         id="recurrent"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
-                        Recurrent
+                        Monthly
                       </label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="fixed"
                         id="fixed"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="monthly-payment" className="text-white">
-                        Fixed
+                        One time
                       </label>
                     </div>
                   </RadioGroup>
                 )}
               />
-              {errors.paymentPlan && (
+              {errors.paymentType && (
                 <p className="text-red-500">{errors.paymentType?.message}</p>
               )}
             </div>
@@ -713,12 +711,27 @@ export default function ContactInfo() {
               Submit
             </Button>
           </div> */}
+          <Dialog onOpenChange={setShow} open={show}>
+            {/* <DialogTrigger>Open</DialogTrigger> */}
+            <DialogContent className=" rounded-lg">
+              <DialogHeader>
+                <DialogTitle>Do you want to proceed?</DialogTitle>
+                <DialogDescription className="flex items-center justify-center">
+                  <Button className="flex items-center justify-center mt-5">
+                    <Link href={paymentData?.data?.authorization_url ?? ""}>
+                      Proceed
+                    </Link>
+                  </Button>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="md:col-span-2 bg-[#080821] p-10 border border-[#232323]">
           <CourseInfo
             courses={courseDetail}
-            paymentPlan={watchPaymentPlan}
+            paymentType={watchPaymentType}
             currencyName={currencyName}
             isLoading={paymentLoading}
           />
