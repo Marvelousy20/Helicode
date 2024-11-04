@@ -159,7 +159,8 @@ const Navbar = () => {
           {/*  */}
           <div className="hidden md:flex">
             <Link
-              href="https://tally.so/r/mZd1Za"
+              // href="/payment"
+              href={"/payment"}
               target="_blank"
               className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
             >
@@ -231,7 +232,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="https://tally.so/r/mZd1Za"
+              href="/payment"
               target="_blank"
               className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
             >
