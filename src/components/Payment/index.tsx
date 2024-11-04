@@ -160,7 +160,7 @@ export default function ContactInfo() {
       state: "",
       course: "",
       // cohort: "",
-      referralSource: "Twitter",
+      referralSource: "Google",
       paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
@@ -543,7 +543,7 @@ export default function ContactInfo() {
                       <RadioGroupItem
                         value="Full Payment"
                         id="full-payment"
-                        className="text-white"
+                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
                       />
                       <label htmlFor="full-payment" className="text-white">
                         Full Payment
