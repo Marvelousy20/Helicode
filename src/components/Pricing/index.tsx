@@ -47,9 +47,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </p> */}
           <span className="text-[3.5rem] lg:text-[3.75rem] ml-4 font-medium">
             {currentPrice}
-            <span className="text-2xl font-normal">
+            {/* <span className="text-2xl font-normal">
               {noOfMonths ? noOfMonths : ""}
-            </span>
+            </span> */}
           </span>
         </div>
       </div>
