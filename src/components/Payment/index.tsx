@@ -128,6 +128,7 @@ const schema = z.object({
   firstName: z.string().min(2, { message: "First Name is required" }),
   lastName: z.string().min(2, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
+  discordUserName: z.string().min(2, { message: "Discord Username is required" }),
   phoneNumber: z.string().min(10, { message: "Phone Number is required" }),
   ageRange: z.enum(ageRanges),
   country: z.string().min(1, { message: "Please select a country" }),
@@ -160,6 +161,7 @@ export default function ContactInfo() {
       firstName: "",
       lastName: "",
       email: "",
+      discordUserName: "",
       phoneNumber: "",
       ageRange: "18-24",
       country: "",
@@ -322,6 +324,27 @@ export default function ContactInfo() {
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="discord" className="font-medium text-2xl block">
+                Discord Username*
+              </label>
+              <Controller
+                name="discordUserName"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="Discord Username"
+                    id="discord"
+                    className="border border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
+                  />
+                )}
+              />
+              {errors.discordUserName && (
+                <p className="text-red-500">{errors.discordUserName.message}</p>
               )}
             </div>
 

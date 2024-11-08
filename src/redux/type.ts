@@ -56,6 +56,7 @@ export interface Payment {
   firstName: string;
   lastName: string;
   email: string;
+  discordUserName: string;
   phoneNumber: string;
   ageRange: string;
   country: string;
