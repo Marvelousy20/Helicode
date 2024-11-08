@@ -53,7 +53,8 @@ export interface Country {
 //Payment type
 
 export interface Payment {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phoneNumber: string;
   ageRange: string;

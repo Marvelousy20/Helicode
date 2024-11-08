@@ -97,12 +97,7 @@ export const coursesInfo: Record<string, CourseInfo> = {
 
 // Data for dropdowns
 const ageRanges = ["18-24", "25-34", "35-44", "45+"] as const;
-const cohorts = [
-  "January 2025",
-  "April 2025",
-  "July 2025",
-  "October 2025",
-] as const;
+const cohorts = ["November 2024", "January 2025"] as const;
 
 // const courses = Object.keys(coursesInfo);
 const courses = [
@@ -123,13 +118,15 @@ const referralSources = [
   "Web3 Global Conference",
   "AIESEC Togo",
   "AIESEC Nigeria",
+  "AIESEC Rwanda",
   "3VO",
   "Other",
 ] as const;
 
 // Zod schema
 const schema = z.object({
-  fullName: z.string().min(2, { message: "Full Name is required" }),
+  firstName: z.string().min(2, { message: "First Name is required" }),
+  lastName: z.string().min(2, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   phoneNumber: z.string().min(10, { message: "Phone Number is required" }),
   ageRange: z.enum(ageRanges),
@@ -137,7 +134,7 @@ const schema = z.object({
   state: z.string().min(1, { message: "Please select a state" }),
   // courseOfInterest: z.enum(courses),
   course: z.string().min(1, { message: "Please select a course of interest" }),
-  // cohort: z.string().min(1, { message: "Please select a cohort" }),
+  cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
   // paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
   paymentType: z.enum(["recurrent", "fixed"]),
@@ -160,7 +157,8 @@ export default function ContactInfo() {
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phoneNumber: "",
       ageRange: "18-24",
@@ -193,6 +191,8 @@ export default function ContactInfo() {
   // Get Course Details
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
+
+  console.log(courseDetail);
 
   const [
     payment,
@@ -253,26 +253,55 @@ export default function ContactInfo() {
             Contact Information
           </h1>
 
-          <div className="px-10  space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="fullName" className="font-medium text-2xl block">
-                Full Name*
-              </label>
-              <Controller
-                name="fullName"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Full Name"
-                    id="fullName"
-                    className="border border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
-                  />
+          <div className="px-10 space-y-6">
+            <div className="flex space-x-4">
+              <div className="space-y-2 w-full">
+                <label
+                  htmlFor="firstName"
+                  className="font-medium text-2xl block"
+                >
+                  First Name*
+                </label>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="First Name"
+                      id="firstName"
+                      className="border border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
+                    />
+                  )}
+                />
+                {errors.firstName && (
+                  <p className="text-red-500">{errors.firstName.message}</p>
                 )}
-              />
-              {errors.fullName && (
-                <p className="text-red-500">{errors.fullName.message}</p>
-              )}
+              </div>
+
+              <div className="space-y-2 w-full">
+                <label
+                  htmlFor="lastName"
+                  className="font-medium text-2xl block"
+                >
+                  Last Name*
+                </label>
+                <Controller
+                  name="lastName"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Last Name"
+                      id="lastName"
+                      className="border border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
+                    />
+                  )}
+                />
+                {errors.lastName && (
+                  <p className="text-red-500">{errors.lastName.message}</p>
+                )}
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -451,7 +480,7 @@ export default function ContactInfo() {
               )}
             </div>
 
-            {/* <div className="space-y-2">
+            <div className="space-y-2">
               <label htmlFor="cohort" className="font-medium text-2xl block">
                 Cohort (Start Month)*
               </label>
@@ -468,7 +497,7 @@ export default function ContactInfo() {
                     </SelectTrigger>
 
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {detailLoading ? (
+                      {/* {detailLoading ? (
                         <SelectItem value="loading">
                           Loading cohort...
                         </SelectItem>
@@ -478,7 +507,13 @@ export default function ContactInfo() {
                             {cohort?.cohort}
                           </SelectItem>
                         ))
-                      )}
+                        
+                      )} */}
+                      {cohorts.map((cohort, i) => (
+                        <SelectItem key={i} value={cohort}>
+                          {cohort}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 )}
@@ -486,7 +521,7 @@ export default function ContactInfo() {
               {errors.cohort && (
                 <p className="text-red-500">{errors.cohort.message}</p>
               )}
-            </div> */}
+            </div>
 
             <div className="space-y-2">
               <label
