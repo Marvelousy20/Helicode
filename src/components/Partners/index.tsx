@@ -7,7 +7,9 @@ export default function Partners() {
 
       <div className="flex items-center justify-between mt-9">
         <div>
-          <Image src="/aie.png" alt="aie" width={234} height={48} />
+          <a href="https://aiesec.org/" target="_blank">
+            <Image src="/aie.png" alt="aie" width={234} height={48} />
+          </a>
         </div>
 
         <div>
@@ -15,7 +17,15 @@ export default function Partners() {
         </div>
 
         <div>
-          <Image src="/3vo.png" alt="3vo" width={168} height={48} />
+          <a href="https://3vo.me/" target="_blank">
+            <Image src="/3vo.png" alt="3vo" width={168} height={48} />
+          </a>
+        </div>
+
+        <div>
+          <a href="https://coinsub.io/" target="_blank">
+            <Image src="/coinsub.svg" alt="3vo" width={168} height={48} />
+          </a>
         </div>
       </div>
     </div>

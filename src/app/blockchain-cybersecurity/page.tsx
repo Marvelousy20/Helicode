@@ -121,9 +121,10 @@ export default function Page() {
   const info = [
     {
       imgLink: "/Hashtag-Square.svg",
-      heading: "Start Date",
+      heading: "Cohort",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
-      text: "2024-11-11",
+      text: "November, 2024",
+      cohortTwo: "January, 2025",
     },
     {
       imgLink: "/Time.svg",

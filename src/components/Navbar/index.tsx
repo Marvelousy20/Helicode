@@ -21,18 +21,30 @@ const courses = [
     name: "Web3 Technical Writing",
     allowed: true,
   },
-  // {
-  //   id: 2,
-  //   href: "smart-contract-development",
-  //   name: "Smart Contract Development",
-  //   allowed: false,
-  // },
-  // {
-  //   id: 3,
-  //   href: "product-design",
-  //   name: "Web3 Research",
-  //   allowed: false,
-  // },
+  {
+    id: 2,
+    href: "smart-contract-development",
+    name: "Smart Contract Development (Coming Soon)",
+    allowed: false,
+  },
+  {
+    id: 3,
+    href: "product-design",
+    name: "Blockchain Research (Coming Soon)",
+    allowed: false,
+  },
+  {
+    id: 4,
+    href: "data analysis",
+    name: "Data Analysis (Coming Soon)",
+    allowed: false,
+  },
+  {
+    id: 4,
+    href: "web3 UI/UX design",
+    name: "Web3 UI/UX Design (Coming Soon)",
+    allowed: false,
+  },
 ];
 
 const Navbar = () => {
@@ -119,7 +131,7 @@ const Navbar = () => {
                           className={`block px-4 py2 py-4 text-[0.9rem] textwhite ${
                             course.allowed
                               ? "text-white"
-                              : "text-gray-600 cursor-not-allowed hover:bg-slate-900"
+                              : "text-gray-600 cursor-not-allowed"
                           }`}
                           role="menuitem"
                           onClick={() => setShowDropdown(false)}
@@ -207,7 +219,7 @@ const Navbar = () => {
                       className={`block px-4 py2 py-4 text-[0.9rem] textwhite ${
                         course.allowed
                           ? "text-white"
-                          : "text-gray-600 cursor-not-allowed hover:bg-slate-900"
+                          : "text-gray-600 cursor-not-allowed"
                       }`}
                       onClick={() => {
                         setIsOpen(false);

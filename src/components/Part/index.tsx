@@ -8,12 +8,12 @@ export default function Part() {
 
         <div className="flex justify-between w-full">
           <div className="text-center">
-            <h1 className="text-2xl lg:text-3xl lg:text-[2.5rem]">1200+</h1>
+            <h1 className="text-2xl lg:text-3xl lg:text-[2.5rem]">2000+</h1>
             <p className="opacity-60 text-xl lg:text-2xl mt-0.5">Learners</p>
           </div>
 
           <div className="text-center">
-            <h1 className="text-2xl lg:text-3xl lg:text-[2.5rem]">22+</h1>
+            <h1 className="text-2xl lg:text-3xl lg:text-[2.5rem]">25+</h1>
             <p className="opacity-60 text-xl lg:text-2xl mt-0.5">Countries</p>
           </div>
 

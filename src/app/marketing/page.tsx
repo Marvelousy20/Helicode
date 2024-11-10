@@ -150,6 +150,7 @@ export default function Page() {
       heading: "Start Date",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
       text: "2024-11-11",
+      cohortTwo: "January, 2025",
     },
     {
       imgLink: "/Time.svg",
