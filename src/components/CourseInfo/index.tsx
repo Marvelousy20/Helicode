@@ -4,6 +4,7 @@ interface InfoProp {
   imgLink: string;
   heading: string;
   text: string;
+  cohortTwo?: string;
 }
 
 interface InfoComponentProps {
@@ -29,9 +30,10 @@ export default function CourseInfo({ info }: InfoComponentProps) {
               height={40}
               className="mr-5"
             />
-            <div className=" space-y-1">
-              <h3 className=" text-[#8B8B8B]">{info.heading}</h3>
-              <p className=" font-medium text-base">{info.text}</p>
+            <div className="space-y-1">
+              <h3 className="text-[#8B8B8B]">{info.heading}</h3>
+              <p className="font-medium text-base">{info.text}</p>
+              <p>{info.cohortTwo}</p>
             </div>
           </div>
         ))}

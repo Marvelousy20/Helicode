@@ -7,15 +7,30 @@ export default function Partners() {
 
       <div className="flex items-center justify-between mt-9">
         <div>
-          <Image src="/aie.svg" alt="aie" width={234} height={48} />
+          <a href="https://aiesec.org/" target="_blank">
+            <Image src="/aie.png" alt="aie" width={234} height={48} />
+          </a>
         </div>
 
         <div>
-          <Image src="/monocast.svg" alt="monocast" width={193} height={62} />
+          <a
+            href="https://open.spotify.com/show/5PPcZF8wzYC43uPkYvUbIQ?si=Q5MlDkjtSk2q7tMvoyZF_w"
+            target="_blank"
+          >
+            <Image src="/monocast.png" alt="monocast" width={193} height={62} />
+          </a>
         </div>
 
         <div>
-          <Image src="/3vo.svg" alt="3vo" width={168} height={48} />
+          <a href="https://3vo.me/" target="_blank">
+            <Image src="/3vo.png" alt="3vo" width={168} height={48} />
+          </a>
+        </div>
+
+        <div>
+          <a href="https://coinsub.io/" target="_blank">
+            <Image src="/coinsub.svg" alt="3vo" width={168} height={48} />
+          </a>
         </div>
       </div>
     </div>

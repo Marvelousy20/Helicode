@@ -53,8 +53,10 @@ export interface Country {
 //Payment type
 
 export interface Payment {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  discordUserName: string;
   phoneNumber: string;
   ageRange: string;
   country: string;
