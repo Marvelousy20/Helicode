@@ -8,4 +8,5 @@ export const endpoints = {
   getMarketing: "course?name=Web3 Marketing",
   getCourseDetails: (course: string) => `course?name=${course}`,
   makePayment: "applications",
+  newsletter: "/subscribers",
 };

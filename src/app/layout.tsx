@@ -7,6 +7,7 @@ import Providers from "@/lib/providers";
 import { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 export const metadata: Metadata = {
   title: "School made for the future",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Providers>
           <main className="px-5 lg:px-20 bg-[#010115] text-white">
             <Navbar />
+            <EmailCaptureModal />
             {children}
             <Toaster position="top-right" reverseOrder={false} />
             <Footer />

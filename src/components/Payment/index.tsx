@@ -19,7 +19,7 @@ import {
 } from "../ui/select";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Input } from "../ui/input";
-import { object, z } from "zod";
+import { z } from "zod";
 import CourseInfo from "./courseInfo";
 import {
   useGetAllCourseDetalsQuery,
@@ -128,7 +128,9 @@ const schema = z.object({
   firstName: z.string().min(2, { message: "First Name is required" }),
   lastName: z.string().min(2, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
-  discordUserName: z.string().min(2, { message: "Discord Username is required" }),
+  discordUserName: z
+    .string()
+    .min(2, { message: "Discord Username is required" }),
   phoneNumber: z.string().min(10, { message: "Phone Number is required" }),
   ageRange: z.enum(ageRanges),
   country: z.string().min(1, { message: "Please select a country" }),
