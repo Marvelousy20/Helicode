@@ -43,7 +43,7 @@ const Footer = () => {
                 <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/">Contact us</Link>
+                <Link href="/contact">Contact us</Link>
               </li>
             </ul>
           </div>
@@ -64,7 +64,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
               <li className="text-[#D4E8FF80]">Policies</li>
               <li>
-                <Link href="/">Terms & Conditions</Link>
+                <Link href="/terms&condition">Terms & Conditions</Link>
               </li>
               <li>
                 <Link href="/">Privacy Policy</Link>
