@@ -9,7 +9,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
-export default function page() {
+export default function ContactUs() {
   // Zod Schema
   const Schema = z.object({
     name: z.string().min(5, { message: "Enter your name" }),

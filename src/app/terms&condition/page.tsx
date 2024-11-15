@@ -10,34 +10,36 @@ export default function page() {
             AGREEMENT TO OUR LEGAL TERMS
           </h1>
           <p className="pt-4 font-normal text-base lg:w-[1136px] w-full">
-            We are Helicode ("Company," "we," "us," "our"), a company registered
-            in Nigeria at Lekki, Lekki, Lagos 101233. We operate the website
-            https://www.helicode.xyz/ (the "Site"), as well as any other related
-            products and services that refer or link to these legal terms (the
-            "Legal Terms") (collectively, the "Services"). Helicode is committed
-            to preparing every Web3 explorer for their adventure in the crypto
-            world. With the Academy platform, you'll confidently take your first
-            step into this new territory. You can contact us by email at
-            admin@helicode.xyz or by mail to Lekki, Lekki, Lagos 101233,
-            Nigeria. These Legal Terms constitute a legally binding agreement
-            made between you, whether personally or on behalf of an entity
-            ("you"), and Helicode, concerning your access to and use of the
-            Services. You agree that by accessing the Services, you have read,
-            understood, and agreed to be bound by all of these Legal Terms. IF
-            YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE
-            EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST
-            DISCONTINUE USE IMMEDIATELY. We will provide you with prior notice
-            of any scheduled changes to the Services you are using. The modified
-            Legal Terms will become effective upon posting or notifying you by
-            admin@helicode.xyz, as stated in the email message. By continuing to
-            use the Services after the effective date of any changes, you agree
-            to be bound by the modified terms. The Services are intended for
-            users who are at least 13 years of age. All users who are minors in
-            the jurisdiction in which they reside (generally under the age of
-            18) must have the permission of, and be directly supervised by,
-            their parent or guardian to use the Services. If you are a minor,
-            you must have your parent or guardian read and agree to these Legal
-            Terms prior to you using the Services.
+            We are Helicode (&quot;Company,&quot; &quot;we,&quot;
+            &quot;us,&quot; &quot;our&quot;), a company registered in Nigeria at
+            Lekki, Lekki, Lagos 101233. We operate the website
+            https://www.helicode.xyz/ (the &quot;Site&quot;), as well as any
+            other related products and services that refer or link to these
+            legal terms (the &quot;Legal Terms&quot;) (collectively, the
+            &quot;Services&quot;). Helicode is committed to preparing every Web3
+            explorer for their adventure in the crypto world. With the Academy
+            platform, you&apos;ll confidently take your first step into this new
+            territory. You can contact us by email at admin@helicode.xyz or by
+            mail to Lekki, Lekki, Lagos 101233, Nigeria. These Legal Terms
+            constitute a legally binding agreement made between you, whether
+            personally or on behalf of an entity (&quot;you&quot;), and
+            Helicode, concerning your access to and use of the Services. You
+            agree that by accessing the Services, you have read, understood, and
+            agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE
+            WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED
+            FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY. We
+            will provide you with prior notice of any scheduled changes to the
+            Services you are using. The modified Legal Terms will become
+            effective upon posting or notifying you by admin@helicode.xyz, as
+            stated in the email message. By continuing to use the Services after
+            the effective date of any changes, you agree to be bound by the
+            modified terms. The Services are intended for users who are at least
+            13 years of age. All users who are minors in the jurisdiction in
+            which they reside (generally under the age of 18) must have the
+            permission of, and be directly supervised by, their parent or
+            guardian to use the Services. If you are a minor, you must have your
+            parent or guardian read and agree to these Legal Terms prior to you
+            using the Services.
           </p>
         </div>
 
@@ -50,7 +52,7 @@ export default function page() {
             global technological innovation. One where our academy is the number
             one source for accessing quality and affordable talent for global
             industries. This surge of homegrown tech expertise will transform
-            Africa&rsquo;s web3 landscape, fostering economic growth and
+            Africa&apos;s web3 landscape, fostering economic growth and
             enhancing quality of life across the continent. Ultimately, Helicode
             dreams of a world where collaboration between African tech talent
             and global industry leaders becomes the norm, sparking innovations
@@ -67,13 +69,14 @@ export default function page() {
             intellectual property rights in our Services, including all source
             code, databases, functionality, software, website designs, audio,
             video, text, photographs, and and graphics in the Services
-            (collectively, the "Content"), as well as the trademarks, service
-            marks, and logos contained therein (the "Marks"). Our Content and
-            Marks are protected by copyright and trademark laws (and various
-            other intellectual property rights and unfair competition laws) and
-            treaties in the United States and around the world. The Content and
-            Marks are provided in or through the Services "AS IS" for your
-            personal, non-commercial use or internal business purpose only.
+            (collectively, the &quot;Content&quot;), as well as the trademarks,
+            service marks, and logos contained therein (the &quot;Marks&quot;).
+            Our Content and Marks are protected by copyright and trademark laws
+            (and various other intellectual property rights and unfair
+            competition laws) and treaties in the United States and around the
+            world. The Content and Marks are provided in or through the Services
+            &quot;AS IS&quot; for your personal, non-commercial use or internal
+            business purpose only.
           </p>
         </div>
 
