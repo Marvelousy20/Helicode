@@ -156,6 +156,7 @@ export default function ContactInfo() {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -229,6 +230,7 @@ export default function ContactInfo() {
       });
       // window.open(paymentData?.data?.authorization_url, "_blank");
       setShow(true);
+      reset();
     }
 
     if (error) {
