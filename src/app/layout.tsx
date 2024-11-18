@@ -26,7 +26,7 @@ export default function RootLayout({
         <Providers>
           <main className="px-5 lg:px-20 bg-[#010115] text-white">
             <Navbar />
-            <EmailCaptureModal />
+            {/* <EmailCaptureModal /> */}
             {children}
             <Toaster position="top-right" reverseOrder={false} />
             <Footer />
