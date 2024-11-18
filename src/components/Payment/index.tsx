@@ -197,21 +197,12 @@ export default function ContactInfo() {
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
 
-  console.log(courseDetail);
+  // console.log(courseDetail);
 
   const [
     payment,
     { data: paymentData, isSuccess, isLoading: paymentLoading, error, isError },
   ] = usePaymentMutation();
-
-  // if (isSuccess) {
-  //   console.log(
-  //     "User payment:",
-  //     paymentData?.message,
-  //     paymentData?.data?.authorization_url
-  //   );
-  //   window.open(paymentData?.data?.authorization_url);
-  // }
 
   useEffect(() => {
     if (isSuccess) {
@@ -235,7 +226,7 @@ export default function ContactInfo() {
 
     if (error) {
       handleError(error);
-      console.log(error);
+      // console.log(error);
     }
   }, [paymentData?.message, isSuccess, error]);
 
@@ -427,7 +418,7 @@ export default function ContactInfo() {
                           </SelectItem>
                         ) : (
                           countries?.map((country: any) => (
-                            <SelectItem key={country.code} value={country.code}>
+                            <SelectItem key={country.code} value={country.name}>
                               {country.name}
                             </SelectItem>
                           ))
