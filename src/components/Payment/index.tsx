@@ -418,7 +418,7 @@ export default function ContactInfo() {
                           </SelectItem>
                         ) : (
                           countries?.map((country: any) => (
-                            <SelectItem key={country.code} value={country.name}>
+                            <SelectItem key={country.code} value={country.code}>
                               {country.name}
                             </SelectItem>
                           ))
