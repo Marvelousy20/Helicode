@@ -2,8 +2,8 @@ import { endpoints } from "@/redux/endpoints";
 import { apiSlice } from "../apiSlice";
 
 interface subscribersProps {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
 }
 
