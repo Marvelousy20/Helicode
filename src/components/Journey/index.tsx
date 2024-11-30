@@ -8,14 +8,16 @@ const Journey = () => {
       <div className="max-w-[59rem] mx-auto text-center">
         <div className="">
           <h1 className="font-extrabold text-[1.875rem] lg:text-[3rem] px-4 lg:px-0">
-            Start your Web3 Journey
+            Begin your Web3 Journey Today
           </h1>
 
           <h4 className="mt-6 px-4 text-[#8B8B8B]">
-            Helicode is committed to preparing every Web3 explorer for their
-            adventure in the crypto world. With the Academic platform,
-            you&apos;ll confidently take your first step into this new career.
+            Discover endless possibilities with Helicode. Whether you’re a
+            newbie or an expert, we provide the tools, programs, community, and
+            support you need to master new skills and achieve your goals.
           </h4>
+
+          
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 lg:mt-16 text-start">
