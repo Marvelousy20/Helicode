@@ -240,42 +240,38 @@ export default function Page() {
 
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
-            planType="One-time payment"
-            description="Offering a significant discount for individuals who can pay the full amount at the start of the program."
+            planType="Payment Plan"
+            description="If you choose this payment plan, you will be required to pay once every 3 months."
             features={[
               "Course Material (Lifetime access)",
               "1 on 1 mentorship with the Instructor",
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            nairaPrice={
+            monthlyPrice={
               data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
-            }
-            currentPrice={
-              data?.data?.[0]?.price?.USD
-                ? `$${data.data[0].price?.USD}`
-                : "N/A"
-            }
-            buttonLabel="Apply now"
-            // onClick={handleApplyClick}
-          />
-          <PricingCard
-            planType="Monthly Payment"
-            description="Allowing for flexible budgeting over the course duration. The fee can be paid up to 3 installments."
-            features={[
-              "Course Material (Lifetime access)",
-              "1 on 1 mentorship with the Instructor",
-              "Access to Telegram and Discord community (Lifetime access)",
-              "Live Classes and Hands-on Projects",
-            ]}
-            nairaPrice={
-              data?.data?.[0]?.recurrentPrice?.NGN
-                ? `₦${data.data[0].recurrentPrice.NGN}`
-                : "N/A"
             }
             currentPrice={
               data?.data?.[0]?.recurrentPrice?.USD
                 ? `$${data?.data[0].recurrentPrice?.USD}`
+                : "N/A"
+            }
+            buttonLabel="Apply now"
+            recurrent
+            discountPrice="70"
+          />
+          <PricingCard
+            planType="One-time payment"
+            description="If you choose this payment plan, you will be required to make a full payment."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            currentPrice={
+              data?.data?.[0]?.price?.USD
+                ? `$${data.data[0].price?.USD}`
                 : "N/A"
             }
             noOfMonths={
@@ -284,7 +280,6 @@ export default function Page() {
                 : ""
             }
             buttonLabel="Apply now"
-            // onClick={handleApplyClick}
           />
         </div>
       </section>
