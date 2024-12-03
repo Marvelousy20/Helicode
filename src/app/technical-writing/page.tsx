@@ -94,7 +94,7 @@ export default function Page() {
       imgLink: "/Hashtag-Square.svg",
       heading: "Start Date",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
-      text: "November, 2024",
+      // text: "November, 2024",
       cohortTwo: "January, 2025",
     },
     {
@@ -203,7 +203,7 @@ export default function Page() {
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
             planType="Payment Plan"
-            description="If you choose this payment plan, you will be required to pay once every 3 months."
+            description="If you choose this payment plan, you will be required to pay once every 2 months."
             features={[
               "Course Material (Lifetime access)",
               "1 on 1 mentorship with the Instructor",

@@ -124,7 +124,7 @@ export default function Page() {
       imgLink: "/Hashtag-Square.svg",
       heading: "Cohort",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
-      text: "November, 2024",
+      // text: "November, 2024",
       cohortTwo: "January, 2025",
     },
     {

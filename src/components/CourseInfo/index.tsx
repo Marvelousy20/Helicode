@@ -3,7 +3,7 @@ import Image from "next/image";
 interface InfoProp {
   imgLink: string;
   heading: string;
-  text: string;
+  text?: string;
   cohortTwo?: string;
 }
 
