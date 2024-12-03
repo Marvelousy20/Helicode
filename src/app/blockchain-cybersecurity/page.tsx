@@ -1,6 +1,7 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
@@ -225,9 +226,18 @@ export default function Page() {
       />
 
       <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Pricing
-        </h1>
+        <div className="flex items-center justify-center gap-3">
+          <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+            Pricing
+          </h1>
+          <div className="bg-[#8D58FF] rounded-[30px] bg-opacity-15 p-2 flex gap-2">
+            <Image src="/starr.svg" alt="star" width={20} height={20} />
+            <div className="text-[#8D58FF] text-xl font-normal">
+              Early birds
+            </div>
+          </div>
+        </div>
+
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
             planType="One-time payment"
