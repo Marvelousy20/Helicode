@@ -149,6 +149,20 @@ const schema = z.object({
 export default function ContactInfo() {
   const { data: countries, isLoading } = useGetCountryQuery();
 
+  // var headers = new Headers();
+  // headers.append("X-CSCAPI-KEY", process.env.NEXT_PUBLIC_API_KEY || "");
+
+  // var requestOptions = {
+  //   method: "GET",
+  //   headers: headers,
+  //   // redirect: "follow",
+  // };
+
+  // fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+  //   .then((response) => response.text())
+  //   .then((result) => console.log(result))
+  //   .catch((error) => console.log("error", error));
+
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
 
@@ -414,7 +428,7 @@ export default function ContactInfo() {
                       <SelectContent>
                         {isLoading ? (
                           <SelectItem value="loading">
-                            Loading countries...
+                            Loading co...
                           </SelectItem>
                         ) : (
                           countries?.map((country: any) => (
