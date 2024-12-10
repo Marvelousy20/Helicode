@@ -12,7 +12,7 @@ import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
 import {
   useGetAllCoursesQuery,
-  useGetCyberSecurtyQuery,
+  useGetCyberSecurityQuery,
 } from "@/redux/feature/courses/courseApi";
 import { useRouter } from "next/navigation";
 
@@ -115,7 +115,7 @@ const blockchainModules = [
 
 export default function Page() {
   const router = useRouter();
-  const { data, isFetching, isLoading } = useGetCyberSecurtyQuery();
+  const { data, isFetching, isLoading } = useGetCyberSecurityQuery();
 
   console.log("cyber", data);
 
@@ -200,7 +200,7 @@ export default function Page() {
                 {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Blockchain Cybersecurity
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
+              <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
                 Learn the fundamentals of blockchain security, including how
                 cryptography ensures data integrity, how consensus mechanisms
                 work to secure decentralized networks, and how to identify

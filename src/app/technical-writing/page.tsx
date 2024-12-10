@@ -164,7 +164,7 @@ export default function Page() {
                 {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Web3 Technical Writing
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
+              <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
                 This 4-week intensive course equips participants with the skills
                 to write clear, concise, and effective technical documentation.
                 By the end of the course, learners will be able to produce user

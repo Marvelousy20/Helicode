@@ -25,7 +25,7 @@ export const courseApi = apiSlice.injectEndpoints({
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
     }),
 
-    getCyberSecurty: builder.query<Single, void>({
+    getCyberSecurity: builder.query<Single, void>({
       query: () => ({
         url: endpoints.getCyberSecurity,
         method: "GET",
@@ -45,6 +45,15 @@ export const courseApi = apiSlice.injectEndpoints({
     getMarketing: builder.query<Single, void>({
       query: () => ({
         url: endpoints.getMarketing,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+      //   transformResponse: (response: { data: any }, meta, arg) => response.data,
+    }),
+
+    getSmartContractDevelopment: builder.query<Single, void>({
+      query: () => ({
+        url: endpoints.getSmartContractDevelopment,
         method: "GET",
         credentials: "include" as const,
       }),
@@ -138,11 +147,12 @@ export const courseApi = apiSlice.injectEndpoints({
 });
 export const {
   useGetAllCoursesQuery,
-  useGetCyberSecurtyQuery,
+  useGetCyberSecurityQuery,
   useGetTechnicalWritingQuery,
   useGetMarketingQuery,
   useGetCountryQuery,
   useGetStateQuery,
   useGetAllCourseDetalsQuery,
   usePaymentMutation,
+  useGetSmartContractDevelopmentQuery,
 } = courseApi;

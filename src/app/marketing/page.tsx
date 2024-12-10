@@ -220,7 +220,7 @@ export default function Page() {
                 {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Web3 Marketing
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
+              <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
                 For a Web3 product to scale, it has to be marketed properly to
                 the right audience, or it risks failing before it has even
                 begun.

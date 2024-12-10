@@ -1,82 +1,46 @@
-// "use client";
+"use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import FAQ from "@/components/FAQ";
+import BlockchainCyberSecurityFAQ from "@/components/BlockchainSecurityFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
+import { useGetSmartContractDevelopmentQuery } from "@/redux/feature/courses/courseApi";
+import { useRouter } from "next/navigation";
 
-const info = [
-  {
-    imgLink: "/Hashtag-Square.svg",
-    heading: "Start Date",
-    text: "October 21st, 2024",
-  },
-  {
-    imgLink: "/Time.svg",
-    heading: "Duration",
-    text: "2 Months",
-  },
-  {
-    imgLink: "/Location.svg",
-    heading: "Location",
-    text: "Virtual",
-  },
-  {
-    imgLink: "/Dollar.svg",
-    heading: "Average Salary",
-    text: "120,000",
-  },
-];
-
-const smartContractModules = [
+const blockchainModules = [
   {
     number: 1,
-    title: "Basic Concepts of Blockchain",
+    title: "Basic Ethereum and Solidity Programming",
     topics: [
       {
         content:
-          "Introduction to Blockchain: Understand the types of blockchain, the consensus algorithm such as PoW, PoS, DPoS, PBFT.",
-      },
-      {
-        content:
-          "Smart Contract: Learn the concepts, writing languages and functions.",
-      },
-      {
-        content:
-          "Decentralized Application: Learn the process of smart contract development and its architecture",
+          "Understand the basics of Ethereum, Solidity, and smart contract development using Remix IDE, Master key ERC standards (ERC-20, ERC-721, ERC-1155) and their use cases.",
       },
     ],
   },
   {
     number: 2,
-    title: "Blockchain Security Foundation",
+    title: "Introduction to Ethereum",
     topics: [
       {
         content:
-          "Security in blockchain architecture: Understand the architecture of onchain and offchain security.",
-      },
-      {
-        content:
-          "Blockchain Attack Surface Analysis: Learn the consensus layer, P2P network layer and smart contract layer. Explore the common blockchain vulnerabilities types.",
-      },
-      {
-        content:
-          "Public Key Encryption and harsh Algorithm: SHA-256, ECDSA etc",
+          "Overview of Ethereum and Smart Contracts, Variables, Functions, and Data Types, Control Structures and Error Handling and Ownership and Access Control.",
       },
     ],
   },
   {
     number: 3,
-    title: "Smart Contract Security Audit Basics",
+    title: "Understanding ERC Standards",
     topics: [
       {
         content:
-          "Deep dive into the Analysis of Common Vulnerabilities in Smart Contracts, Reentrancy Attacks, Overflow/Underflow, Unsafe Function Calls and Random Number Generation and Security Practices in Solidity Development.",
+          "DIntroduction to ERC Standards,  ERC-20 - Fungible Tokens, ERC-721 - Non-Fungible Tokens (NFTs), ERC-1155 - Multi-Token Standard.",
       },
     ],
   },
@@ -92,45 +56,126 @@ const smartContractModules = [
   },
   {
     number: 5,
-    title: "Comprehensive Security Audit of Blockchain Projects",
+    title: "Advanced Ethereum Topics",
     topics: [
       {
         content:
-          "Understand the compliance and regulatory framework, risk assessment methods and third-party audit / certification process. You will learn the code base management and security monitoring in continuous integration.",
+          "Events, Logs, and ABI, EIP-2612 Permit and Permit2, IPFS, IPNS, and ENS Overview, Custom Token with Airdrops.",
       },
     ],
   },
   {
     number: 6,
-    title: "Case analysis and practical exercises",
+    title: "Deep Dive into Hardhat",
     topics: [
       {
-        content:
-          "Learn the vulnerability analysis cases of real blockchain projects such as The DAO and Poly Network.",
-      },
-      {
-        content:
-          "Explore and conduct complete audits of blockchain projects. Work on penetration test simulation like using test tools to find and fix vulnerabilities in projects. Learn how to conduct blockchain security audits in enterprises.",
+        content: "Mastering Hardhat for local Ethereum development.",
       },
     ],
   },
   {
     number: 7,
-    title: "Career Development and Industry Trends",
+    title: "Smart Contract Upgradability",
+    topics: [
+      {
+        content: "Understanding the concept of upgradable contracts.",
+      },
+    ],
+  },
+  {
+    number: 8,
+    title: "Working with Tenderly",
+    topics: [
+      {
+        content: "Monitoring and optimizing smart contracts using Tenderly.",
+      },
+    ],
+  },
+  {
+    number: 9,
+    title: "EIP-4337: Gasless Transaction",
+    topics: [
+      {
+        content: "Implementing gasless transactions using EIP-4337.",
+      },
+    ],
+  },
+  {
+    number: 10,
+    title: "Security Best Practices & CTF",
     topics: [
       {
         content:
-          "Learn the career prospects for blockchain security by introducing you to positions such as auditors, developers and test engineers.",
+          "Smart contract security through Capture the Flag (CTF) challenges.",
       },
+    ],
+  },
+  {
+    number: 11,
+    title: "DApp Integration with Viem",
+    topics: [
       {
-        content:
-          "Industry Trends: Explore the security challenges in Web3, DeFi, GameFi, Layer 2 and other fields.",
+        content: "Building decentralized apps (DApps) with Viem integration.",
+      },
+    ],
+  },
+  {
+    number: 12,
+    title: "Cross-Chain Interoperability",
+    topics: [
+      {
+        content: "Implementing cross-chain transactions.",
+      },
+    ],
+  },
+  {
+    number: 13,
+    title: "Implementing cross-chain transactions",
+    topics: [
+      {
+        content: "Tokenizing real-world assets on Ethereum.",
       },
     ],
   },
 ];
 
-export default function page() {
+export default function Page() {
+  const router = useRouter();
+  const { data, isFetching, isLoading } = useGetSmartContractDevelopmentQuery();
+
+  console.log("cyber", data);
+
+  const info = [
+    {
+      imgLink: "/Hashtag-Square.svg",
+      heading: "Cohort",
+      // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
+      // text: "November, 2024",
+      cohortTwo: "January, 2025",
+    },
+    {
+      imgLink: "/Time.svg",
+      heading: "Duration",
+      // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
+      text: "3 Months",
+    },
+    {
+      imgLink: "/Location.svg",
+      heading: "Location",
+      text: "Virtual",
+    },
+    {
+      imgLink: "/Dollar.svg",
+      heading: "Average Salary",
+      text: "120,000",
+    },
+  ];
+
+  const handleApplyClick = () => {
+    router.push("/payment");
+  };
+
+  isFetching && <p>Loading</p>;
   return (
     <main className="lg:py-5 mt-12">
       <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
@@ -180,9 +225,10 @@ export default function page() {
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
                 Smart Contract Development
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
-                Zero Knowledge Proofs enable privacy-preserving transactions and
-                computations on public blockchains
+              <p className="text-white opacity-80 mt-6 max-w-3xl lg:text-lg mx-auto">
+                This program is to equip aspiring developers with the practical
+                skills and comprehensive knowledge needed to design, develop,
+                and deploy decentralized applications (dApps) using Solidity.
               </p>
             </div>
             <Link
@@ -196,38 +242,84 @@ export default function page() {
           </div>
         </div>
       </div>
+
       <CourseInfo info={info} />
-      <CourseSyllabus modules={smartContractModules} title="Smart Contract" />
+      <CourseSyllabus
+        modules={blockchainModules}
+        title={`${data?.data?.map((item) => item.name)}`}
+      />
+
+      <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+        <div className="flex items-center justify-center gap-3">
+          <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+            Pricing
+          </h1>
+          <div className="bg-[#8D58FF] rounded-[30px] bg-opacity-15 p-2 flex gap-2">
+            <Image src="/starr.svg" alt="star" width={20} height={20} />
+            <div className="text-[#8D58FF] text-xl font-normal">
+              Early birds
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
+          <PricingCard
+            planType="Payment Plan"
+            description="If you choose this payment plan, you will be required to pay once every 3 months."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            monthlyPrice={
+              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
+            }
+            currentPrice={
+              data?.data?.[0]?.recurrentPrice?.USD
+                ? `$${data?.data[0].recurrentPrice?.USD}`
+                : "N/A"
+            }
+            buttonLabel="Apply now"
+            recurrent
+            discountPrice="70"
+          />
+          <PricingCard
+            planType="One-time payment"
+            description="If you choose this payment plan, you will be required to make a full payment."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            currentPrice={
+              data?.data?.[0]?.price?.USD
+                ? `$${data.data[0].price?.USD}`
+                : "N/A"
+            }
+            noOfMonths={
+              data?.data?.[0]?.recurrentPrice?.frequency
+                ? `(${data.data[0].recurrentPrice.frequency})`
+                : ""
+            }
+            buttonLabel="Apply now"
+          />
+        </div>
+      </section>
+
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Start Your New Career Faster
         </h1>
         <Career />
       </section>
-      <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Pricing
-        </h1>
-        <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
-          <PricingCard
-            planType="One-time payment"
-            description="Unlock maximum value with a one-time payment and save 10%"
-            features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice="60"
-            buttonLabel="Apply Now"
-          />
-          <PricingCard
-            planType="Monthly Payment"
-            description="Flexibility with our convenient payment plan tailored to suit your budget"
-            features={["Tailored Homework", "Mentorship Support"]}
-            currentPrice="70"
-            buttonLabel="Apply Now"
-          />
-        </div>
-      </section>
-      <Testimonial />
+
+      <div className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
+        <Testimonial />
+      </div>
       <div className="pt-28">
-        <FAQ />
+        <BlockchainCyberSecurityFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />
