@@ -1,7 +1,7 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-
+import Image from "next/image";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
@@ -94,14 +94,14 @@ export default function Page() {
       imgLink: "/Hashtag-Square.svg",
       heading: "Start Date",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
-      text: "November, 2024",
+      // text: "November, 2024",
       cohortTwo: "January, 2025",
     },
     {
       imgLink: "/Time.svg",
       heading: "Duration",
       // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
-      text: "1 Month",
+      text: "2 Months",
     },
     {
       imgLink: "/Location.svg",
@@ -164,7 +164,7 @@ export default function Page() {
                 {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Web3 Technical Writing
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
+              <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
                 This 4-week intensive course equips participants with the skills
                 to write clear, concise, and effective technical documentation.
                 By the end of the course, learners will be able to produce user
@@ -189,20 +189,49 @@ export default function Page() {
         title={`${data?.data?.map((item) => item.name)}`}
       />
       <section className="max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto pb-[3.8rem] lg:pb-[7rem]">
-        <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
-          Pricing
-        </h1>
+        <div className="flex items-center justify-center gap-3">
+          <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
+            Pricing
+          </h1>
+          <div className="bg-[#8D58FF] rounded-[30px] bg-opacity-15 p-2 flex gap-2">
+            <Image src="/starr.svg" alt="star" width={20} height={20} />
+            <div className="text-[#8D58FF] text-xl font-normal">
+              Early birds
+            </div>
+          </div>
+        </div>
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
-            planType="One-time payment"
-            description="Unlock maximum value with a one-time payment and save 10%"
+            planType="Payment Plan"
+            description="If you choose this payment plan, you will be required to pay once every 2 months."
             features={[
               "Course Material (Lifetime access)",
               "1 on 1 mentorship with the Instructor",
               "Access to Telegram and Discord community (Lifetime access)",
               "Live Classes and Hands-on Projects",
             ]}
-            nairaPrice={
+            monthlyPrice={
+              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
+            }
+            currentPrice={
+              data?.data?.[0]?.recurrentPrice?.USD
+                ? `$${data?.data[0].recurrentPrice?.USD}`
+                : "N/A"
+            }
+            buttonLabel="Apply now"
+            recurrent
+            discountPrice="50"
+          />
+          <PricingCard
+            planType="One-time payment"
+            description="If you choose this payment plan, you will be required to make a full payment."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            monthlyPrice={
               data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
             }
             currentPrice={
@@ -212,31 +241,6 @@ export default function Page() {
             }
             buttonLabel="Apply now"
           />
-
-          {/* <PricingCard
-            planType="Monthly Payment"
-            description="Allowing for flexible budgeting over the course duration. The fee can be paid up to 3 installments."
-            features={[
-              "Course Material (Lifetime access)",
-              "1 on 1 mentorship with the Instructor",
-              "Access to Telegram and Discord community (Lifetime access)",
-              "Live Classes and Hands-on Projects",
-            ]}
-            buttonLabel="Apply now"
-            // onClick={handleApplyClick}
-
-            nairaPrice={
-              data?.data?.[0]?.recurrentPrice?.NGN
-                ? `₦${data.data[0].recurrentPrice.NGN}`
-                : "N/A"
-            }
-            currentPrice={`$${data?.data?.[0]?.recurrentPrice?.USD}` || "N/A"}
-            noOfMonths={
-              data?.data?.[0]?.recurrentPrice?.frequency
-                ? `(${data.data[0].recurrentPrice.frequency})`
-                : ""
-            }
-          /> */}
         </div>
       </section>
 

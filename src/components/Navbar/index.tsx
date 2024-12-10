@@ -24,8 +24,8 @@ const courses = [
   {
     id: 2,
     href: "smart-contract-development",
-    name: "Smart Contract Development (Coming Soon)",
-    allowed: false,
+    name: "Smart Contract Development",
+    allowed: true,
   },
   {
     id: 3,

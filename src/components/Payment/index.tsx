@@ -19,7 +19,7 @@ import {
 } from "../ui/select";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Input } from "../ui/input";
-import { object, z } from "zod";
+import { z } from "zod";
 import CourseInfo from "./courseInfo";
 import {
   useGetAllCourseDetalsQuery,
@@ -97,7 +97,7 @@ export const coursesInfo: Record<string, CourseInfo> = {
 
 // Data for dropdowns
 const ageRanges = ["18-24", "25-34", "35-44", "45+"] as const;
-const cohorts = ["November 2024", "January 2025"] as const;
+const cohorts = ["January 2025"] as const;
 
 // const courses = Object.keys(coursesInfo);
 const courses = [
@@ -128,7 +128,9 @@ const schema = z.object({
   firstName: z.string().min(2, { message: "First Name is required" }),
   lastName: z.string().min(2, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
-  discordUserName: z.string().min(2, { message: "Discord Username is required" }),
+  discordUserName: z
+    .string()
+    .min(2, { message: "Discord Username is required" }),
   phoneNumber: z.string().min(10, { message: "Phone Number is required" }),
   ageRange: z.enum(ageRanges),
   country: z.string().min(1, { message: "Please select a country" }),
@@ -146,6 +148,20 @@ const schema = z.object({
 
 export default function ContactInfo() {
   const { data: countries, isLoading } = useGetCountryQuery();
+
+  // var headers = new Headers();
+  // headers.append("X-CSCAPI-KEY", process.env.NEXT_PUBLIC_API_KEY || "");
+
+  // var requestOptions = {
+  //   method: "GET",
+  //   headers: headers,
+  //   // redirect: "follow",
+  // };
+
+  // fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+  //   .then((response) => response.text())
+  //   .then((result) => console.log(result))
+  //   .catch((error) => console.log("error", error));
 
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
@@ -195,21 +211,12 @@ export default function ContactInfo() {
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
 
-  console.log(courseDetail);
+  // console.log(courseDetail);
 
   const [
     payment,
     { data: paymentData, isSuccess, isLoading: paymentLoading, error, isError },
   ] = usePaymentMutation();
-
-  // if (isSuccess) {
-  //   console.log(
-  //     "User payment:",
-  //     paymentData?.message,
-  //     paymentData?.data?.authorization_url
-  //   );
-  //   window.open(paymentData?.data?.authorization_url);
-  // }
 
   useEffect(() => {
     if (isSuccess) {
@@ -233,7 +240,7 @@ export default function ContactInfo() {
 
     if (error) {
       handleError(error);
-      console.log(error);
+      // console.log(error);
     }
   }, [paymentData?.message, isSuccess, error]);
 
@@ -421,7 +428,7 @@ export default function ContactInfo() {
                       <SelectContent>
                         {isLoading ? (
                           <SelectItem value="loading">
-                            Loading countries...
+                            Loading co...
                           </SelectItem>
                         ) : (
                           countries?.map((country: any) => (

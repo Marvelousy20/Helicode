@@ -25,7 +25,7 @@ export const courseApi = apiSlice.injectEndpoints({
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
     }),
 
-    getCyberSecurty: builder.query<Single, void>({
+    getCyberSecurity: builder.query<Single, void>({
       query: () => ({
         url: endpoints.getCyberSecurity,
         method: "GET",
@@ -51,18 +51,52 @@ export const courseApi = apiSlice.injectEndpoints({
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
     }),
 
-    getCountry: builder.query<Country[], void>({
+    getSmartContractDevelopment: builder.query<Single, void>({
       query: () => ({
-        url: endpoints.getCountry,
+        url: endpoints.getSmartContractDevelopment,
         method: "GET",
         credentials: "include" as const,
       }),
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
-      transformResponse: (response: any[]) =>
+    }),
+
+    // getCountry: builder.query<Country[], void>({
+    //   query: () => ({
+    //     url: endpoints.getCountry,
+    //     method: "GET",
+    //     credentials: "include" as const,
+    //     headers: {
+    //       "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
+    //     },
+    //     redirect: "follow",
+    //   }),
+    //   //   transformResponse: (response: { data: any }, meta, arg) => response.data,
+    //   transformResponse: (response: any[]) =>
+    //     response
+    //       .map((country) => ({
+    //         name: country.name.common,
+    //         code: country.cca2,
+    //       }))
+    //       .sort((a, b) => a.name.localeCompare(b.name)),
+    // }),
+
+    getCountry: builder.query<Country[], void>({
+      query: () => ({
+        url: endpoints.getCountry,
+        method: "GET",
+        headers: {
+          "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
+        },
+      }),
+      transformResponse: (response: Country[]) =>
         response
           .map((country) => ({
-            name: country.name.common,
-            code: country.cca2,
+            id: country.id,
+            name: country.name,
+            code: country.iso2,
+            currency: country.currency,
+            capital: country.capital,
+            emoji: country.emoji,
           }))
           .sort((a, b) => a.name.localeCompare(b.name)),
     }),
@@ -113,11 +147,12 @@ export const courseApi = apiSlice.injectEndpoints({
 });
 export const {
   useGetAllCoursesQuery,
-  useGetCyberSecurtyQuery,
+  useGetCyberSecurityQuery,
   useGetTechnicalWritingQuery,
   useGetMarketingQuery,
   useGetCountryQuery,
   useGetStateQuery,
   useGetAllCourseDetalsQuery,
   usePaymentMutation,
+  useGetSmartContractDevelopmentQuery,
 } = courseApi;

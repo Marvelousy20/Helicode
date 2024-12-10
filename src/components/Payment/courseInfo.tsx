@@ -4,6 +4,7 @@ import { z } from "zod";
 import { coursesInfo } from ".";
 import { Single } from "@/redux/type";
 import { FaSpinner } from "react-icons/fa";
+import CoinsubSubcription from "./coinsubPayment";
 
 interface payment {
   paymentPlan: string;
