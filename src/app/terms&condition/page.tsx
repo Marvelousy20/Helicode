@@ -6,7 +6,7 @@ export default function page() {
     <section className="lg:pt-24 pt-10 w-full">
       <div className="flex flex-col gap-12">
         <div className="w-full">
-          <h1 className=" text-lg lg:text-2xl leading-10 font-medium">
+          <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             AGREEMENT TO OUR LEGAL TERMS
           </h1>
           <p className="pt-4 font-normal text-base lg:w-[1136px] w-full">
@@ -47,7 +47,7 @@ export default function page() {
           <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             OUR SERVICES
           </h1>
-          <p className=" pt-4 font-normal text-base lg:w-[1136px] w-full">
+          <p className="pt-4 font-normal text-base lg:w-[1136px] w-full">
             Helicode envisions a future where African web3 professionals lead
             global technological innovation. One where our academy is the number
             one source for accessing quality and affordable talent for global
@@ -84,7 +84,7 @@ export default function page() {
           <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             USER REPRESENTATIONS
           </h1>
-          <p className=" pt-4 font-normal text-base lg:w-[1136px] w-full">
+          <p className="pt-4 font-normal text-base lg:w-[1136px] w-full">
             By using the Services, you represent and warrant that: (1) all
             registration information you submit will be true, accurate, current,
             and complete; (2) you will maintain the accuracy of such information
@@ -108,7 +108,7 @@ export default function page() {
           <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             PRODUCTS
           </h1>
-          <p className=" pt-4 font-normal text-base lg:w-[1136px] w-full">
+          <p className="pt-4 font-normal text-base lg:w-[1136px] w-full">
             All products are subject to availability. We reserve the right to
             discontinue any products at any time for any reason. Prices for all
             products are subject to change.
@@ -119,9 +119,9 @@ export default function page() {
           <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             PURCHASES AND PAYMENT
           </h1>
-          <div className=" pt-4 font-normal text-base lg:w-[1136px] w-full">
+          <div className="pt-4 font-normal text-base lg:w-[1136px] w-full">
             <p>We accept the following forms of payment:</p>
-            <ol className=" list-disc list-inside flex flex-col gap-2 pl-3">
+            <ol className="list-disc list-inside flex flex-col gap-2 pl-3">
               <li className="">Visa</li>
               <li>Mastercard</li>
               <li>Crypto</li>
@@ -202,7 +202,7 @@ export default function page() {
           <h1 className="text-lg lg:text-2xl leading-10 font-medium">
             REFUND POLICY
           </h1>
-          <p className=" pt-4 font-normal text-base">
+          <p className="pt-4 font-normal text-base">
             All sales are final and no refund will be issued.
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function page() {
             that are specifically endorsed or approved by us.
           </p>
           <p> a user of the Services, you agree not to:</p>
-          <ol className=" list-disc list-outside flex flex-col gap-2 pl-3">
+          <ol className="list-disc list-outside flex flex-col gap-2 pl-3">
             <li className="">
               Systematically retrieve data or other content from the Services to
               create or compile, directly or indirectly, a collection,
@@ -259,7 +259,7 @@ export default function page() {
               Upload or transmit (or attempt to upload or to transmit) viruses,
               Trojan horses, or other material, including excessive use of
               capital letters and spamming (continuous posting of repetitive
-              text), that interferes with any party's uninterrupted use and
+              text), that interferes with any party&apos;s uninterrupted use and
               enjoyment of the Services or modifies, impairs, disrupts, alters,
               or interferes with the use, features, functions, operation, or
               maintenance of the Services.
@@ -289,9 +289,9 @@ export default function page() {
               Upload or transmit (or attempt to upload or to transmit) any
               material that acts as a passive or active information collection
               or transmission mechanism, including without limitation, clear
-              graphics interchange formats ("gifs"), 1x1 pixels, web bugs,
+              graphics interchange formats (&quot;gifs&quot;), 1x1 pixels, web bugs,
               cookies, or other similar devices (sometimes referred to as
-              "spyware" or "passive collection mechanisms" or "pcms").
+                &quot;spyware&quot; or &quot;passive collection mechanisms&quot; or &quot;pcms&quot;).
             </li>
             <li>
               Interfere with, disrupt, or create an undue burden on the Services
@@ -307,7 +307,7 @@ export default function page() {
               Services.
             </li>
             <li>
-              Copy or adapt the Services' software, including but not limited to
+              Copy or adapt the Services&apos; software, including but not limited to
               Flash, PHP, HTML, JavaScript, or other code.
             </li>
             <li>

@@ -48,14 +48,15 @@ export default function page() {
             </li>
             <li>
               Affiliate means an entity that controls, is controlled by or is
-              under common control with a party, where "control" means ownership
-              of 50% or more of the shares, equity interest or other securities
-              entitled to vote for election of directors or other managing
-              authority.
+              under common control with a party, &quot;where control&quot; means
+              ownership of 50% or more of the shares, equity interest or other
+              securities entitled to vote for election of directors or other
+              managing authority.
             </li>
             <li>
-              Company (referred to as either "the Company", "We", "Us" or "Our"
-              in this Agreement) refers to Helicode, Ikeja.
+              Company (referred to as either &quot;the Company&quot;,
+              &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this
+              Agreement) refers to Helicode, Ikeja.
             </li>
             <li>
               Cookies are small files that are placed on Your computer, mobile
@@ -131,18 +132,18 @@ export default function page() {
           </h1>
           <p className=" pt-4 font-normal text-base lg:w-[1136px] w-full">
             Usage Data is collected automatically when using the Service. Usage
-            Data may include information such as Your Device's Internet Protocol
-            address (e.g. IP address), browser type, browser version, the pages
-            of our Service that You visit, the time and date of Your visit, the
-            time spent on those pages, unique device identifiers and other
-            diagnostic data. When You access the Service by or through a mobile
-            device, We may collect certain information automatically, including,
-            but not limited to, the type of mobile device You use, Your mobile
-            device unique ID, the IP address of Your mobile device, Your mobile
-            operating system, the type of mobile Internet browser You use,
-            unique device identifiers and other diagnostic data. We may also
-            collect information that Your browser sends whenever You visit our
-            Service or when You access the Service by or through a mobile
+            Data may include information such as Your Device&apos;s Internet
+            Protocol address (e.g. IP address), browser type, browser version,
+            the pages of our Service that You visit, the time and date of Your
+            visit, the time spent on those pages, unique device identifiers and
+            other diagnostic data. When You access the Service by or through a
+            mobile device, We may collect certain information automatically,
+            including, but not limited to, the type of mobile device You use,
+            Your mobile device unique ID, the IP address of Your mobile device,
+            Your mobile operating system, the type of mobile Internet browser
+            You use, unique device identifiers and other diagnostic data. We may
+            also collect information that Your browser sends whenever You visit
+            our Service or when You access the Service by or through a mobile
             device.
           </p>
         </div>
@@ -179,12 +180,12 @@ export default function page() {
               </li>
             </ol>
             <p className="">
-              Cookies can be "Persistent" or "Session" Cookies. Persistent
-              Cookies remain on Your personal computer or mobile device when You
-              go offline, while Session Cookies are deleted as soon as You close
-              Your web browser. You can learn more about cookies on TermsFeed
-              website article. We use both Session and Persistent Cookies for
-              the purposes set out below:
+              Cookies can be &quot;Persistent&quot; or &quot;Session&quot;
+              Cookies. Persistent Cookies remain on Your personal computer or
+              mobile device when You go offline, while Session Cookies are
+              deleted as soon as You close Your web browser. You can learn more
+              about cookies on TermsFeed website article. We use both Session
+              and Persistent Cookies for the purposes set out below:
             </p>
             <ol className=" list-disc list-outside flex flex-col gap-2 pl-3">
               <li className="">Necessary / Essential Cookies</li>
@@ -257,8 +258,8 @@ export default function page() {
               <li>
                 To contact You: To contact You by email, telephone calls, SMS,
                 or other equivalent forms of electronic communication, such as a
-                mobile application's push notifications regarding updates or
-                informative communications related to the functionalities,
+                mobile application&apos;s push notifications regarding updates
+                or informative communications related to the functionalities,
                 products or contracted services, including the security updates,
                 when necessary or reasonable for their implementation.
               </li>
@@ -355,7 +356,7 @@ export default function page() {
           </h3>
           <p>
             Your information, including Personal Data, is processed at the
-            Company's operating offices and in any other places where the
+            Company&apos;s operating offices and in any other places where the
             parties involved in the processing are located. It means that this
             information may be transferred to — and maintained on — computers
             located outside of Your state, province, country or other
@@ -453,7 +454,7 @@ export default function page() {
         </div>
         <div className="flex flex-col gap-4">
           <h3 className="text-base lg:text-lg leading-10 font-medium uppercase">
-            Children's Privacy
+            Children&apos;s Privacy
           </h3>
           <p>
             Our Service does not address anyone under the age of 13. We do not
@@ -465,7 +466,7 @@ export default function page() {
             consent, We take steps to remove that information from Our servers.
             If We need to rely on consent as a legal basis for processing Your
             information and Your country requires consent from a parent, We may
-            require Your parent's consent before We collect and use that
+            require Your parent&apos;s consent before We collect and use that
             information.
           </p>
         </div>
@@ -477,7 +478,7 @@ export default function page() {
           <p>
             Our Service may contain links to other websites that are not
             operated by Us. If You click on a third party link, You will be
-            directed to that third party's site. We strongly advise You to
+            directed to that third party&apos;s site. We strongly advise You to
             review the Privacy Policy of every site You visit. We have no
             control over and assume no responsibility for the content, privacy
             policies or practices of any third party sites or services.
@@ -492,10 +493,11 @@ export default function page() {
             We may update Our Privacy Policy from time to time. We will notify
             You of any changes by posting the new Privacy Policy on this page.
             We will let You know via email and/or a prominent notice on Our
-            Service, prior to the change becoming effective and update the "Last
-            updated" date at the top of this Privacy Policy. You are advised to
-            review this Privacy Policy periodically for any changes. Changes to
-            this Privacy Policy are effective when they are posted on this page.
+            Service, prior to the change becoming effective and update the
+            &quot;Last updated&quot; date at the top of this Privacy Policy. You
+            are advised to review this Privacy Policy periodically for any
+            changes. Changes to this Privacy Policy are effective when they are
+            posted on this page.
           </p>
         </div>
       </div>
