@@ -95,13 +95,13 @@ export default function Page() {
       heading: "Start Date",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
       // text: "November, 2024",
-      cohortTwo: "January, 2025",
+      cohortTwo: "January 18th, 2025",
     },
     {
       imgLink: "/Time.svg",
       heading: "Duration",
       // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
-      text: "2 Months",
+      text: "4 Weeks",
     },
     {
       imgLink: "/Location.svg",
@@ -201,7 +201,7 @@ export default function Page() {
           </div>
         </div>
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
-          <PricingCard
+          {/* <PricingCard
             planType="Payment Plan"
             description="If you choose this payment plan, you will be required to pay once every 2 months."
             features={[
@@ -221,7 +221,7 @@ export default function Page() {
             buttonLabel="Apply now"
             recurrent
             discountPrice="50"
-          />
+          /> */}
           <PricingCard
             planType="One-time payment"
             description="If you choose this payment plan, you will be required to make a full payment."
