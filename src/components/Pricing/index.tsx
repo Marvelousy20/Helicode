@@ -33,11 +33,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
     <div className="bg-[#080821] p-6 border border-[#343434] border-dashed max-w-sm text-white">
       <div className="flex items-center gap-3">
         <Image src="/crown.svg" alt="crown" width={28} height={24} />
-        {planType === "One-time payment" && (
+        {/* {planType === "One-time payment" && (
           <div className="bg-[#8D58FF] rounded-[30px] bg-opacity-15 px-2 py-1 flex gap-2">
             <div className="text-[#8D58FF] text-sm font-normal">10% off</div>
           </div>
-        )}
+        )} */}
       </div>
       <div className="flex items-center mt-3">
         <h2 className="text-2xl lg:text-[32px] font-medium">{planType}</h2>
