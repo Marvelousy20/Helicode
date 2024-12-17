@@ -22,7 +22,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="max-w-[90rem] max-w7xl mx-auto mt-8 lg:mt-12 lg:py-[5rem] text-center border border-[#3B00BA] border-opacity-40 px-6 py-10 lg:px-[7.2rem] bg-hero-gradient rounded-[40px]">
+      <section className="max-w-[90rem] max-w7xl mx-auto mt-8 lg:mt-12 lg:py-[5rem] text-center borer border-[#3B00BA] border-opacity-40 px-6 py-10 lg:px-[7.2rem] bg-hero-gradient rounded-[40px]">
         <div className="max-w-[62rem] mx-auto">
           {/* <h4 className=""> */}
           <div className="w-full rounded-gradient-border px-3 py-1.5 gap-2.5 text-sm flex items-center justify-center max-w-[16rem] mx-auto">

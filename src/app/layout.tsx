@@ -24,7 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <main className="px-5 lg:px-20 bg-[#010115] text-white">
+          {/* <main className="px-5 lg:px-20 bg-[#010115] text-white"> */}
+          <main className="bg-[#010115] text-white">
             <Navbar />
             {/* <EmailCaptureModal /> */}
             {children}
