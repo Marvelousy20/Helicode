@@ -60,6 +60,14 @@ export const courseApi = apiSlice.injectEndpoints({
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
     }),
 
+    getWeb3Research: builder.query<Single, void>({
+      query: () => ({
+        url: endpoints.getWeb3Research,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
+
     // getCountry: builder.query<Country[], void>({
     //   query: () => ({
     //     url: endpoints.getCountry,
@@ -150,6 +158,7 @@ export const {
   useGetCyberSecurityQuery,
   useGetTechnicalWritingQuery,
   useGetMarketingQuery,
+  useGetWeb3ResearchQuery,
   useGetCountryQuery,
   useGetStateQuery,
   useGetAllCourseDetalsQuery,

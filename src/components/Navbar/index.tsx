@@ -29,9 +29,9 @@ const courses = [
   },
   {
     id: 3,
-    href: "product-design",
-    name: "Blockchain Research (Coming Soon)",
-    allowed: false,
+    href: "web3-research",
+    name: "Web3 Research",
+    allowed: true,
   },
   {
     id: 4,

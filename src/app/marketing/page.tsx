@@ -256,27 +256,6 @@ export default function Page() {
           </div>
         </div>
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
-          {/* <PricingCard
-            planType="Payment Plan"
-            description="If you choose this payment plan, you will be required to pay once every 2 months."
-            features={[
-              "Course Material (Lifetime access)",
-              "1 on 1 mentorship with the Instructor",
-              "Access to Telegram and Discord community (Lifetime access)",
-              "Live Classes and Hands-on Projects",
-            ]}
-            monthlyPrice={
-              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
-            }
-            currentPrice={
-              data?.data?.[0]?.recurrentPrice?.USD
-                ? `$${data?.data[0].recurrentPrice?.USD}`
-                : "N/A"
-            }
-            buttonLabel="Apply now"
-            recurrent
-            discountPrice="50"
-          /> */}
           <PricingCard
             planType="One-time payment"
             description="If you choose this payment plan, you will be required to make a full payment."

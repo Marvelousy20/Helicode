@@ -1,7 +1,7 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
@@ -9,17 +9,18 @@ import FAQ from "@/components/FAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
+import { useGetWeb3ResearchQuery } from "@/redux/feature/courses/courseApi";
 
 const info = [
   {
     imgLink: "/Hashtag-Square.svg",
     heading: "Start Date",
-    text: "October 21st, 2024",
+    text: "January 18th, 2025",
   },
   {
     imgLink: "/Time.svg",
     heading: "Duration",
-    text: "2 Months",
+    text: "4 Weeks",
   },
   {
     imgLink: "/Location.svg",
@@ -29,18 +30,18 @@ const info = [
   {
     imgLink: "/Dollar.svg",
     heading: "Average Salary",
-    text: "120,000",
+    text: "60,000",
   },
 ];
 
-const productDesignModule = [
+const web3ResearchModules = [
   {
     number: 1,
-    title: "Basic Concepts of Blockchain",
+    title: "Introduction to Web3",
     topics: [
       {
         content:
-          "Introduction to Blockchain: Understand the types of blockchain, the consensus algorithm such as PoW, PoS, DPoS, PBFT.",
+          "Definition, history, and evolution from Web 1.0 and Web 2.0. Key differences between Web 2.0 and Web 3.",
       },
       {
         content:
@@ -54,83 +55,50 @@ const productDesignModule = [
   },
   {
     number: 2,
-    title: "Blockchain Security Foundation",
+    title: "Blockchain Fundamentals",
     topics: [
       {
         content:
-          "Security in blockchain architecture: Understand the architecture of onchain and offchain security.",
-      },
-      {
-        content:
-          "Blockchain Attack Surface Analysis: Learn the consensus layer, P2P network layer and smart contract layer. Explore the common blockchain vulnerabilities types.",
-      },
-      {
-        content:
-          "Public Key Encryption and harsh Algorithm: SHA-256, ECDSA etc",
+          "Understanding Blockchain Architecture. Major Blockchain Platforms. Blockchain Applications in Web3.",
       },
     ],
   },
   {
     number: 3,
-    title: "Smart Contract Security Audit Basics",
+    title: "Research Techniques in Web3",
     topics: [
       {
         content:
-          "Deep dive into the Analysis of Common Vulnerabilities in Smart Contracts, Reentrancy Attacks, Overflow/Underflow, Unsafe Function Calls and Random Number Generation and Security Practices in Solidity Development.",
+          "Conducting Market Research, Evaluating Blockchain Projects, Onchain Data Analysis.",
       },
     ],
   },
   {
     number: 4,
-    title: "Blockchain Security Testing Technology",
+    title: "Advanced Concepts in Web3",
     topics: [
       {
         content:
-          "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
+          "Cross-Chain Interoperability, Scalability Challenges and Solutions, Privacy in Web3",
       },
     ],
   },
   {
     number: 5,
-    title: "Comprehensive Security Audit of Blockchain Projects",
+    title: "Practical Applications and Use Cases",
     topics: [
       {
-        content:
-          "Understand the compliance and regulatory framework, risk assessment methods and third-party audit / certification process. You will learn the code base management and security monitoring in continuous integration.",
-      },
-    ],
-  },
-  {
-    number: 6,
-    title: "Case analysis and practical exercises",
-    topics: [
-      {
-        content:
-          "Learn the vulnerability analysis cases of real blockchain projects such as The DAO and Poly Network.",
-      },
-      {
-        content:
-          "Explore and conduct complete audits of blockchain projects. Work on penetration test simulation like using test tools to find and fix vulnerabilities in projects. Learn how to conduct blockchain security audits in enterprises.",
-      },
-    ],
-  },
-  {
-    number: 7,
-    title: "Career Development and Industry Trends",
-    topics: [
-      {
-        content:
-          "Learn the career prospects for blockchain security by introducing you to positions such as auditors, developers and test engineers.",
-      },
-      {
-        content:
-          "Industry Trends: Explore the security challenges in Web3, DeFi, GameFi, Layer 2 and other fields.",
+        content: "NFT Creation and Marketplaces,  Participating in DAOs.",
       },
     ],
   },
 ];
 
-export default function page() {
+export default function Page() {
+  const router = useRouter();
+  const { data, isFetching, isLoading } = useGetWeb3ResearchQuery();
+  console.log(data);
+
   return (
     <main className="lg:py-5 mt-12">
       <div className=" h-[77dvh] lg:h-[75vh] p24 relative border border-dashed border-[#343434] max-w7xl max-w-[90rem] mx-auto">
@@ -178,11 +146,11 @@ export default function page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                Web3 Product Design
+                Web3 Research
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl lg:text-lg">
-                Zero Knowledge Proofs enable privacy-preserving transactions and
-                computations on public blockchains
+                Get introduced to the world of Blockchain Enquiry and Research
+                and Learn to navigate through complex concept like a pro.
               </p>
             </div>
             <Link
@@ -197,7 +165,7 @@ export default function page() {
         </div>
       </div>
       <CourseInfo info={info} />
-      <CourseSyllabus modules={productDesignModule} title="Product Design" />
+      <CourseSyllabus modules={web3ResearchModules} title="Web3 Research" />
       <section className=" max-w-7xl pt-8 lg:px-24 lg:pt-[6.25rem] mx-auto space-y-10">
         <h1 className="text-center lg:text-[3rem] text-[1.875rem] font-semibold">
           Start Your New Career Faster
@@ -211,19 +179,23 @@ export default function page() {
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
             planType="One-time payment"
-            description="Unlock maximum value with a one-time payment and save 10%"
-            features={["Everything included in Basic", "Mentorship Support"]}
-            currentPrice={"162"}
-            originalPrice={200}
-            buttonLabel="Apply Now"
-          />
-          <PricingCard
-            planType="Monthly Payment"
-            description="Flexibility with our convenient payment plan tailored to suit your budget"
-            features={["Tailored Homework", "Mentorship Support"]}
-            currentPrice={"30"}
-            //   originalPrice={200}
-            buttonLabel="Apply Now"
+            description="If you choose this payment plan, you will be required to make a full payment."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            monthlyPrice={
+              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
+            }
+            currentPrice={
+              data?.data?.[0]?.price?.USD
+                ? `$${data.data[0].price?.USD}`
+                : "N/A"
+            }
+            buttonLabel="Apply now"
+            // onClick={handleApplyClick}
           />
         </div>
       </section>
