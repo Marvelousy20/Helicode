@@ -42,14 +42,16 @@ const VideoModal: React.FC<VideoModalProps> = ({
             controls
             playing={isOpen}
             onEnded={() => setIsOpen(false)}
-            config={{
-              youtube: {
-                playerVars: {
-                  modestbranding: 1,
-                  rel: 0,
+            config={
+              {
+                youtube: {
+                  playerVars: {
+                    modestbranding: 1,
+                    rel: 0,
+                  },
                 },
-              },
-            }}
+              } as any
+            }
           />
         </div>
       </DialogContent>
