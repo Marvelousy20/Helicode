@@ -58,12 +58,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </span>
         </div>
         <span>
-          {recurrent && (
+          {discountPrice && (
             <span className="text-[#8D58FF] font-medium text-base">
               <span className="line-through text-white text-opacity-30">
                 ${discountPrice}
-              </span>{" "}
-              / month
+              </span>
             </span>
           )}
         </span>
@@ -96,6 +95,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </li>
         ))}
       </ul>
+
+      <div className="bg-[#8D58FF] rounded-[30px] bg-opacity-[12%] p-2 flex gap-2 mt-10">
+        <Image src="/starr.svg" alt="star" width={20} height={20} />
+        <div className="text-[#8D58FF] text-xl font-normal">
+          Discount Limited time only!
+        </div>
+      </div>
     </div>
   );
 };

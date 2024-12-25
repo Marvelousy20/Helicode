@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
+import VideoModal from "../VideoModal";
 
 const Hero = () => {
   const [word, setWord] = useState("Fuel Your Ambitions");
@@ -41,8 +42,8 @@ const Hero = () => {
             industry experts.
           </h3>
 
-          <div className="mt-[2rem]">
-            <Link
+          <div className="mt-[2rem] flex justify-center ">
+            {/* <Link
               // href="/payment"
               href={"/payment"}
               target="_blank"
@@ -51,20 +52,12 @@ const Hero = () => {
               <Button className="py-3 transition-colors duration-300">
                 Apply Now <MdArrowForwardIos size={16} className="ml-1" />
               </Button>
-            </Link>
+            </Link> */}
+
+            <VideoModal url="https://youtu.be/79ZPtXDfmL4" />
           </div>
         </div>
       </section>
-      {/* <div className="mt-24 max-w-[59rem] mx-auto text-center">
-        <h1 className="text-3xl md:text-[3.25rem] font-semibold">
-          Begin Your Web3 Journey Today
-        </h1>
-        <p className="text-[#8B8B8B] text-lg mt-4">
-          Discover endless possibilities with Helicode. Whether you’re a newbie
-          or an expert, we provide the tools, programs, community, and support
-          you need to master new skills and achieve your goals.
-        </p>
-      </div> */}
     </>
   );
 };

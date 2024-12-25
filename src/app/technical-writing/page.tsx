@@ -239,6 +239,7 @@ export default function Page() {
                 ? `$${data.data[0].price?.USD}`
                 : "N/A"
             }
+            discountPrice="50"
             buttonLabel="Apply now"
           />
         </div>

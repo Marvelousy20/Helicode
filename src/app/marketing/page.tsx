@@ -274,6 +274,7 @@ export default function Page() {
                 : "N/A"
             }
             buttonLabel="Apply now"
+            discountPrice="50"
             // onClick={handleApplyClick}
           />
         </div>

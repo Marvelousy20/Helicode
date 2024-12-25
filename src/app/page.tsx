@@ -13,6 +13,7 @@ import DiscountBanner from "@/components/DiscountBanner";
 // import PricingCard from "@/components/Pricing";
 // import Career from "@/components/Career";
 import NewsLetter from "@/components/Newsletter";
+import Explore from "@/components/Explore";
 
 export default function Home() {
   const handleApplyClick = () => {
@@ -24,6 +25,7 @@ export default function Home() {
       <DiscountBanner endDate="2025-01-18T00:00:00Z" />
       <div className="px-5 lg:px-20">
         <Hero />
+        <Explore />
         <Journey />
         <Partners />
         <Part />

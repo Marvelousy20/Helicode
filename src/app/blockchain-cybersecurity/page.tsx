@@ -239,7 +239,7 @@ export default function Page() {
         </div>
 
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
-          <PricingCard
+          {/* <PricingCard
             planType="Payment Plan"
             description="If you choose this payment plan, you will be required to pay once every 3 months."
             features={[
@@ -259,7 +259,7 @@ export default function Page() {
             buttonLabel="Apply now"
             recurrent
             discountPrice="70"
-          />
+          /> */}
           <PricingCard
             planType="One-time payment"
             description="If you choose this payment plan, you will be required to make a full payment."
@@ -280,6 +280,7 @@ export default function Page() {
                 : ""
             }
             buttonLabel="Apply now"
+            discountPrice="60"
           />
         </div>
       </section>
