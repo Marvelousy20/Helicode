@@ -119,6 +119,7 @@ const referralSources = [
   "AIESEC Togo",
   "AIESEC Nigeria",
   "AIESEC Rwanda",
+  "Web3UNILAG",
   "3VO",
   "Other",
 ] as const;
@@ -427,9 +428,7 @@ export default function ContactInfo() {
                       </SelectTrigger>
                       <SelectContent>
                         {isLoading ? (
-                          <SelectItem value="loading">
-                            Loading co...
-                          </SelectItem>
+                          <SelectItem value="loading">Loading co...</SelectItem>
                         ) : (
                           countries?.map((country: any) => (
                             <SelectItem key={country.code} value={country.code}>
