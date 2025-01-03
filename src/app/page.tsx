@@ -16,9 +16,9 @@ import NewsLetter from "@/components/Newsletter";
 import Explore from "@/components/Explore";
 
 export default function Home() {
-  const handleApplyClick = () => {
-    console.log("Clicked");
-  };
+  // const handleApplyClick = () => {
+  //   console.log("Clicked");
+  // };
 
   return (
     <main className="">

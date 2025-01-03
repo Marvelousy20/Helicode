@@ -1,13 +1,13 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import {
@@ -150,19 +150,18 @@ const schema = z.object({
 export default function ContactInfo() {
   const { data: countries, isLoading } = useGetCountryQuery();
 
-  // var headers = new Headers();
-  // headers.append("X-CSCAPI-KEY", process.env.NEXT_PUBLIC_API_KEY || "");
+  const searchParams = useSearchParams();
+  const encodedCourse = searchParams.get("course") || "";
 
-  // var requestOptions = {
-  //   method: "GET",
-  //   headers: headers,
-  //   // redirect: "follow",
-  // };
-
-  // fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
-  //   .then((response) => response.text())
-  //   .then((result) => console.log(result))
-  //   .catch((error) => console.log("error", error));
+  let defaultCourse = "";
+  if (encodedCourse) {
+    try {
+      defaultCourse = decodeURIComponent(encodedCourse);
+    } catch (error) {
+      console.warn(`Failed to decode course name: "${encodedCourse}"`, error);
+      defaultCourse = encodedCourse; // Fallback to the raw value
+    }
+  }
 
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
@@ -184,7 +183,7 @@ export default function ContactInfo() {
       ageRange: "18-24",
       country: "",
       state: "",
-      course: "",
+      course: defaultCourse,
       // cohort: "",
       referralSource: "Twitter",
       // paymentPlan: "Full Payment",
@@ -241,12 +240,11 @@ export default function ContactInfo() {
 
     if (error) {
       handleError(error);
-      // console.log(error);
+      console.error(error);
     }
   }, [paymentData?.message, isSuccess, error]);
 
   const onSubmit = (values: z.infer<typeof schema>) => {
-    console.log("Allvalues:", values);
     payment(values);
   };
 
@@ -528,18 +526,6 @@ export default function ContactInfo() {
                     </SelectTrigger>
 
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {/* {detailLoading ? (
-                        <SelectItem value="loading">
-                          Loading cohort...
-                        </SelectItem>
-                      ) : (
-                        courseDetail?.data?.map((cohort, i) => (
-                          <SelectItem key={i} value={cohort?.cohort}>
-                            {cohort?.cohort}
-                          </SelectItem>
-                        ))
-                        
-                      )} */}
                       {cohorts.map((cohort, i) => (
                         <SelectItem key={i} value={cohort}>
                           {cohort}
@@ -573,8 +559,8 @@ export default function ContactInfo() {
                       <SelectValue placeholder="Where did you find us" />
                     </SelectTrigger>
                     <SelectContent className="border-[#454545] text-[#454545] w-full rounded-[8px] py-4">
-                      {referralSources.map((source) => (
-                        <SelectItem key={source} value={source}>
+                      {referralSources.map((source, id) => (
+                        <SelectItem key={id} value={source}>
                           {source}
                         </SelectItem>
                       ))}
@@ -587,52 +573,7 @@ export default function ContactInfo() {
               )}
             </div>
 
-            {/* <div className="space-y-2">
-              <label
-                htmlFor="referralSource"
-                className="font-medium text-2xl block"
-              >
-                Payment Plan*
-              </label>
-              <Controller
-                name="paymentPlan"
-                control={control}
-                render={({ field }) => (
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="grid-cols-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="Full Payment"
-                        id="full-payment"
-                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="full-payment" className="text-white">
-                        Full Payment
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="Monthly Payment"
-                        id="monthly-payment"
-                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="monthly-payment" className="text-white">
-                        Monthly Payment
-                      </label>
-                    </div>
-                  </RadioGroup>
-                )}
-              />
-              {errors.paymentPlan && (
-                <p className="text-red-500">{errors.paymentPlan.message}</p>
-              )}
-            </div> */}
-
             {/* currency name */}
-
             <div className="space-y-2">
               <label
                 htmlFor="referralSource"
@@ -726,57 +667,6 @@ export default function ContactInfo() {
             </div>
           </div>
 
-          {/* <div className="py-10">
-            <hr className="border-[#454545]" />
-          </div> */}
-
-          {/* <div className="space-y-2 px-10">
-            <label
-              htmlFor="referralSource"
-              className="font-medium text-2xl block mb-10"
-            >
-              Payment method*
-            </label>
-            <Controller
-              name="paymentMethod"
-              control={control}
-              render={({ field }) => (
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="gap-y-6"
-                >
-                  <div className="flex justify-between bg-[#232323] items-center space-x-2 py-4 rounded-[8px] px-6">
-                    <label htmlFor="credit-card" className="text-white">
-                      Credit card
-                    </label>
-                    <RadioGroupItem value="Credit card" id="credit-card" />
-                  </div>
-                  <div className="flex items-center justify-between bg-[#232323] space-x-2 py-4 rounded-[8px] px-6">
-                    <label htmlFor="bank-transfer" className="text-white">
-                      Bank Transfer
-                    </label>
-                    <RadioGroupItem value="Bank Transfer" id="bank-transfer" />
-                  </div>
-                  <div className="flex items-center justify-between bg-[#232323] space-x-2 py-4 rounded-[8px] px-6">
-                    <label htmlFor="crypto" className="text-white">
-                      Crypto
-                    </label>
-                    <RadioGroupItem value="Crypto" id="crypto" />
-                  </div>
-                </RadioGroup>
-              )}
-            />
-            {errors.paymentMethod && (
-              <p className="text-red-500">{errors.paymentMethod.message}</p>
-            )}
-          </div> */}
-
-          {/* <div className="px-10">
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
-          </div> */}
           <Dialog onOpenChange={setShow} open={show}>
             {/* <DialogTrigger>Open</DialogTrigger> */}
             <DialogContent className=" rounded-lg">

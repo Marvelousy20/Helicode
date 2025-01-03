@@ -1,6 +1,6 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
@@ -88,7 +88,13 @@ const web3TechnicalWritingModules = [
 
 export default function Page() {
   const { data, isFetching, isLoading } = useGetTechnicalWritingQuery();
-  console.log("Technical", data);
+
+  const router = useRouter();
+
+  const handleStartLearning = () => {
+    router.push("payment?course=Web3%20Technical%20Writing");
+  };
+
   const info = [
     {
       imgLink: "/Hashtag-Square.svg",
@@ -172,14 +178,14 @@ export default function Page() {
                 audience needs, clarity, and accuracy.
               </p>
             </div>
-            <Link
-              href="/payment"
-              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
+            <div
+              onClick={handleStartLearning}
+              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px] cursor-pointer"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

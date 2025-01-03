@@ -40,34 +40,23 @@ export default function CourseInfo({
   currencyName,
   isLoading,
 }: CoursesProps) {
-  // const price =
-  //   paymentPlan === "Full Payment" && currencyName === "NGN"
-  //     ? courses?.data?.map((plan) => plan?.price?.NGN)
-  //     : paymentPlan === "Full Payment" && currencyName === "USD"
-  //     ? courses?.data?.map((plan) => plan?.price?.USD)
-  //     : paymentPlan === "Monthly Payment" && currencyName === "NGN"
-  //     ? courses?.data?.map((plan) => plan?.recurrentPrice?.NGN)
-  //     : paymentPlan === "Monthly Payment" && currencyName === "USD"
-  //     ? courses?.data?.map((plan) => plan?.recurrentPrice?.USD)
-  //     : "";
-
   const price =
     paymentType === "fixed" && currencyName === "NGN"
-      ? courses?.data[0].price?.NGN
+      ? courses?.data[0]?.price?.NGN
       : paymentType === "fixed" && currencyName === "USD"
-      ? courses?.data[0].price?.USD
+      ? courses?.data[0]?.price?.USD
       : paymentType === "recurrent" && currencyName === "NGN"
-      ? courses?.data[0].recurrentPrice?.NGN
+      ? courses?.data[0]?.recurrentPrice?.NGN
       : paymentType === "recurrent" && currencyName === "USD"
-      ? courses?.data[0].recurrentPrice?.USD
+      ? courses?.data[0]?.recurrentPrice?.USD
       : "";
+
+  console.log(courses);
 
   return (
     <div>
       <h1 className="text-3xl font-medium">Course Information</h1>
-
-      <h1 className="font-medium mt-10">{courses?.data[0].name}</h1>
-      {/* <p className="text-[#8B8B8B] leading-[28px] mt-5">{`description`}</p> */}
+      <h1 className="font-medium mt-10">{courses?.data[0]?.name}</h1>
 
       <div className="space-y-10 mt-5">
         <div className="flex justify-between">
@@ -93,20 +82,10 @@ export default function CourseInfo({
               `$`
             ) : (
               ""
-            )}{" "}
+            )}
             {price}
           </p>
         </div>
-
-        {/* <div className="flex justify-between">
-          <h3 className="font-normal">Charges</h3>
-          <p className="font-semibold">$0</p>
-        </div> */}
-
-        {/* <div className="flex justify-between">
-          <h3 className="font-normal">Total</h3>
-          <p className="font-semibold">${100}</p>
-        </div> */}
 
         <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
           <button

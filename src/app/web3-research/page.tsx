@@ -1,6 +1,5 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
@@ -97,7 +96,10 @@ const web3ResearchModules = [
 export default function Page() {
   const router = useRouter();
   const { data, isFetching, isLoading } = useGetWeb3ResearchQuery();
-  console.log(data);
+
+  const handleStartLearning = () => {
+    router.push("payment?course=Web3%20Research");
+  };
 
   return (
     <main className="lg:py-5 mt-12">
@@ -153,14 +155,14 @@ export default function Page() {
                 and Learn to navigate through complex concept like a pro.
               </p>
             </div>
-            <Link
-              href="/payment"
-              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
+            <div
+              onClick={handleStartLearning}
+              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px] cursor-pointer"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

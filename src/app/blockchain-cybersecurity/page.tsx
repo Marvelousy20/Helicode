@@ -1,8 +1,6 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
-
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
@@ -117,7 +115,9 @@ export default function Page() {
   const router = useRouter();
   const { data, isFetching, isLoading } = useGetCyberSecurityQuery();
 
-  console.log("cyber", data);
+  const handleStartLearning = () => {
+    router.push("payment?course=Blockchain%20Cybersecurity");
+  };
 
   const info = [
     {
@@ -207,14 +207,14 @@ export default function Page() {
                 vulnerabilities in smart contracts.
               </p>
             </div>
-            <Link
-              href="/payment"
-              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px]"
+            <div
+              onClick={handleStartLearning}
+              className="mt-12 border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px] cursor-pointer"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

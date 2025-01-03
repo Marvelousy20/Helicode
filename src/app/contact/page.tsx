@@ -34,7 +34,7 @@ export default function ContactUs() {
   });
 
   const onSubmit = (values: z.infer<typeof Schema>) => {
-    console.log(values);
+    // console.log(values);
   };
 
   return (

@@ -124,9 +124,9 @@ const Navbar = () => {
                       aria-orientation="vertical"
                       aria-labelledby="options-menu"
                     >
-                      {courses.map((course) => (
+                      {courses.map((course, i) => (
                         <Link
-                          key={course.id}
+                          key={i}
                           href={course.allowed ? course.href : "/"}
                           className={`block px-4 py2 py-4 text-[0.9rem] textwhite ${
                             course.allowed
@@ -211,9 +211,9 @@ const Navbar = () => {
               </button>
               {showMobileCourses && (
                 <div className="pl-4 mt-2 space-y-2">
-                  {courses.map((course) => (
+                  {courses.map((course, i) => (
                     <Link
-                      key={course.id}
+                      key={i}
                       href={course.allowed ? course.href : "/"}
                       // className="block px-3 py-2 rounded-md text-base font-medium textgray-300 text-gray-600 hover:bg-slate-900"
                       className={`block px-4 py2 py-4 text-[0.9rem] textwhite ${
