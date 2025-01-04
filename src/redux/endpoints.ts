@@ -12,4 +12,5 @@ export const endpoints = {
   getCourseDetails: (course: string) => `course?name=${course}`,
   makePayment: "applications",
   newsletter: "/subscribers",
+  payWithCoinsub: "crypto/application",
 };

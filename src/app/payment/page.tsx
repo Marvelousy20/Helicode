@@ -1,9 +1,10 @@
+import { Suspense } from "react";
 import ContactInfo from "@/components/Payment";
 
 export default function page() {
   return (
-    <div className="">
+    <Suspense fallback={<div>Loading...</div>}>
       <ContactInfo />
-    </div>
+    </Suspense>
   );
 }

@@ -27,12 +27,17 @@ import {
   useGetCountryQuery,
   useGetStateQuery,
   usePaymentMutation,
+  usePayWithCoinsubMutation,
 } from "@/redux/feature/courses/courseApi";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { handleError } from "@/lib/handle-error";
 import Link from "next/link";
+import {
+
+  BasePayload,
+} from "@/redux/type";
 
 type Country = {
   name: string;
@@ -124,8 +129,7 @@ const referralSources = [
   "Other",
 ] as const;
 
-// Zod schema
-const schema = z.object({
+const baseSchema = z.object({
   firstName: z.string().min(2, { message: "First Name is required" }),
   lastName: z.string().min(2, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
@@ -136,16 +140,25 @@ const schema = z.object({
   ageRange: z.enum(ageRanges),
   country: z.string().min(1, { message: "Please select a country" }),
   state: z.string().min(1, { message: "Please select a state" }),
-  // courseOfInterest: z.enum(courses),
   course: z.string().min(1, { message: "Please select a course of interest" }),
   cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
-  // paymentPlan: z.enum(["Full Payment", "Monthly Payment"]),
-  paymentType: z.enum(["recurrent", "fixed"]),
-  paymentCurrency: z.enum(["NGN", "USD"]),
-
-  // paymentMethod: z.enum(["Credit card", "Bank Transfer", "Crypto"]),
 });
+
+const schema = z.discriminatedUnion("paymentMethod", [
+  z
+    .object({
+      paymentMethod: z.literal("paystack"),
+      paymentType: z.enum(["recurrent", "fixed"]),
+      paymentCurrency: z.enum(["NGN", "USD"]),
+    })
+    .merge(baseSchema),
+  z
+    .object({
+      paymentMethod: z.literal("coinsub"),
+    })
+    .merge(baseSchema),
+]);
 
 export default function ContactInfo() {
   const { data: countries, isLoading } = useGetCountryQuery();
@@ -171,6 +184,7 @@ export default function ContactInfo() {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -190,6 +204,7 @@ export default function ContactInfo() {
       paymentCurrency: "NGN",
       // paymentMethod: "Credit card",
       paymentType: "fixed",
+      paymentMethod: "paystack",
     },
   });
 
@@ -198,9 +213,9 @@ export default function ContactInfo() {
   const watchCountry = watch("country");
   const selectedCountry = watch("country");
   const watchCourse = watch("course");
-  // const watchPaymentPlan = watch("paymentPlan");
   const currencyName = watch("paymentCurrency");
   const watchPaymentType = watch("paymentType");
+  const watchPaymentMethod = watch("paymentMethod");
 
   const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
     selectedCountry,
@@ -211,12 +226,21 @@ export default function ContactInfo() {
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse);
 
-  // console.log(courseDetail);
-
   const [
     payment,
-    { data: paymentData, isSuccess, isLoading: paymentLoading, error, isError },
+    {
+      data: paymentData,
+      isSuccess,
+      isLoading: paystackLoading,
+      error,
+      isError,
+    },
   ] = usePaymentMutation();
+
+  const [
+    payWithCoinsub,
+    { data: coinsubData, isLoading: coinsubLoading, isSuccess: coinsubSuccess },
+  ] = usePayWithCoinsubMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -244,13 +268,58 @@ export default function ContactInfo() {
     }
   }, [paymentData?.message, isSuccess, error]);
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
-    payment(values);
+  const onSubmit = async (values: z.infer<typeof schema>) => {
+    const basePayload: BasePayload = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      discordUserName: values.discordUserName,
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+      ageRange: values.ageRange,
+      country: values.country,
+      state: values.state,
+      course: values.course,
+      cohort: values.cohort,
+      referralSource: values.referralSource,
+    };
+
+    if (values.paymentMethod === "paystack") {
+      const paystackPayload = {
+        ...basePayload,
+        paymentType: values.paymentType,
+        paymentCurrency: values.paymentCurrency,
+      };
+      await payment(paystackPayload).unwrap();
+    } else {
+      await payWithCoinsub(basePayload).unwrap();
+    }
   };
 
-  // useEffect(() => {
-  //   setShow(true);
-  // }, []);
+  useEffect(() => {
+    if (coinsubSuccess && coinsubData) {
+      const { link, customerData } = coinsubData?.data;
+
+      if (link && customerData) {
+        // create and submit form dynamically
+        const form = document.createElement("form");
+        form.action = link;
+        form.method = "POST";
+        form.target = "_blank";
+
+        const hiddenField = document.createElement("input");
+        hiddenField.type = "hidden";
+        hiddenField.name = "customerData";
+        hiddenField.value = JSON.stringify(customerData);
+
+        form.append(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+
+        // Clean up the form from the DOM after submission
+        document.body.removeChild(form);
+      }
+    }
+  }, [coinsubSuccess, coinsubData]);
 
   return (
     <div>
@@ -613,11 +682,12 @@ export default function ContactInfo() {
                   </RadioGroup>
                 )}
               />
-              {errors.paymentCurrency && (
-                <p className="text-red-500">
-                  {errors.paymentCurrency?.message}
-                </p>
-              )}
+              {watchPaymentMethod === "paystack" &&
+                "paymentCurrency" in errors && (
+                  <p className="text-red-500">
+                    {errors?.paymentCurrency?.message}
+                  </p>
+                )}
             </div>
 
             {/* payment type */}
@@ -661,8 +731,8 @@ export default function ContactInfo() {
                   </RadioGroup>
                 )}
               />
-              {errors.paymentType && (
-                <p className="text-red-500">{errors.paymentType?.message}</p>
+              {watchPaymentMethod === "paystack" && "paymentType" in errors && (
+                <p className="text-red-500">{errors?.paymentType?.message}</p>
               )}
             </div>
           </div>
@@ -689,7 +759,11 @@ export default function ContactInfo() {
             courses={courseDetail}
             paymentType={watchPaymentType}
             currencyName={currencyName}
-            isLoading={paymentLoading}
+            isPaystackLoading={paystackLoading}
+            isCoinsubLoading={coinsubLoading}
+            onPaymentMethodSelect={(method) =>
+              setValue("paymentMethod", method)
+            }
           />
         </div>
       </form>
