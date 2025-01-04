@@ -6,6 +6,7 @@ import {
   Payment,
   Single,
   SingleCourse,
+  PayWithCoinsub
 } from "@/redux/type";
 
 interface State {
@@ -151,6 +152,15 @@ export const courseApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+
+    payWithCoinsub: builder.mutation({
+      query: (body: PayWithCoinsub) => ({
+        url: endpoints.payWithCoinsub,
+        method: "POST",
+        body,
+        credentials: "include" as const,
+      }),
+    })
   }),
 });
 export const {
@@ -164,4 +174,5 @@ export const {
   useGetAllCourseDetalsQuery,
   usePaymentMutation,
   useGetSmartContractDevelopmentQuery,
+  usePayWithCoinsubMutation
 } = courseApi;

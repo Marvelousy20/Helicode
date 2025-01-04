@@ -77,3 +77,31 @@ export interface Payment {
   paymentType: string;
   paymentCurrency: string;
 }
+
+
+export interface PayWithCoinsub {
+  firstName: string;
+  lastName: string;
+  email: string;
+  discordUserName: string;
+  phoneNumber: string;
+  ageRange: string;
+  country: string;
+  state: string;
+  course: string;
+}
+
+// Type for the base payload without paymentMethod
+export type BasePayload = {
+  firstName: string;
+  lastName: string;
+  discordUserName: string;
+  email: string;
+  phoneNumber: string;
+  ageRange: string;
+  country: string;
+  state: string;
+  course: string;
+  cohort: string;
+  referralSource: string;
+};

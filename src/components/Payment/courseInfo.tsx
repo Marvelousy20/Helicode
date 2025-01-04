@@ -31,14 +31,18 @@ interface CoursesProps {
   courses: Single | undefined;
   paymentType: string;
   currencyName: string;
-  isLoading: boolean;
+  isPaystackLoading: boolean;
+  isCoinsubLoading: boolean;
+  onPaymentMethodSelect: (method: "paystack" | "coinsub") => void;
 }
 
 export default function CourseInfo({
   courses,
   paymentType,
   currencyName,
-  isLoading,
+  isCoinsubLoading,
+  isPaystackLoading,
+  onPaymentMethodSelect,
 }: CoursesProps) {
   const price =
     paymentType === "fixed" && currencyName === "NGN"
@@ -87,20 +91,43 @@ export default function CourseInfo({
           </p>
         </div>
 
-        <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
-          <button
-            className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
-            role="button"
-            type="submit"
-          >
-            {isLoading ? (
-              <FaSpinner className="animate-spin" />
-            ) : (
-              <p className="flex items-center gap-2">
-                Make Payment <ChevronRight size={20} />
-              </p>
-            )}
-          </button>
+        <div>
+          <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
+            <button
+              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
+              role="button"
+              type="submit"
+              disabled={isPaystackLoading || isCoinsubLoading}
+              onClick={() => onPaymentMethodSelect("paystack")}
+            >
+              {isPaystackLoading ? (
+                <FaSpinner className="animate-spin" />
+              ) : (
+                <p className="flex items-center gap-2">
+                  Make Payment <ChevronRight size={20} />
+                </p>
+              )}
+            </button>
+          </div>
+          <div className="text-center my-6">OR</div>
+
+          <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
+            <button
+              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
+              role="button"
+              type="submit"
+              disabled={isCoinsubLoading || isPaystackLoading}
+              onClick={() => onPaymentMethodSelect("coinsub")}
+            >
+              {isCoinsubLoading ? (
+                <FaSpinner className="animate-spin" />
+              ) : (
+                <p className="flex items-center gap-2">
+                  Pay with Coinsub <ChevronRight size={20} />
+                </p>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>
