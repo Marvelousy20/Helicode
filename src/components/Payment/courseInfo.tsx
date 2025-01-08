@@ -123,7 +123,7 @@ export default function CourseInfo({
                 <FaSpinner className="animate-spin" />
               ) : (
                 <p className="flex items-center gap-2">
-                  Pay with Coinsub <ChevronRight size={20} />
+                  Pay with Crypto <ChevronRight size={20} />
                 </p>
               )}
             </button>
