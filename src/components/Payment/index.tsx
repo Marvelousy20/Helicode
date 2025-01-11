@@ -1,4 +1,6 @@
 "use client";
+
+import { useEffect, useState, useCallback } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
@@ -19,7 +21,7 @@ import {
 } from "../ui/select";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Input } from "../ui/input";
-import { z } from "zod";
+import { set, z } from "zod";
 import CourseInfo from "./courseInfo";
 import {
   useGetAllCourseDetalsQuery,
@@ -30,7 +32,6 @@ import {
   usePayWithCoinsubMutation,
 } from "@/redux/feature/courses/courseApi";
 import { Button } from "../ui/button";
-import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { handleError } from "@/lib/handle-error";
 import Link from "next/link";
@@ -206,6 +207,7 @@ export default function ContactInfo() {
   });
 
   const [show, setShow] = useState(false);
+  const [showCoinsubDialog, setShowCoinsubModal] = useState(false);
 
   const watchCountry = watch("country");
   const selectedCountry = watch("country");
@@ -293,37 +295,61 @@ export default function ContactInfo() {
   };
 
   useEffect(() => {
+    // if (coinsubSuccess && coinsubData) {
+    //   const { link, customerData } = coinsubData?.data;
+
+    //   if (link && customerData) {
+    //     const newTab = window.open("", "_blank");
+
+    //     if (newTab) {
+    //       const form = document.createElement("form");
+    //       form.action = link;
+    //       form.method = "POST";
+    //       form.target = "_blank";
+
+    //       const hiddenField = document.createElement("input");
+    //       hiddenField.type = "hidden";
+    //       hiddenField.name = "customerData";
+    //       hiddenField.value = JSON.stringify(customerData);
+
+    //       form.append(hiddenField);
+    //       document.body.appendChild(form);
+    //       form.submit();
+
+    //       // Clean up the form from the DOM after submission
+    //       document.body.removeChild(form);
+    //     } else {
+    //       console.error(
+    //         "Unable to open a new tab. Ensure popup blockers are disabled."
+    //       );
+    //     }
+    //   }
+    // }
     if (coinsubSuccess && coinsubData) {
-      const { link, customerData } = coinsubData?.data;
-
-      if (link && customerData) {
-        const newTab = window.open("", "_blank");
-
-        if (newTab) {
-          const form = document.createElement("form");
-          form.action = link;
-          form.method = "POST";
-          form.target = "_blank";
-
-          const hiddenField = document.createElement("input");
-          hiddenField.type = "hidden";
-          hiddenField.name = "customerData";
-          hiddenField.value = JSON.stringify(customerData);
-
-          form.append(hiddenField);
-          document.body.appendChild(form);
-          form.submit();
-
-          // Clean up the form from the DOM after submission
-          document.body.removeChild(form);
-        } else {
-          console.error(
-            "Unable to open a new tab. Ensure popup blockers are disabled."
-          );
-        }
-      }
+      setShowCoinsubModal(true);
     }
   }, [coinsubSuccess, coinsubData]);
+
+  const handleSubmission = useCallback(() => {
+    const { link, customerData } = coinsubData?.data || {};
+    if (link && customerData) {
+      const form = document.createElement("form");
+      form.action = link;
+      form.method = "POST";
+      form.target = "_blank";
+
+      const hiddenField = document.createElement("input");
+      hiddenField.type = "hidden";
+      hiddenField.name = "customerData";
+      hiddenField.value = JSON.stringify(customerData);
+
+      form.appendChild(hiddenField);
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+    }
+    setShowCoinsubModal(false);
+  }, [coinsubData]);
 
   return (
     <div>
@@ -741,7 +767,7 @@ export default function ContactInfo() {
             </div>
           </div>
 
-          <Dialog onOpenChange={setShow} open={show}>
+          <Dialog open={show} onOpenChange={setShow}>
             {/* <DialogTrigger>Open</DialogTrigger> */}
             <DialogContent className=" rounded-lg">
               <DialogHeader>
@@ -751,6 +777,22 @@ export default function ContactInfo() {
                     <Link href={paymentData?.data?.authorization_url ?? ""}>
                       Proceed
                     </Link>
+                  </Button>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={showCoinsubDialog} onOpenChange={setShowCoinsubModal}>
+            <DialogContent className=" rounded-lg">
+              <DialogHeader>
+                <DialogTitle>Do you want to proceed?</DialogTitle>
+                <DialogDescription className="flex items-center justify-center">
+                  <Button
+                    className="flex items-center justify-center mt-5"
+                    onClick={handleSubmission}
+                  >
+                    Proceed
                   </Button>
                 </DialogDescription>
               </DialogHeader>
