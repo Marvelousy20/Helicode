@@ -34,10 +34,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { handleError } from "@/lib/handle-error";
 import Link from "next/link";
-import {
-
-  BasePayload,
-} from "@/redux/type";
+import { BasePayload } from "@/redux/type";
 
 type Country = {
   name: string;
@@ -305,6 +302,7 @@ export default function ContactInfo() {
         form.action = link;
         form.method = "POST";
         form.target = "_blank";
+        form.rel = "noopener noreferrer";
 
         const hiddenField = document.createElement("input");
         hiddenField.type = "hidden";
@@ -316,7 +314,10 @@ export default function ContactInfo() {
         form.submit();
 
         // Clean up the form from the DOM after submission
-        document.body.removeChild(form);
+        setTimeout(() => {
+          form.submit();
+          document.body.removeChild(form);
+        }, 0);
       }
     }
   }, [coinsubSuccess, coinsubData]);
