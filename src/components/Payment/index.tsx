@@ -297,27 +297,30 @@ export default function ContactInfo() {
       const { link, customerData } = coinsubData?.data;
 
       if (link && customerData) {
-        // create and submit form dynamically
-        const form = document.createElement("form");
-        form.action = link;
-        form.method = "POST";
-        form.target = "_blank";
-        form.rel = "noopener noreferrer";
+        const newTab = window.open("", "_blank");
 
-        const hiddenField = document.createElement("input");
-        hiddenField.type = "hidden";
-        hiddenField.name = "customerData";
-        hiddenField.value = JSON.stringify(customerData);
+        if (newTab) {
+          const form = document.createElement("form");
+          form.action = link;
+          form.method = "POST";
+          form.target = "_blank";
 
-        form.append(hiddenField);
-        document.body.appendChild(form);
-        form.submit();
+          const hiddenField = document.createElement("input");
+          hiddenField.type = "hidden";
+          hiddenField.name = "customerData";
+          hiddenField.value = JSON.stringify(customerData);
 
-        // Clean up the form from the DOM after submission
-        setTimeout(() => {
+          form.append(hiddenField);
+          document.body.appendChild(form);
           form.submit();
+
+          // Clean up the form from the DOM after submission
           document.body.removeChild(form);
-        }, 0);
+        } else {
+          console.error(
+            "Unable to open a new tab. Ensure popup blockers are disabled."
+          );
+        }
       }
     }
   }, [coinsubSuccess, coinsubData]);
