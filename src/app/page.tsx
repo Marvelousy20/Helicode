@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <main className="">
-      <DiscountBanner endDate="2025-01-18T00:00:00Z" />
+      <DiscountBanner endDate="2025-04-18T00:00:00Z" />
       <div className="px-5 lg:px-20">
         <Hero />
         <Explore />
