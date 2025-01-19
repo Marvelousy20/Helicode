@@ -56,7 +56,7 @@ export default function DiscountBanner({ endDate }: CountdownProps) {
   return (
     <div className="bg-[#8D58FF] pt-4 pb-6 space-y-4">
       <h1 className="text-lg lg:text-2xl text-center font-semibold">
-        Enjoy Huge Discount Sales on Some of Our Web3 Courses. Learn for $10
+        Enjoy Huge Discount Sales on Some of Our Web3 Courses. Learn for $20
       </h1>
 
       <p className="text-center font-bold">
