@@ -147,7 +147,7 @@ export default function Page() {
       heading: "Cohort",
       // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
       // text: "November, 2024",
-      cohortTwo: "January, 2025",
+      cohortTwo: "April, 2025",
     },
     {
       imgLink: "/Time.svg",

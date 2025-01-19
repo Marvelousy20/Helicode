@@ -14,7 +14,7 @@ const info = [
   {
     imgLink: "/Hashtag-Square.svg",
     heading: "Start Date",
-    text: "January 18th, 2025",
+    text: "April, 2025",
   },
   {
     imgLink: "/Time.svg",
