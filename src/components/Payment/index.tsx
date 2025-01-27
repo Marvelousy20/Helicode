@@ -100,7 +100,7 @@ export const coursesInfo: Record<string, CourseInfo> = {
 
 // Data for dropdowns
 const ageRanges = ["18-24", "25-34", "35-44", "45+"] as const;
-const cohorts = ["January 2025"] as const;
+const cohorts = ["January 2025", "April 2025"] as const;
 
 // const courses = Object.keys(coursesInfo);
 const courses = [
