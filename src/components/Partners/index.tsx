@@ -5,7 +5,7 @@ export default function Partners() {
     <div className="text-center pt-20 lg:pt-[6.5rem] max-w-[56rem] mx-auto">
       <h1 className="lg:text-[3rem] text-[1.875rem] font-semibold">Partners</h1>
 
-      <div className="flex items-center justify-between mt-9 gap-x-8">
+      <div className="grid grid-cols-3 gap-y-6 sm:flex items-center justify-between mt-9 gap-x-8">
         <div>
           <a href="https://aiesec.org/" target="_blank">
             <Image src="/aie.png" alt="aie" width={234} height={48} />
@@ -29,17 +29,17 @@ export default function Partners() {
 
         <div>
           <a href="https://meltwater.org/" target="_blank">
-            <Image src="/mest.svg" alt="3vo" width={83} height={48} />
+            <Image src="/mest.png" alt="3vo" width={83} height={48} />
           </a>
         </div>
 
         <div>
-          <Image src="/ladies.svg" alt="3vo" width={76} height={76} />
+          <Image src="/ladies.png" alt="3vo" width={76} height={76} />
         </div>
 
         <div>
           <a href="https://coinsub.io/" target="_blank">
-            <Image src="/coinsub.svg" alt="3vo" width={168} height={48} />
+            <Image src="/coinsub.png" alt="3vo" width={168} height={48} />
           </a>
         </div>
       </div>
