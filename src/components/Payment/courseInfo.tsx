@@ -60,8 +60,6 @@ export default function CourseInfo({
       ? courses?.data[0]?.recurrentPrice?.USD
       : "";
 
-  // console.log(courses);
-
   useEffect(() => {
     if (typeof window !== "undefined" && !window.fbq) {
       window.fbq = function (...args: any[]) {
@@ -78,13 +76,24 @@ export default function CourseInfo({
     }
   }, []);
 
-  const handleButtonClick = (paymentMethod: "paystack" | "coinsub") => {
-    // Track custom event with Meta Pixel
+  const handlePaystackPayment = () => {
+    console.log("Tracking InitiateCheckout event: paystack");
     if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "InitiateCheckout", { paymentMethod });
+      window.fbq("track", "InitiateCheckout", {
+        paymentMethod: "paystack",
+      });
     }
+    onPaymentMethodSelect("paystack");
+  };
 
-    onPaymentMethodSelect(paymentMethod);
+  const handleCoinsubPayment = () => {
+    console.log("Tracking InitiateCheckout event: coinsub");
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "InitiateCheckout", {
+        paymentMethod: "coinsub",
+      });
+    }
+    onPaymentMethodSelect("coinsub");
   };
 
   return (
@@ -128,7 +137,7 @@ export default function CourseInfo({
               role="button"
               type="submit"
               disabled={isPaystackLoading || isCoinsubLoading || !isValid}
-              onClick={() => handleButtonClick("paystack")}
+              onClick={handlePaystackPayment}
             >
               {isPaystackLoading ? (
                 <FaSpinner className="animate-spin" />
@@ -147,7 +156,7 @@ export default function CourseInfo({
               role="button"
               type="submit"
               disabled={isCoinsubLoading || isPaystackLoading || !isValid}
-              onClick={() => handleButtonClick("coinsub")}
+              onClick={handleCoinsubPayment}
             >
               {isCoinsubLoading ? (
                 <FaSpinner className="animate-spin" />

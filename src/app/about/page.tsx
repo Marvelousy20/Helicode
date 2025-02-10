@@ -5,7 +5,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <section className="lg:pt-24 pt-10">
+    <section className="lg:pt-24 pt-10 lg:px-24 md:px-8 px-4">
       <div className="text-center flex flex-col justify-center items-center h-full">
         <h1 className=" text-[4.5rem] lg:text-[5rem] leading-[5rem] font-semibold">
           About Helicode

@@ -322,7 +322,7 @@ export default function ContactInfo() {
   }, [coinsubData]);
 
   return (
-    <div>
+    <div className="lg:px-24 md:px-8 px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid md:grid-cols-5 gap-6 mt-8 items-start"
