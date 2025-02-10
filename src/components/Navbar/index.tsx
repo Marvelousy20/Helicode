@@ -171,9 +171,7 @@ const Navbar = () => {
           {/*  */}
           <div className="hidden md:flex">
             <Link
-              // href="/payment"
               href={"/payment"}
-              target="_blank"
               className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
             >
               <Button className="py-3 transition-colors duration-300">

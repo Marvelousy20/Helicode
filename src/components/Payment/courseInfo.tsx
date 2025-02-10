@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { z } from "zod";
@@ -34,6 +37,7 @@ interface CoursesProps {
   isPaystackLoading: boolean;
   isCoinsubLoading: boolean;
   onPaymentMethodSelect: (method: "paystack" | "coinsub") => void;
+  isValid: boolean;
 }
 
 export default function CourseInfo({
@@ -43,6 +47,7 @@ export default function CourseInfo({
   isCoinsubLoading,
   isPaystackLoading,
   onPaymentMethodSelect,
+  isValid,
 }: CoursesProps) {
   const price =
     paymentType === "fixed" && currencyName === "NGN"
@@ -55,7 +60,32 @@ export default function CourseInfo({
       ? courses?.data[0]?.recurrentPrice?.USD
       : "";
 
-  console.log(courses);
+  // console.log(courses);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !window.fbq) {
+      window.fbq = function (...args: any[]) {
+        if (window.fbq.callMethod) {
+          window.fbq.callMethod(...args);
+        } else {
+          window.fbq.queue = window.fbq.queue || [];
+          window.fbq.queue.push([...args]);
+        }
+      };
+      window.fbq.queue = [];
+      window.fbq.version = "2.0";
+      window.fbq.loaded = true;
+    }
+  }, []);
+
+  const handleButtonClick = (paymentMethod: "paystack" | "coinsub") => {
+    // Track custom event with Meta Pixel
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "InitiateCheckout", { paymentMethod });
+    }
+
+    onPaymentMethodSelect(paymentMethod);
+  };
 
   return (
     <div>
@@ -94,11 +124,11 @@ export default function CourseInfo({
         <div>
           <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
             <button
-              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
+              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
               role="button"
               type="submit"
-              disabled={isPaystackLoading || isCoinsubLoading}
-              onClick={() => onPaymentMethodSelect("paystack")}
+              disabled={isPaystackLoading || isCoinsubLoading || !isValid}
+              onClick={() => handleButtonClick("paystack")}
             >
               {isPaystackLoading ? (
                 <FaSpinner className="animate-spin" />
@@ -113,11 +143,11 @@ export default function CourseInfo({
 
           <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
             <button
-              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center"
+              className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
               role="button"
               type="submit"
-              disabled={isCoinsubLoading || isPaystackLoading}
-              onClick={() => onPaymentMethodSelect("coinsub")}
+              disabled={isCoinsubLoading || isPaystackLoading || !isValid}
+              onClick={() => handleButtonClick("coinsub")}
             >
               {isCoinsubLoading ? (
                 <FaSpinner className="animate-spin" />

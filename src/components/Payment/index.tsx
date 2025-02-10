@@ -183,7 +183,7 @@ export default function ContactInfo() {
     watch,
     reset,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -204,6 +204,7 @@ export default function ContactInfo() {
       paymentType: "fixed",
       paymentMethod: "paystack",
     },
+    mode: "onChange",
   });
 
   const [show, setShow] = useState(false);
@@ -256,7 +257,6 @@ export default function ContactInfo() {
         },
         duration: 5000,
       });
-      // window.open(paymentData?.data?.authorization_url, "_blank");
       setShow(true);
       reset();
     }
@@ -265,7 +265,7 @@ export default function ContactInfo() {
       handleError(error);
       console.error(error);
     }
-  }, [paymentData?.message, isSuccess, error]);
+  }, [paymentData?.message, isSuccess, error, reset]);
 
   const onSubmit = async (values: z.infer<typeof schema>) => {
     const basePayload: BasePayload = {
@@ -295,36 +295,6 @@ export default function ContactInfo() {
   };
 
   useEffect(() => {
-    // if (coinsubSuccess && coinsubData) {
-    //   const { link, customerData } = coinsubData?.data;
-
-    //   if (link && customerData) {
-    //     const newTab = window.open("", "_blank");
-
-    //     if (newTab) {
-    //       const form = document.createElement("form");
-    //       form.action = link;
-    //       form.method = "POST";
-    //       form.target = "_blank";
-
-    //       const hiddenField = document.createElement("input");
-    //       hiddenField.type = "hidden";
-    //       hiddenField.name = "customerData";
-    //       hiddenField.value = JSON.stringify(customerData);
-
-    //       form.append(hiddenField);
-    //       document.body.appendChild(form);
-    //       form.submit();
-
-    //       // Clean up the form from the DOM after submission
-    //       document.body.removeChild(form);
-    //     } else {
-    //       console.error(
-    //         "Unable to open a new tab. Ensure popup blockers are disabled."
-    //       );
-    //     }
-    //   }
-    // }
     if (coinsubSuccess && coinsubData) {
       setShowCoinsubModal(true);
     }
@@ -810,6 +780,7 @@ export default function ContactInfo() {
             onPaymentMethodSelect={(method) =>
               setValue("paymentMethod", method)
             }
+            isValid={isValid}
           />
         </div>
       </form>
