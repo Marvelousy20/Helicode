@@ -14,7 +14,7 @@ const info = [
   {
     imgLink: "/Hashtag-Square.svg",
     heading: "Start Date",
-    text: "April, 2025",
+    text: "April 18, 2025",
   },
   {
     imgLink: "/Time.svg",
@@ -24,7 +24,7 @@ const info = [
   {
     imgLink: "/Location.svg",
     heading: "Location",
-    text: "Virtual",
+    text: "LIVE Online",
   },
   {
     imgLink: "/Dollar.svg",

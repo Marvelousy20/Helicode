@@ -15,14 +15,6 @@ export default function SmartContractFAQ() {
       </div>
 
       <Accordion type="single" collapsible className="w-full space-y-2">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>How much does the course cost?</AccordionTrigger>
-          <AccordionContent>
-            You can choose between two payment options: $60 monthly installments
-            for 3 months, or a one-time payment of $162 which saves you 10%.
-          </AccordionContent>
-        </AccordionItem>
-
         <AccordionItem value="item-2">
           <AccordionTrigger>
             Do I need prior coding experience?

@@ -1,4 +1,10 @@
 import Image from "next/image";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 interface Topic {
   content: string;
@@ -34,7 +40,7 @@ export default function CourseSyllabus({
           <p className=" text-[28px]">{title} Curriculum</p>
         </div>
         {/* List of courses */}
-        <div className=" mt-6 space-y-4">
+        {/* <div className=" mt-6 space-y-4">
           {modules.map((module, index) => (
             <div
               key={index}
@@ -70,7 +76,45 @@ export default function CourseSyllabus({
               </ul>
             </div>
           ))}
-        </div>
+        </div> */}
+
+        <Accordion type="single" className="mt-6 space-y-4" collapsible>
+          {modules.map((module, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border border-[#232323] bg-[#080821] flex flex-col p-4 lg:p-6 text-left space-y-6"
+            >
+              <AccordionTrigger className="!p-0">
+                <div className="flex items-center space-x-4">
+                  <Image
+                    src="/Graduate.svg"
+                    width={40}
+                    height={25}
+                    alt="graduate-icon"
+                  />
+                  <div>
+                    <h2 className="text-lg md:text-xl font-normal">
+                      Week {module.number}
+                    </h2>
+                    <h4 className="font-semibold text-xl md:text-3xl">
+                      {module.title}
+                    </h4>
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-4">
+                  {module.topics.map((topic, topicIndex) => (
+                    <li key={topicIndex} className="text-white leading-6">
+                      {topic.content}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   );

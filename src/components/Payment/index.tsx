@@ -124,6 +124,9 @@ const referralSources = [
   "AIESEC Rwanda",
   "Web3UNILAG",
   "3VO",
+  "Facebook",
+  "Instagram",
+  "Tiktok",
   "Other",
 ] as const;
 

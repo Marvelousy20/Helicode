@@ -26,14 +26,6 @@ export default function BlockchainCyberSecurityFAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-2">
-          <AccordionTrigger>How much does the program cost?</AccordionTrigger>
-          <AccordionContent>
-            The course offers two payment plans: $70 monthly for 3 months, or a
-            one-time payment of $189 with a 10% discount.
-          </AccordionContent>
-        </AccordionItem>
-
         <AccordionItem value="item-3">
           <AccordionTrigger>
             What background knowledge is needed?

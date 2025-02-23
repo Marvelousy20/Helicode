@@ -77,7 +77,8 @@ export default function Explore() {
                   href={course.to}
                   className="text-[#8D58FF] mt-6 flex items-center gap-1"
                 >
-                  Apply Now <MdArrowForwardIos size={16} color="#8D58FF" />
+                  Learn More
+                  <MdArrowForwardIos size={16} color="#8D58FF" />
                 </Link>
               </div>
             </div>

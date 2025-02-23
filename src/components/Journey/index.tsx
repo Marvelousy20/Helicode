@@ -16,8 +16,6 @@ const Journey = () => {
             newbie or an expert, we provide the tools, programs, community, and
             support you need to master new skills and achieve your goals.
           </h4>
-
-          
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 lg:mt-16 text-start">
@@ -34,9 +32,8 @@ const Journey = () => {
                 Advance Your Knowledge
               </h3>
               <p className="mt-6 text-[#828B9C]">
-                Learn everything from basic to advanced topics for FREE in Web3
-                with resources from industry leading experts such as Layer Two
-                Blockchains, Bitcoin Basics and much more.
+                Learn everything from basic to advanced topics on Web3 with
+                resources from industry lead experts.
               </p>
             </div>
           </div>
