@@ -4,107 +4,54 @@ import Image from "next/image";
 import Career from "@/components/Career";
 import CourseInfo from "@/components/CourseInfo";
 import CourseSyllabus from "@/components/CourseSyllabus";
-import BlockchainCyberSecurityFAQ from "@/components/BlockchainSecurityFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
-import {
-  useGetCyberSecurityQuery,
-} from "@/redux/feature/courses/courseApi";
+import { useGetAIAgentQuery } from "@/redux/feature/courses/courseApi";
 import { useRouter } from "next/navigation";
+import SmartContractFAQ from "@/components/SmartContractFAQ";
 
-const blockchainModules = [
+const aiAgentModules = [
   {
     number: 1,
-    title: "Basic Concepts of Blockchain",
+    title: "Understanding AI Basics",
     topics: [
       {
-        content:
-          "Introduction to Blockchain: Understand the types of blockchain, the consensus algorithm such as PoW, PoS, DPoS, PBFT.",
+        content: "What is AI?",
       },
+
       {
-        content:
-          "Smart Contract: Learn the concepts, writing languages and functions.",
+        content: "Types of AI",
       },
+
       {
-        content:
-          "Decentralized Application: Learn the process of smart contract development and its architecture",
+        content: "Key AI Technologies",
       },
     ],
   },
   {
     number: 2,
-    title: "Blockchain Security Foundation",
+    title: "How AI Understands Text",
     topics: [
       {
-        content:
-          "Security in blockchain architecture: Understand the architecture of onchain and offchain security.",
+        content: "Natural Language Processing (NLP)",
       },
+
       {
-        content:
-          "Blockchain Attack Surface Analysis: Learn the consensus layer, P2P network layer and smart contract layer. Explore the common blockchain vulnerabilities types.",
+        content: "Key Concepts in NLP",
       },
+
       {
-        content:
-          "Public Key Encryption and harsh Algorithm: SHA-256, ECDSA etc",
+        content: "How AI Generates Answers",
       },
     ],
   },
   {
     number: 3,
-    title: "Smart Contract Security Audit Basics",
+    title: "AI Agents and Their Role",
     topics: [
       {
-        content:
-          "Deep dive into the Analysis of Common Vulnerabilities in Smart Contracts, Reentrancy Attacks, Overflow/Underflow, Unsafe Function Calls and Random Number Generation and Security Practices in Solidity Development.",
-      },
-    ],
-  },
-  {
-    number: 4,
-    title: "Blockchain Security Testing Technology",
-    topics: [
-      {
-        content:
-          "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
-      },
-    ],
-  },
-  {
-    number: 5,
-    title: "Comprehensive Security Audit of Blockchain Projects",
-    topics: [
-      {
-        content:
-          "Understand the compliance and regulatory framework, risk assessment methods and third-party audit / certification process. You will learn the code base management and security monitoring in continuous integration.",
-      },
-    ],
-  },
-  {
-    number: 6,
-    title: "Case analysis and practical exercises",
-    topics: [
-      {
-        content:
-          "Learn the vulnerability analysis cases of real blockchain projects such as The DAO and Poly Network.",
-      },
-      {
-        content:
-          "Explore and conduct complete audits of blockchain projects. Work on penetration test simulation like using test tools to find and fix vulnerabilities in projects. Learn how to conduct blockchain security audits in enterprises.",
-      },
-    ],
-  },
-  {
-    number: 7,
-    title: "Career Development and Industry Trends",
-    topics: [
-      {
-        content:
-          "Learn the career prospects for blockchain security by introducing you to positions such as auditors, developers and test engineers.",
-      },
-      {
-        content:
-          "Industry Trends: Explore the security challenges in Web3, DeFi, GameFi, Layer 2 and other fields.",
+        content: "What are AI Agents?",
       },
     ],
   },
@@ -112,27 +59,28 @@ const blockchainModules = [
 
 export default function Page() {
   const router = useRouter();
-  const { data, isFetching, isLoading } = useGetCyberSecurityQuery();
+  const { data, isFetching } = useGetAIAgentQuery();
 
-  const handleStartLearning = () => {
-    router.push("payment?course=Blockchain%20Cybersecurity");
-  };
+  console.log(data);
 
   const info = [
     {
       imgLink: "/Hashtag-Square.svg",
       heading: "Cohort",
+      // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
+      // text: "November, 2024",
       cohortTwo: "April 18, 2025",
     },
     {
       imgLink: "/Time.svg",
       heading: "Duration",
+      // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
       text: "3 Months",
     },
     {
       imgLink: "/Location.svg",
       heading: "Location",
-      text: "LIVE Online",
+      text: "LIVE online",
     },
     {
       imgLink: "/Dollar.svg",
@@ -141,8 +89,8 @@ export default function Page() {
     },
   ];
 
-  const handleApplyClick = () => {
-    router.push("/payment");
+  const handleStartLearning = () => {
+    router.push("payment?course=AI%20Agent");
   };
 
   isFetching && <p>Loading</p>;
@@ -193,18 +141,17 @@ export default function Page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                Blockchain Cybersecurity
+                AI Agent
               </h1>
-              <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
-                Learn the fundamentals of blockchain security, including how
-                cryptography ensures data integrity, how consensus mechanisms
-                work to secure decentralized networks, and how to identify
-                vulnerabilities in smart contracts.
+              <p className="text-white opacity-80 mt-6 max-w-3xl lg:text-lg mx-auto">
+                This program is to equip aspiring developers with the practical
+                skills and comprehensive knowledge needed to design, develop,
+                and deploy decentralized applications (dApps) using Solidity.
               </p>
             </div>
             <div
               onClick={handleStartLearning}
-              className="mt-12 border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px] cursor-pointer"
+              className="mt-12 border-4border-[#8D58FF4D] bg-[#8D58FF4D] rounded-xl p-[6px] cursor-pointer"
             >
               <div className="flex items-center border border-dashed border-[#4B0CF14D] bg-[#8D58FF] rounded-md py-3 px-6 transition-colors duration-300 hover:bg-primary/90">
                 Start Learning <ChevronRight size={18} />
@@ -216,7 +163,7 @@ export default function Page() {
 
       <CourseInfo info={info} />
       <CourseSyllabus
-        modules={blockchainModules}
+        modules={aiAgentModules}
         title={`${data?.data?.map((item) => item.name)}`}
       />
 
@@ -234,6 +181,27 @@ export default function Page() {
         </div>
 
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
+          <PricingCard
+            planType="Payment Plan"
+            description="If you choose this payment plan, you will be required to pay once every 3 months."
+            features={[
+              "Course Material (Lifetime access)",
+              "1 on 1 mentorship with the Instructor",
+              "Access to Telegram and Discord community (Lifetime access)",
+              "Live Classes and Hands-on Projects",
+            ]}
+            monthlyPrice={
+              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
+            }
+            currentPrice={
+              data?.data?.[0]?.recurrentPrice?.USD
+                ? `$${data?.data[0].recurrentPrice?.USD}`
+                : "N/A"
+            }
+            buttonLabel="Apply now"
+            recurrent
+            discountPrice="70"
+          />
           <PricingCard
             planType="One-time payment"
             description="If you choose this payment plan, you will be required to make a full payment."
@@ -254,7 +222,6 @@ export default function Page() {
                 : ""
             }
             buttonLabel="Apply now"
-            discountPrice="60"
           />
         </div>
       </section>
@@ -270,7 +237,7 @@ export default function Page() {
         <Testimonial />
       </div>
       <div className="pt-28">
-        <BlockchainCyberSecurityFAQ />
+        <SmartContractFAQ />
       </div>
       <div className="pt-[3.8rem] lg:pt-[7.5rem]">
         <NewsLetter />

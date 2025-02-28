@@ -180,6 +180,8 @@ export default function ContactInfo() {
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
 
+  console.log(allCourses);
+
   const {
     control,
     handleSubmit,

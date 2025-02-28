@@ -6,7 +6,7 @@ import {
   Payment,
   Single,
   SingleCourse,
-  PayWithCoinsub
+  PayWithCoinsub,
 } from "@/redux/type";
 
 interface State {
@@ -69,25 +69,13 @@ export const courseApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    // getCountry: builder.query<Country[], void>({
-    //   query: () => ({
-    //     url: endpoints.getCountry,
-    //     method: "GET",
-    //     credentials: "include" as const,
-    //     headers: {
-    //       "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
-    //     },
-    //     redirect: "follow",
-    //   }),
-    //   //   transformResponse: (response: { data: any }, meta, arg) => response.data,
-    //   transformResponse: (response: any[]) =>
-    //     response
-    //       .map((country) => ({
-    //         name: country.name.common,
-    //         code: country.cca2,
-    //       }))
-    //       .sort((a, b) => a.name.localeCompare(b.name)),
-    // }),
+    getAIAgent: builder.query<Single, void>({
+      query: () => ({
+        url: endpoints.getAiAgent,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
 
     getCountry: builder.query<Country[], void>({
       query: () => ({
@@ -109,20 +97,6 @@ export const courseApi = apiSlice.injectEndpoints({
           }))
           .sort((a, b) => a.name.localeCompare(b.name)),
     }),
-
-    // getState: builder.query<Country[], string>({
-    //   query: (state: string) => ({
-    //     url: endpoints.getState(state),
-    //     headers: {
-    //       "X-CSCAPI-KEY": process.env.NEXT_PUBLIC_API_KEY,
-    //       "Content-Type": "application/json",
-    //     },
-    //     method: "GET",
-    //     credentials: "include" as const,
-    //   }),
-
-    //   //   transformResponse: (response: { data: any }, meta, arg) => response.data,
-    // }),
 
     getState: builder.query<State[], string>({
       query: (countryCode) => ({
@@ -160,7 +134,7 @@ export const courseApi = apiSlice.injectEndpoints({
         body,
         credentials: "include" as const,
       }),
-    })
+    }),
   }),
 });
 export const {
@@ -174,5 +148,6 @@ export const {
   useGetAllCourseDetalsQuery,
   usePaymentMutation,
   useGetSmartContractDevelopmentQuery,
-  usePayWithCoinsubMutation
+  usePayWithCoinsubMutation,
+  useGetAIAgentQuery
 } = courseApi;

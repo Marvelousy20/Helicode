@@ -34,13 +34,19 @@ const courses = [
     allowed: true,
   },
   {
+    id: 8,
+    href: "ai-agent",
+    name: "AI Agent",
+    allowed: true,
+  },
+  {
     id: 4,
     href: "data analysis",
     name: "Data Analysis (Coming Soon)",
     allowed: false,
   },
   {
-    id: 4,
+    id: 7,
     href: "web3 UI/UX design",
     name: "Web3 UI/UX Design (Coming Soon)",
     allowed: false,
