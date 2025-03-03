@@ -200,7 +200,7 @@ export default function Page() {
             }
             buttonLabel="Apply now"
             recurrent
-            discountPrice="70"
+            discountPrice="20"
           />
           <PricingCard
             planType="One-time payment"
