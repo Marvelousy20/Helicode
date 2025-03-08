@@ -82,11 +82,6 @@ export default function Page() {
       heading: "Location",
       text: "LIVE online",
     },
-    {
-      imgLink: "/Dollar.svg",
-      heading: "Average Salary",
-      text: "120,000",
-    },
   ];
 
   const handleStartLearning = () => {
@@ -144,9 +139,9 @@ export default function Page() {
                 AI Agent
               </h1>
               <p className="text-white opacity-80 mt-6 max-w-3xl lg:text-lg mx-auto">
-                This program is to equip aspiring developers with the practical
-                skills and comprehensive knowledge needed to design, develop,
-                and deploy decentralized applications (dApps) using Solidity.
+                This program is designed to equip anyone with the practical
+                skills and in-depth knowledge needed to design, develop, and
+                deploy AI-powered autonomous agents.
               </p>
             </div>
             <div
@@ -183,7 +178,7 @@ export default function Page() {
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
           <PricingCard
             planType="Payment Plan"
-            description="If you choose this payment plan, you will be required to pay once every 3 months."
+            description="If you choose this payment plan, you will be required to pay after 30 days."
             features={[
               "Course Material (Lifetime access)",
               "1 on 1 mentorship with the Instructor",

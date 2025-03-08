@@ -40,6 +40,13 @@ export default function Explore() {
       image: "/research.svg",
       to: "/web3-research",
     },
+    {
+      name: "AI Agent",
+      description:
+        "Learn to analyze trends, evaluate protocols and uncover insights in Web3.",
+      image: "/research.svg",
+      to: "/web3-research",
+    },
   ];
 
   return (
