@@ -144,6 +144,7 @@ const baseSchema = z.object({
   course: z.string().min(1, { message: "Please select a course of interest" }),
   cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
+  referralCode: z.string().optional(),
 });
 
 const schema = z.discriminatedUnion("paymentMethod", [
@@ -180,8 +181,6 @@ export default function ContactInfo() {
   const { data: allCourses, isLoading: coursesLoading } =
     useGetAllCoursesQuery();
 
-  console.log(allCourses);
-
   const {
     control,
     handleSubmit,
@@ -201,13 +200,11 @@ export default function ContactInfo() {
       country: "",
       state: "",
       course: defaultCourse,
-      // cohort: "",
       referralSource: "Twitter",
-      // paymentPlan: "Full Payment",
       paymentCurrency: "NGN",
-      // paymentMethod: "Credit card",
       paymentType: "fixed",
       paymentMethod: "paystack",
+      referralCode: "",
     },
     mode: "onChange",
   });
@@ -640,6 +637,30 @@ export default function ContactInfo() {
                       ))}
                     </SelectContent>
                   </Select>
+                )}
+              />
+              {errors.referralSource && (
+                <p className="text-red-500">{errors.referralSource.message}</p>
+              )}
+            </div>
+
+            {/* Referral code input */}
+            <div className="space-y-2">
+              <label
+                htmlFor="referralSource"
+                className="font-medium text-2xl block"
+              >
+                Referral Code
+              </label>
+              <Controller
+                name="referralCode"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    className="border-[#454545] placeholder:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
+                    {...field}
+                    placeholder="Enter referral code (optional)"
+                  />
                 )}
               />
               {errors.referralSource && (

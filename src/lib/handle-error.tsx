@@ -7,7 +7,7 @@ export const handleError = (error: any) => {
   let errorMessage;
 
   if (typeof errorObject === "object" && errorObject !== null) {
-    console.log("error:", errorData);
+    // console.log("error:", errorData);
     return toast.error(
       <span>{errorData?.data?.message || errorData?.status}</span>,
       {
@@ -24,7 +24,7 @@ export const handleError = (error: any) => {
       }
     );
   } else if (errorObject === null) {
-    console.log("other:", errorData);
+    // console.log("other:", errorData);
     return toast.error(<span>{`Network error`}</span>, {
       style: {
         border: "1px solid #EF4444",

@@ -9,7 +9,7 @@ export const apiSlice = createApi({
     prepareHeaders: (headers, { getState }: any) => {
       // const token = getState().auth.token;
       const states = endpoints.getState;
-      // console.log("confirm", token);
+     
       headers.set("Accept", "application/json");
 
       // if (token) {

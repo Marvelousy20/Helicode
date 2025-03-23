@@ -27,8 +27,6 @@ const CoinsubSubcription: React.FC = () => {
   });
 
   const onSubmit = (values: SubscriptionFormValues) => {
-    console.log("Form submitted:", values);
-
     // Create a hidden form and submit it
     const form = document.createElement("form");
     form.action = "https://dev-buy.coinsub.io/d02d2dac18";

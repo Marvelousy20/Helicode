@@ -61,8 +61,6 @@ export default function Page() {
   const router = useRouter();
   const { data, isFetching } = useGetAIAgentQuery();
 
-  console.log(data);
-
   const info = [
     {
       imgLink: "/Hashtag-Square.svg",
