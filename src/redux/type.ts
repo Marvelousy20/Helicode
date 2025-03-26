@@ -104,4 +104,5 @@ export type BasePayload = {
   course: string;
   cohort: string;
   referralSource: string;
+  referralCode?: string;
 };

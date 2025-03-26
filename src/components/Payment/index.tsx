@@ -282,6 +282,7 @@ export default function ContactInfo() {
       course: values.course,
       cohort: values.cohort,
       referralSource: values.referralSource,
+      referralCode: values.referralCode,
     };
 
     if (values.paymentMethod === "paystack") {
@@ -769,11 +770,11 @@ export default function ContactInfo() {
               <DialogHeader>
                 <DialogTitle>Do you want to proceed?</DialogTitle>
                 <DialogDescription className="flex items-center justify-center">
-                  <Button className="flex items-center justify-center mt-5">
-                    <Link href={paymentData?.data?.authorization_url ?? ""}>
+                  <Link href={paymentData?.data?.authorization_url ?? ""}>
+                    <Button className="flex items-center justify-center mt-5">
                       Proceed
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
