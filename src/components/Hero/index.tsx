@@ -43,18 +43,7 @@ const Hero = () => {
           </h3>
 
           <div className="mt-[2rem] flex justify-center ">
-            {/* <Link
-              // href="/payment"
-              href={"/payment"}
-              target="_blank"
-              className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5"
-            >
-              <Button className="py-3 transition-colors duration-300">
-                Apply Now <MdArrowForwardIos size={16} className="ml-1" />
-              </Button>
-            </Link> */}
-
-            <VideoModal url="https://youtu.be/79ZPtXDfmL4" />
+            <VideoModal url="https://youtu.be/lys-8VHFQ1o" />
           </div>
         </div>
       </section>
