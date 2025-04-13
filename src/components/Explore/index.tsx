@@ -45,7 +45,7 @@ export default function Explore() {
       description:
         "Learn to analyze trends, evaluate protocols and uncover insights in Web3.",
       image: "/research.svg",
-      to: "/web3-research",
+      to: "/ai-agent",
     },
   ];
 
