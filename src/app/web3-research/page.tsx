@@ -98,7 +98,7 @@ export default function Page() {
   const { data, isFetching, isLoading } = useGetWeb3ResearchQuery();
 
   const handleStartLearning = () => {
-    router.push("payment?course=Web3%20Research");
+    router.push("/payment?course=Web3%20Research");
   };
 
   return (

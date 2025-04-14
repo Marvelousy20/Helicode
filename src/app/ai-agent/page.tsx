@@ -83,7 +83,7 @@ export default function Page() {
   ];
 
   const handleStartLearning = () => {
-    router.push("payment?course=AI%20Agent");
+    router.push("/payment?course=AI%20Agent");
   };
 
   isFetching && <p>Loading</p>;

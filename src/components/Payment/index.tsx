@@ -21,7 +21,7 @@ import {
 } from "../ui/select";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Input } from "../ui/input";
-import { set, z } from "zod";
+import { z } from "zod";
 import CourseInfo from "./courseInfo";
 import {
   useGetAllCourseDetalsQuery,
@@ -164,6 +164,8 @@ const schema = z.discriminatedUnion("paymentMethod", [
 
 export default function ContactInfo() {
   const { data: countries, isLoading } = useGetCountryQuery();
+  const { data: allCourses, isLoading: coursesLoading } =
+    useGetAllCoursesQuery();
 
   const searchParams = useSearchParams();
   const encodedCourse = searchParams.get("course") || "";
@@ -174,12 +176,12 @@ export default function ContactInfo() {
       defaultCourse = decodeURIComponent(encodedCourse);
     } catch (error) {
       console.warn(`Failed to decode course name: "${encodedCourse}"`, error);
-      defaultCourse = encodedCourse; // Fallback to the raw value
+      defaultCourse = ""; // Fallback to the raw value
     }
   }
 
-  const { data: allCourses, isLoading: coursesLoading } =
-    useGetAllCoursesQuery();
+  // Initialize hasSelectedCourse based on whether defaultCourse exists
+  const [hasSelectedCourse, setHasSelectedCourse] = useState(!!defaultCourse);
 
   const {
     control,
@@ -209,24 +211,33 @@ export default function ContactInfo() {
     mode: "onChange",
   });
 
-  const [show, setShow] = useState(false);
+  const [paymentDialogOpen, setPaymentDialogOpen] = useState(false);
   const [showCoinsubDialog, setShowCoinsubModal] = useState(false);
 
   const watchCountry = watch("country");
-  const selectedCountry = watch("country");
+  // const selectedCountry = watch("country");
   const watchCourse = watch("course");
   const currencyName = watch("paymentCurrency");
   const watchPaymentType = watch("paymentType");
   const watchPaymentMethod = watch("paymentMethod");
 
+  // Track when user selects a course - moved to useEffect to prevent re-render loops
+  useEffect(() => {
+    if (watchCourse && !hasSelectedCourse) {
+      setHasSelectedCourse(true);
+    }
+  }, [watchCourse, hasSelectedCourse]);
+
   const { data: stateData, isLoading: stateLoading } = useGetStateQuery(
-    selectedCountry,
-    { skip: !selectedCountry }
+    watchCountry,
+    { skip: !watchCountry }
   );
 
   // Get Course Details
   const { data: courseDetail, isLoading: detailLoading } =
-    useGetAllCourseDetalsQuery(watchCourse);
+    useGetAllCourseDetalsQuery(watchCourse, {
+      skip: !watchCourse,
+    });
 
   const [
     payment,
@@ -259,7 +270,7 @@ export default function ContactInfo() {
         },
         duration: 5000,
       });
-      setShow(true);
+      setPaymentDialogOpen(true);
       reset();
     }
 
@@ -303,7 +314,7 @@ export default function ContactInfo() {
     }
   }, [coinsubSuccess, coinsubData]);
 
-  const handleSubmission = useCallback(() => {
+  const handleCoinsubSubmission = useCallback(() => {
     const { link, customerData } = coinsubData?.data || {};
     if (link && customerData) {
       const form = document.createElement("form");
@@ -498,7 +509,9 @@ export default function ContactInfo() {
                       </SelectTrigger>
                       <SelectContent>
                         {isLoading ? (
-                          <SelectItem value="loading">Loading co...</SelectItem>
+                          <SelectItem value="loading">
+                            Loading countries...
+                          </SelectItem>
                         ) : (
                           countries?.map((country: any) => (
                             <SelectItem key={country.code} value={country.code}>
@@ -764,7 +777,7 @@ export default function ContactInfo() {
             </div>
           </div>
 
-          <Dialog open={show} onOpenChange={setShow}>
+          <Dialog open={paymentDialogOpen} onOpenChange={setPaymentDialogOpen}>
             {/* <DialogTrigger>Open</DialogTrigger> */}
             <DialogContent className=" rounded-lg">
               <DialogHeader>
@@ -787,7 +800,7 @@ export default function ContactInfo() {
                 <DialogDescription className="flex items-center justify-center">
                   <Button
                     className="flex items-center justify-center mt-5"
-                    onClick={handleSubmission}
+                    onClick={handleCoinsubSubmission}
                   >
                     Proceed
                   </Button>
@@ -798,17 +811,30 @@ export default function ContactInfo() {
         </div>
 
         <div className="md:col-span-2 bg-[#080821] p-10 border border-[#232323]">
-          <CourseInfo
-            courses={courseDetail}
-            paymentType={watchPaymentType}
-            currencyName={currencyName}
-            isPaystackLoading={paystackLoading}
-            isCoinsubLoading={coinsubLoading}
-            onPaymentMethodSelect={(method) =>
-              setValue("paymentMethod", method)
-            }
-            isValid={isValid}
-          />
+          {hasSelectedCourse && courseDetail ? (
+            <CourseInfo
+              courses={courseDetail}
+              paymentType={watchPaymentType}
+              currencyName={currencyName}
+              isPaystackLoading={paystackLoading}
+              isCoinsubLoading={coinsubLoading}
+              onPaymentMethodSelect={(method) =>
+                setValue("paymentMethod", method)
+              }
+              isValid={isValid}
+            />
+          ) : (
+            <div className="text-center py-10">
+              <h1 className="text-3xl font-medium mb-5">Course Information</h1>
+              {watchCourse ? (
+                <p className="text-gray-400">Loading course details...</p>
+              ) : (
+                <p className="text-gray-400">
+                  Please select a course to view details.
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </form>
     </div>

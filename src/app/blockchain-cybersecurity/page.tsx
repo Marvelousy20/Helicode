@@ -8,9 +8,7 @@ import BlockchainCyberSecurityFAQ from "@/components/BlockchainSecurityFAQ";
 import NewsLetter from "@/components/Newsletter";
 import PricingCard from "@/components/Pricing";
 import Testimonial from "@/components/Testimonial";
-import {
-  useGetCyberSecurityQuery,
-} from "@/redux/feature/courses/courseApi";
+import { useGetCyberSecurityQuery } from "@/redux/feature/courses/courseApi";
 import { useRouter } from "next/navigation";
 
 const blockchainModules = [
@@ -115,7 +113,7 @@ export default function Page() {
   const { data, isFetching, isLoading } = useGetCyberSecurityQuery();
 
   const handleStartLearning = () => {
-    router.push("payment?course=Blockchain%20Cybersecurity");
+    router.push("/payment?course=Blockchain%20Cybersecurity");
   };
 
   const info = [

@@ -168,7 +168,7 @@ export default function Page() {
   ];
 
   const handleStartLearning = () => {
-    router.push("payment?course=Smart%20Contract%20Development");
+    router.push("/payment?course=Smart%20Contract%20Development");
   };
 
   isFetching && <p>Loading</p>;

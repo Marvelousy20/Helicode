@@ -92,21 +92,18 @@ export default function Page() {
   const router = useRouter();
 
   const handleStartLearning = () => {
-    router.push("payment?course=Web3%20Technical%20Writing");
+    router.push("/payment?course=Web3%20Technical%20Writing");
   };
 
   const info = [
     {
       imgLink: "/Hashtag-Square.svg",
       heading: "Start Date",
-      // text: `${data?.data?.map((item) => item?.startDate) || "N/A"}`,
-      // text: "November, 2024",
       cohortTwo: "April 18, 2025",
     },
     {
       imgLink: "/Time.svg",
       heading: "Duration",
-      // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
       text: "4 Weeks",
     },
     {
@@ -167,7 +164,6 @@ export default function Page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Web3 Technical Writing
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
@@ -207,27 +203,6 @@ export default function Page() {
           </div>
         </div>
         <div className="mt-10 flex flex-col md:flex-row justify-center gap-10">
-          {/* <PricingCard
-            planType="Payment Plan"
-            description="If you choose this payment plan, you will be required to pay once every 2 months."
-            features={[
-              "Course Material (Lifetime access)",
-              "1 on 1 mentorship with the Instructor",
-              "Access to Telegram and Discord community (Lifetime access)",
-              "Live Classes and Hands-on Projects",
-            ]}
-            monthlyPrice={
-              data?.data?.[0]?.price?.NGN ? `₦${data.data[0].price.NGN}` : "N/A"
-            }
-            currentPrice={
-              data?.data?.[0]?.recurrentPrice?.USD
-                ? `$${data?.data[0].recurrentPrice?.USD}`
-                : "N/A"
-            }
-            buttonLabel="Apply now"
-            recurrent
-            discountPrice="50"
-          /> */}
           <PricingCard
             planType="One-time payment"
             description="If you choose this payment plan, you will be required to make a full payment."

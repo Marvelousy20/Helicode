@@ -142,7 +142,7 @@ export default function Page() {
   const { data, isFetching, isLoading } = useGetMarketingQuery();
 
   const handleStartLearning = () => {
-    router.push("payment?course=Web3%20Marketing");
+    router.push("/payment?course=Web3%20Marketing");
   };
 
   const info = [
