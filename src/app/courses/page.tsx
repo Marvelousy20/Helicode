@@ -43,7 +43,7 @@ export default function Page() {
 
         <CourseCard
           course="Smart Contract Development"
-          duration="1 Month"
+          duration="3 Months"
           location="Online"
           note="Learn the skills and knowledge to develop and deploy decentralized applications using Solidity."
           level="Beginner"
@@ -54,7 +54,7 @@ export default function Page() {
 
         <CourseCard
           course="Web3 Research"
-          duration="3 Months"
+          duration="1 Months"
           location="Online"
           note="Learn to analyze trends, evaluate protocols and uncover insights in Web3."
           level="Beginner"
@@ -65,7 +65,7 @@ export default function Page() {
 
         <CourseCard
           course="AI Agent"
-          duration="1 Month"
+          duration="3 Months"
           location="Online"
           note="Learn how to build AI agents that think, act, and solve problems on their own."
           level="Beginner"
