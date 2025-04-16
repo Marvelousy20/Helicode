@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 import Image from "next/image";
 import YouTubeVideo from "./youtube-video";
+import Link from "next/link";
 // import Link from "next/link";
 // import VideoModal from "../VideoModal";
 
@@ -39,9 +40,11 @@ const Hero = () => {
         </p>
 
         <div className="mt-10">
-          <Button>
-            Apply Now <MdArrowForwardIos size={14} />
-          </Button>
+          <Link href = "/payment">
+            <Button>
+              Apply Now <MdArrowForwardIos size={14} />
+            </Button>
+          </Link>
         </div>
 
         <div className="mt-12">
