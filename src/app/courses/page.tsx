@@ -54,7 +54,7 @@ export default function Page() {
 
         <CourseCard
           course="Web3 Research"
-          duration="1 Months"
+          duration="1 Month"
           location="Online"
           note="Learn to analyze trends, evaluate protocols and uncover insights in Web3."
           level="Beginner"
