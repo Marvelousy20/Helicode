@@ -15,7 +15,7 @@ export default function Page() {
           note="Master strategies to grow communities, drive adoption and amplify blockchain projects."
           level="Beginner"
           link="/marketing"
-          src="/marketing.png"
+          src="/courses/marketing.svg"
           job="Web3 Marketer"
         />
 
@@ -26,7 +26,7 @@ export default function Page() {
           note="Learn the fundamentals of blockchain security, including how  cryptography ensures data integrity."
           level="Beginner"
           link="/blockchain-cybersecurity"
-          src="/cybersecurity.png"
+          src="/courses/cybersecurity.svg"
           job="Security Researcher"
         />
 
@@ -37,7 +37,7 @@ export default function Page() {
           note="Write clear, engaging documentation and content to simplify complex Web3 concepts."
           level="Beginner"
           link="/technical-writing"
-          src="/technical.png"
+          src="/courses/technical.svg"
           job="Technical Writer"
         />
 
@@ -48,7 +48,7 @@ export default function Page() {
           note="Learn the skills and knowledge to develop and deploy decentralized applications using Solidity."
           level="Beginner"
           link="/smart-contract-development"
-          src="/smart-contract.png"
+          src="/courses/smart-contract.svg"
           job="Blockchain Developer"
         />
 
@@ -59,7 +59,7 @@ export default function Page() {
           note="Learn to analyze trends, evaluate protocols and uncover insights in Web3."
           level="Beginner"
           link="/web3-research"
-          src="/web3-research.png"
+          src="/courses/web3-research.svg"
           job="Web3 Researcher"
         />
 
@@ -70,7 +70,7 @@ export default function Page() {
           note="Learn how to build AI agents that think, act, and solve problems on their own."
           level="Beginner"
           link="/ai-agent"
-          src="/ai-agents.png"
+          src="/courses/ai-agents.svg"
           job="AI Agent"
         />
       </div>

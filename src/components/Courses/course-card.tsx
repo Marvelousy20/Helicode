@@ -20,7 +20,7 @@ export const CourseCard = ({
   level,
   link,
   src,
-  job
+  job,
 }: CourseCardProps) => {
   return (
     <div className="border border-[#FFFFFF17] rounded-[16px] bg-[#FFFFFF12] p-6 space-y-4">
