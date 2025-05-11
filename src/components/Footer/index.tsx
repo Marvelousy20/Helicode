@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-4 text-[#D4E8FF]">
               <li className="text-[#D4E8FF80]">Resources</li>
               <li>
-                <Link href="/">Blog</Link>
+                <Link href="https://helicodeacademy.medium.com/">Blog</Link>
               </li>
               {/* <li>
                 <Link href="/">FAQ</Link>
