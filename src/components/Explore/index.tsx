@@ -43,7 +43,7 @@ export default function Explore() {
     {
       name: "AI Agent",
       description:
-        "Learn to analyze trends, evaluate protocols and uncover insights in Web3.",
+        "Learn how to build AI agents that think, act, and solve problems on their own.",
       image: "/research.svg",
       to: "/ai-agent",
     },
