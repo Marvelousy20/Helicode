@@ -99,7 +99,7 @@ export default function Page() {
     {
       imgLink: "/Hashtag-Square.svg",
       heading: "Start Date",
-      cohortTwo: "April 18, 2025",
+      cohortTwo: "July 18, 2025",
     },
     {
       imgLink: "/Time.svg",
