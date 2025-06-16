@@ -12,126 +12,367 @@ import { useRouter } from "next/navigation";
 import SmartContractFAQ from "@/components/SmartContractFAQ";
 
 const blockchainModules = [
+  // {
+  //   number: 1,
+  //   title: "Basic Ethereum and Solidity Programming",
+  //   topics: [
+  //     {
+  //       content:
+  //         "Understand the basics of Ethereum, Solidity, and smart contract development using Remix IDE, Master key ERC standards (ERC-20, ERC-721, ERC-1155) and their use cases.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 2,
+  //   title: "Introduction to Ethereum",
+  //   topics: [
+  //     {
+  //       content:
+  //         "Overview of Ethereum and Smart Contracts, Variables, Functions, and Data Types, Control Structures and Error Handling and Ownership and Access Control.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 3,
+  //   title: "Understanding ERC Standards",
+  //   topics: [
+  //     {
+  //       content:
+  //         "DIntroduction to ERC Standards,  ERC-20 - Fungible Tokens, ERC-721 - Non-Fungible Tokens (NFTs), ERC-1155 - Multi-Token Standard.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 4,
+  //   title: "Blockchain Security Testing Technology",
+  //   topics: [
+  //     {
+  //       content:
+  //         "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 5,
+  //   title: "Advanced Ethereum Topics",
+  //   topics: [
+  //     {
+  //       content:
+  //         "Events, Logs, and ABI, EIP-2612 Permit and Permit2, IPFS, IPNS, and ENS Overview, Custom Token with Airdrops.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 6,
+  //   title: "Deep Dive into Hardhat",
+  //   topics: [
+  //     {
+  //       content: "Mastering Hardhat for local Ethereum development.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 7,
+  //   title: "Smart Contract Upgradability",
+  //   topics: [
+  //     {
+  //       content: "Understanding the concept of upgradable contracts.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 8,
+  //   title: "Working with Tenderly",
+  //   topics: [
+  //     {
+  //       content: "Monitoring and optimizing smart contracts using Tenderly.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 9,
+  //   title: "EIP-4337: Gasless Transaction",
+  //   topics: [
+  //     {
+  //       content: "Implementing gasless transactions using EIP-4337.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 10,
+  //   title: "Security Best Practices & CTF",
+  //   topics: [
+  //     {
+  //       content:
+  //         "Smart contract security through Capture the Flag (CTF) challenges.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 11,
+  //   title: "DApp Integration with Viem",
+  //   topics: [
+  //     {
+  //       content: "Building decentralized apps (DApps) with Viem integration.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 12,
+  //   title: "Cross-Chain Interoperability",
+  //   topics: [
+  //     {
+  //       content: "Implementing cross-chain transactions.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   number: 13,
+  //   title: "Implementing cross-chain transactions",
+  //   topics: [
+  //     {
+  //       content: "Tokenizing real-world assets on Ethereum.",
+  //     },
+  //   ],
+  // },
+
+  // New course content
   {
     number: 1,
-    title: "Basic Ethereum and Solidity Programming",
+    title: "Introduction to Blockchain, Cryptography & Ethereum Fundamentals",
     topics: [
       {
         content:
-          "Understand the basics of Ethereum, Solidity, and smart contract development using Remix IDE, Master key ERC standards (ERC-20, ERC-721, ERC-1155) and their use cases.",
+          "Understand the core concepts of blockchain technology and its properties.",
+      },
+      {
+        content: "Grasp the role of cryptography in securing blockchains",
+      },
+      {
+        content:
+          "Familiarize with the fundamental components of the Ethereum ecosystem.",
       },
     ],
   },
+
   {
     number: 2,
-    title: "Introduction to Ethereum",
+    title: "Solidity Fundamentals - Variables, Data Types & Basic Functions",
     topics: [
       {
-        content:
-          "Overview of Ethereum and Smart Contracts, Variables, Functions, and Data Types, Control Structures and Error Handling and Ownership and Access Control.",
+        content: "Understand the basic structure of a Solidity smart contract.",
+      },
+      {
+        content: "Work with various Solidity value and reference data types.",
+      },
+      {
+        content: "Declare and initialize state and local variables.",
+      },
+      {
+        content: "Write simple functions to interact with contract state.",
       },
     ],
   },
+
   {
     number: 3,
-    title: "Understanding ERC Standards",
+    title: "Solidity Fundamentals - Control Flow, Events & Global Variables",
     topics: [
       {
         content:
-          "DIntroduction to ERC Standards,  ERC-20 - Fungible Tokens, ERC-721 - Non-Fungible Tokens (NFTs), ERC-1155 - Multi-Token Standard.",
+          "Implement conditional logic and loops within smart contracts.",
+      },
+      {
+        content:
+          "Understand and utilize Solidity events for external communication.",
+      },
+      {
+        content:
+          "Work with essential global variables related to transactions and blocks.",
+      },
+      {
+        content: "Understand and use Ether and time units.",
       },
     ],
   },
+
   {
     number: 4,
-    title: "Blockchain Security Testing Technology",
+    title: "Advanced Solidity - Visibility, Modifiers & Error Handling",
     topics: [
       {
         content:
-          "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
+          "Master function and variable visibility keywords (public, private, internal, external).",
+      },
+      {
+        content:
+          "Implement custom function modifiers for code reusability and access control.",
+      },
+      {
+        content:
+          "Utilize Solidity's error handling mechanisms (require, revert, assert).",
+      },
+      {
+        content: "Understand the importance of constructors.",
       },
     ],
   },
+
   {
     number: 5,
-    title: "Advanced Ethereum Topics",
+    title: "Smart Contract Design Patterns (Access Control, Pausable)",
     topics: [
       {
         content:
-          "Events, Logs, and ABI, EIP-2612 Permit and Permit2, IPFS, IPNS, and ENS Overview, Custom Token with Airdrops.",
+          "Apply common smart contract design patterns for security and functionality.",
+      },
+      {
+        content: "Implement robust access control mechanisms.",
+      },
+      {
+        content:
+          "Understand and implement a pausable contract functionality for emergencies.",
+      },
+      {
+        content:
+          "Begin to think about contract upgradeability (conceptual introduction).",
       },
     ],
   },
+
   {
     number: 6,
-    title: "Deep Dive into Hardhat",
-    topics: [
-      {
-        content: "Mastering Hardhat for local Ethereum development.",
-      },
-    ],
-  },
-  {
-    number: 7,
-    title: "Smart Contract Upgradability",
-    topics: [
-      {
-        content: "Understanding the concept of upgradable contracts.",
-      },
-    ],
-  },
-  {
-    number: 8,
-    title: "Working with Tenderly",
-    topics: [
-      {
-        content: "Monitoring and optimizing smart contracts using Tenderly.",
-      },
-    ],
-  },
-  {
-    number: 9,
-    title: "EIP-4337: Gasless Transaction",
-    topics: [
-      {
-        content: "Implementing gasless transactions using EIP-4337.",
-      },
-    ],
-  },
-  {
-    number: 10,
-    title: "Security Best Practices & CTF",
+    title: "Introduction to Development Frameworks (Hardhat) & Testing",
     topics: [
       {
         content:
-          "Smart contract security through Capture the Flag (CTF) challenges.",
+          "Understand the benefits of using a professional development framework.",
+      },
+      {
+        content: "Set up and configure a Hardhat project.",
+      },
+      {
+        content:
+          "Write basic unit tests for smart contracts using JavaScript/TypeScript.",
+      },
+      {
+        content: "Run tests and interpret results.",
       },
     ],
   },
+
+  {
+    number: 7,
+    title: "Advanced Testing & Deployment",
+    topics: [
+      {
+        content: "Write more comprehensive and gas-aware tests.",
+      },
+      {
+        content:
+          "Understand different deployment environments (local vs. testnets).",
+      },
+      {
+        content: "Deploy smart contracts to public test networks.",
+      },
+      {
+        content: "Verify deployed contracts on blockchain explorers.",
+      },
+    ],
+  },
+
+  {
+    number: 8,
+    title: "Smart Contract Security - Common Vulnerabilities (Part1)",
+    topics: [
+      {
+        content: "Understand fundamental smart contract security principles.",
+      },
+      {
+        content:
+          "Identify and mitigate common vulnerabilities like reentrancy and integer overflows/underflows.",
+      },
+      {
+        content: "Learn to write secure code defensively.",
+      },
+    ],
+  },
+
+  {
+    number: 9,
+    title:
+      "Smart Contract Security - Advanced Vulnerabilities & Auditing Tools",
+    topics: [
+      {
+        content:
+          "Identify and mitigate advanced smart contract vulnerabilities.",
+      },
+      {
+        content: "Understand the importance of professional security audits.",
+      },
+      {
+        content: "Gain exposure to automated static analysis tools.",
+      },
+    ],
+  },
+
+  {
+    number: 10,
+    title: "Token Standards (ERC-20, ERC-721)",
+    topics: [
+      {
+        content:
+          "Understand the purpose and specifications of ERC-20 (fungible tokens).",
+      },
+      {
+        content:
+          "Understand the purpose and specifications of ERC-721 (non-fungible tokens).",
+      },
+      {
+        content:
+          "Implement custom ERC-20 and ERC-721 tokens using OpenZeppelin.",
+      },
+    ],
+  },
+
   {
     number: 11,
-    title: "DApp Integration with Viem",
+    title: "Building Decentralized Applications (DApps) - Frontend Integration",
     topics: [
       {
-        content: "Building decentralized apps (DApps) with Viem integration.",
+        content: "Understand the architecture of a decentralized application.",
+      },
+      {
+        content:
+          "Integrate a web frontend with smart contracts using ethers.js.",
+      },
+      {
+        content: "Connect web applications to MetaMask.",
+      },
+      {
+        content:
+          "Call smart contract functions and listen for events from the frontend.",
       },
     ],
   },
+
   {
     number: 12,
-    title: "Cross-Chain Interoperability",
+    title: "Building Decentralized Applications (DApps) - Frontend Integration",
     topics: [
       {
-        content: "Implementing cross-chain transactions.",
+        content:
+          "Understand the oracle problem and how Chainlink addresses it.",
       },
-    ],
-  },
-  {
-    number: 13,
-    title: "Implementing cross-chain transactions",
-    topics: [
       {
-        content: "Tokenizing real-world assets on Ethereum.",
+        content: "Project",
+      },
+      {
+        content:
+          "Explore more deeply how smart contracts can be made upgradable.",
+      },
+      {
+        content: "Introduce concepts of Layer 2 scaling solutions.",
       },
     ],
   },

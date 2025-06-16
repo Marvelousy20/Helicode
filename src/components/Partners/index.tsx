@@ -42,6 +42,17 @@ export default function Partners() {
             <Image src="/coinsub.png" alt="3vo" width={168} height={48} />
           </a>
         </div>
+
+        <div>
+          <a href="https://lisk.com/" target="_blank">
+            <Image
+              src="/lisk-wordmark-w.svg"
+              alt="3vo"
+              width={168}
+              height={48}
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
