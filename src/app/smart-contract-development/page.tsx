@@ -12,120 +12,120 @@ import { useRouter } from "next/navigation";
 import SmartContractFAQ from "@/components/SmartContractFAQ";
 
 const blockchainModules = [
-  // {
-  //   number: 1,
-  //   title: "Basic Ethereum and Solidity Programming",
-  //   topics: [
-  //     {
-  //       content:
-  //         "Understand the basics of Ethereum, Solidity, and smart contract development using Remix IDE, Master key ERC standards (ERC-20, ERC-721, ERC-1155) and their use cases.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 2,
-  //   title: "Introduction to Ethereum",
-  //   topics: [
-  //     {
-  //       content:
-  //         "Overview of Ethereum and Smart Contracts, Variables, Functions, and Data Types, Control Structures and Error Handling and Ownership and Access Control.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 3,
-  //   title: "Understanding ERC Standards",
-  //   topics: [
-  //     {
-  //       content:
-  //         "DIntroduction to ERC Standards,  ERC-20 - Fungible Tokens, ERC-721 - Non-Fungible Tokens (NFTs), ERC-1155 - Multi-Token Standard.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 4,
-  //   title: "Blockchain Security Testing Technology",
-  //   topics: [
-  //     {
-  //       content:
-  //         "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 5,
-  //   title: "Advanced Ethereum Topics",
-  //   topics: [
-  //     {
-  //       content:
-  //         "Events, Logs, and ABI, EIP-2612 Permit and Permit2, IPFS, IPNS, and ENS Overview, Custom Token with Airdrops.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 6,
-  //   title: "Deep Dive into Hardhat",
-  //   topics: [
-  //     {
-  //       content: "Mastering Hardhat for local Ethereum development.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 7,
-  //   title: "Smart Contract Upgradability",
-  //   topics: [
-  //     {
-  //       content: "Understanding the concept of upgradable contracts.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 8,
-  //   title: "Working with Tenderly",
-  //   topics: [
-  //     {
-  //       content: "Monitoring and optimizing smart contracts using Tenderly.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 9,
-  //   title: "EIP-4337: Gasless Transaction",
-  //   topics: [
-  //     {
-  //       content: "Implementing gasless transactions using EIP-4337.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 10,
-  //   title: "Security Best Practices & CTF",
-  //   topics: [
-  //     {
-  //       content:
-  //         "Smart contract security through Capture the Flag (CTF) challenges.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 11,
-  //   title: "DApp Integration with Viem",
-  //   topics: [
-  //     {
-  //       content: "Building decentralized apps (DApps) with Viem integration.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   number: 12,
-  //   title: "Cross-Chain Interoperability",
-  //   topics: [
-  //     {
-  //       content: "Implementing cross-chain transactions.",
-  //     },
-  //   ],
-  // },
+  {
+    number: 1,
+    title: "Basic Ethereum and Solidity Programming",
+    topics: [
+      {
+        content:
+          "Understand the basics of Ethereum, Solidity, and smart contract development using Remix IDE, Master key ERC standards (ERC-20, ERC-721, ERC-1155) and their use cases.",
+      },
+    ],
+  },
+  {
+    number: 2,
+    title: "Introduction to Ethereum",
+    topics: [
+      {
+        content:
+          "Overview of Ethereum and Smart Contracts, Variables, Functions, and Data Types, Control Structures and Error Handling and Ownership and Access Control.",
+      },
+    ],
+  },
+  {
+    number: 3,
+    title: "Understanding ERC Standards",
+    topics: [
+      {
+        content:
+          "DIntroduction to ERC Standards,  ERC-20 - Fungible Tokens, ERC-721 - Non-Fungible Tokens (NFTs), ERC-1155 - Multi-Token Standard.",
+      },
+    ],
+  },
+  {
+    number: 4,
+    title: "Blockchain Security Testing Technology",
+    topics: [
+      {
+        content:
+          "Learn the Black-box testing, Gray-box Testing and White-box Testing tools. Explore Automated testing and Manual testing tools.",
+      },
+    ],
+  },
+  {
+    number: 5,
+    title: "Advanced Ethereum Topics",
+    topics: [
+      {
+        content:
+          "Events, Logs, and ABI, EIP-2612 Permit and Permit2, IPFS, IPNS, and ENS Overview, Custom Token with Airdrops.",
+      },
+    ],
+  },
+  {
+    number: 6,
+    title: "Deep Dive into Hardhat",
+    topics: [
+      {
+        content: "Mastering Hardhat for local Ethereum development.",
+      },
+    ],
+  },
+  {
+    number: 7,
+    title: "Smart Contract Upgradability",
+    topics: [
+      {
+        content: "Understanding the concept of upgradable contracts.",
+      },
+    ],
+  },
+  {
+    number: 8,
+    title: "Working with Tenderly",
+    topics: [
+      {
+        content: "Monitoring and optimizing smart contracts using Tenderly.",
+      },
+    ],
+  },
+  {
+    number: 9,
+    title: "EIP-4337: Gasless Transaction",
+    topics: [
+      {
+        content: "Implementing gasless transactions using EIP-4337.",
+      },
+    ],
+  },
+  {
+    number: 10,
+    title: "Security Best Practices & CTF",
+    topics: [
+      {
+        content:
+          "Smart contract security through Capture the Flag (CTF) challenges.",
+      },
+    ],
+  },
+  {
+    number: 11,
+    title: "DApp Integration with Viem",
+    topics: [
+      {
+        content: "Building decentralized apps (DApps) with Viem integration.",
+      },
+    ],
+  },
+  {
+    number: 12,
+    title: "Cross-Chain Interoperability",
+    topics: [
+      {
+        content: "Implementing cross-chain transactions.",
+      },
+    ],
+  },
   // {
   //   number: 13,
   //   title: "Implementing cross-chain transactions",
@@ -138,7 +138,7 @@ const blockchainModules = [
 
   // New course content
   {
-    number: 1,
+    number: 13,
     title: "Introduction to Blockchain, Cryptography & Ethereum Fundamentals",
     topics: [
       {
@@ -156,7 +156,7 @@ const blockchainModules = [
   },
 
   {
-    number: 2,
+    number: 14,
     title: "Solidity Fundamentals - Variables, Data Types & Basic Functions",
     topics: [
       {
@@ -175,7 +175,7 @@ const blockchainModules = [
   },
 
   {
-    number: 3,
+    number: 15,
     title: "Solidity Fundamentals - Control Flow, Events & Global Variables",
     topics: [
       {
@@ -197,7 +197,7 @@ const blockchainModules = [
   },
 
   {
-    number: 4,
+    number: 16,
     title: "Advanced Solidity - Visibility, Modifiers & Error Handling",
     topics: [
       {
@@ -219,7 +219,7 @@ const blockchainModules = [
   },
 
   {
-    number: 5,
+    number: 17,
     title: "Smart Contract Design Patterns (Access Control, Pausable)",
     topics: [
       {
@@ -241,7 +241,7 @@ const blockchainModules = [
   },
 
   {
-    number: 6,
+    number: 18,
     title: "Introduction to Development Frameworks (Hardhat) & Testing",
     topics: [
       {
@@ -262,7 +262,7 @@ const blockchainModules = [
   },
 
   {
-    number: 7,
+    number: 19,
     title: "Advanced Testing & Deployment",
     topics: [
       {
@@ -282,7 +282,7 @@ const blockchainModules = [
   },
 
   {
-    number: 8,
+    number: 10,
     title: "Smart Contract Security - Common Vulnerabilities (Part1)",
     topics: [
       {
@@ -299,7 +299,7 @@ const blockchainModules = [
   },
 
   {
-    number: 9,
+    number: 21,
     title:
       "Smart Contract Security - Advanced Vulnerabilities & Auditing Tools",
     topics: [
@@ -317,7 +317,7 @@ const blockchainModules = [
   },
 
   {
-    number: 10,
+    number: 22,
     title: "Token Standards (ERC-20, ERC-721)",
     topics: [
       {
@@ -336,7 +336,7 @@ const blockchainModules = [
   },
 
   {
-    number: 11,
+    number: 23,
     title: "Building Decentralized Applications (DApps) - Frontend Integration",
     topics: [
       {
@@ -357,7 +357,7 @@ const blockchainModules = [
   },
 
   {
-    number: 12,
+    number: 24,
     title: "Building Decentralized Applications (DApps) - Frontend Integration",
     topics: [
       {
