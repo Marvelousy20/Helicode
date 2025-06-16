@@ -392,7 +392,7 @@ export default function Page() {
       imgLink: "/Time.svg",
       heading: "Duration",
       // text: `${data?.data?.map((item) => item?.duration) || "N/A"}`,
-      text: "3 Months",
+      text: "6 Months",
     },
     {
       imgLink: "/Location.svg",

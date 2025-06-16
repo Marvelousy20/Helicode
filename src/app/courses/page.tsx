@@ -43,7 +43,7 @@ export default function Page() {
 
         <CourseCard
           course="Smart Contract Development"
-          duration="3 Months"
+          duration="6 Months"
           location="Online"
           note="Learn the skills and knowledge to develop and deploy decentralized applications using Solidity."
           level="Beginner"
