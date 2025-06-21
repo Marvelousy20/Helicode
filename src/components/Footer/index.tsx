@@ -78,7 +78,7 @@ const Footer = () => {
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-[#D4E8FF80] text-[13px]">
-          2024 © All rights reserved Helicode
+          2025 © All rights reserved Helicode
         </div>
 
         <div className="flex items-center space-x-4 md:space-x-6">
