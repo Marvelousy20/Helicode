@@ -99,13 +99,10 @@ const Footer = () => {
 
           <div className="flex items-center gap-2.5">
             <a
-              href="https://www.instagram.com/helicodehq"
+              href="https://www.instagram.com/helicodexyz?igsh=MTRxcWlhajRhN25jMw=="
               className="flex items-center gap-2.5"
             >
-              {/* <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center"> */}
               <Image src="/instagram.svg" alt="logo" width={20} height={20} />
-              {/* </span> */}
-              {/* <p className="text-[#A0A4A0] font-medium">Instagram</p> */}
             </a>
           </div>
 
@@ -113,13 +110,10 @@ const Footer = () => {
 
           <div className="flex items-center gap-2.5">
             <a
-              href="https://discord.gg/PHzk33M8W8"
+              href="https://discord.gg/5K4KwT8gTf"
               className="flex items-center gap-2.5"
             >
-              {/* <span className="h-9 w-9 bg-[#8D58FF1A] rounded-[8px] flex items-center justify-center"> */}
               <Image src="/discord.svg" alt="logo" width={20} height={20} />
-              {/* </span> */}
-              {/* <p className="text-[#A0A4A0] font-medium">LinkedIn</p> */}
             </a>
           </div>
 
