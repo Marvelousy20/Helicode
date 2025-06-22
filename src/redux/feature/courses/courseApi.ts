@@ -135,6 +135,15 @@ export const courseApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+
+    payWithBlockradar: builder.mutation({
+      query: (body: PayWithCoinsub) => ({
+        url: endpoints.payWithBlockradar,
+        method: "POST",
+        body,
+        credentials: "include" as const,
+      }),
+    }),
   }),
 });
 export const {
@@ -149,5 +158,6 @@ export const {
   usePaymentMutation,
   useGetSmartContractDevelopmentQuery,
   usePayWithCoinsubMutation,
-  useGetAIAgentQuery
+  useGetAIAgentQuery,
+  usePayWithBlockradarMutation,
 } = courseApi;

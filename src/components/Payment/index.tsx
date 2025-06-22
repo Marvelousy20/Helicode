@@ -30,6 +30,7 @@ import {
   useGetStateQuery,
   usePaymentMutation,
   usePayWithCoinsubMutation,
+  usePayWithBlockradarMutation,
 } from "@/redux/feature/courses/courseApi";
 import { Button } from "../ui/button";
 import { toast } from "react-hot-toast";
@@ -102,7 +103,6 @@ export const coursesInfo: Record<string, CourseInfo> = {
 const ageRanges = ["18-24", "25-34", "35-44", "45+"] as const;
 const cohorts = ["January 2025", "April 2025", "July 2025"] as const;
 
-// const courses = Object.keys(coursesInfo);
 const courses = [
   "Blockchain Cybersecurity",
   "Technical Writing",
@@ -130,6 +130,14 @@ const referralSources = [
   "Other",
 ] as const;
 
+// Gateway options
+const gateways = [
+  "paystack",
+  "lemon-squeezy",
+  "coinsub",
+  "blockradar",
+] as const;
+
 const baseSchema = z.object({
   firstName: z.string().min(2, { message: "First Name is required" }),
   lastName: z.string().min(2, { message: "Last Name is required" }),
@@ -145,19 +153,36 @@ const baseSchema = z.object({
   cohort: z.string().min(1, { message: "Please select a cohort" }),
   referralSource: z.enum(referralSources),
   referralCode: z.string().optional(),
+  // gateway: z.enum(gateways),
 });
 
-const schema = z.discriminatedUnion("paymentMethod", [
+const schema = z.discriminatedUnion("gateway", [
+  // Paystack gateway
   z
     .object({
-      paymentMethod: z.literal("paystack"),
+      gateway: z.literal("paystack"),
       paymentType: z.enum(["recurrent", "fixed"]),
       paymentCurrency: z.enum(["NGN", "USD"]),
     })
     .merge(baseSchema),
+  // Lemon Squeezy gateway (always fixed payment, USD currency)
   z
     .object({
-      paymentMethod: z.literal("coinsub"),
+      gateway: z.literal("lemon-squeezy"),
+      paymentType: z.literal("fixed"),
+      paymentCurrency: z.literal("USD"),
+    })
+    .merge(baseSchema),
+  // Coinsub gateway
+  z
+    .object({
+      gateway: z.literal("coinsub"),
+    })
+    .merge(baseSchema),
+  // Blockradar gateway
+  z
+    .object({
+      gateway: z.literal("blockradar"),
     })
     .merge(baseSchema),
 ]);
@@ -176,11 +201,10 @@ export default function ContactInfo() {
       defaultCourse = decodeURIComponent(encodedCourse);
     } catch (error) {
       console.warn(`Failed to decode course name: "${encodedCourse}"`, error);
-      defaultCourse = ""; // Fallback to the raw value
+      defaultCourse = "";
     }
   }
 
-  // Initialize hasSelectedCourse based on whether defaultCourse exists
   const [hasSelectedCourse, setHasSelectedCourse] = useState(!!defaultCourse);
 
   const {
@@ -205,7 +229,7 @@ export default function ContactInfo() {
       referralSource: "Twitter",
       paymentCurrency: "NGN",
       paymentType: "fixed",
-      paymentMethod: "paystack",
+      gateway: "paystack",
       referralCode: "",
     },
     mode: "onChange",
@@ -213,15 +237,22 @@ export default function ContactInfo() {
 
   const [paymentDialogOpen, setPaymentDialogOpen] = useState(false);
   const [showCoinsubDialog, setShowCoinsubModal] = useState(false);
+  const [showBlockradarDialog, setShowBlockradarModal] = useState(false);
 
   const watchCountry = watch("country");
-  // const selectedCountry = watch("country");
   const watchCourse = watch("course");
   const currencyName = watch("paymentCurrency");
   const watchPaymentType = watch("paymentType");
-  const watchPaymentMethod = watch("paymentMethod");
+  const watchGateway = watch("gateway");
 
-  // Track when user selects a course - moved to useEffect to prevent re-render loops
+  // Handle gateway changes
+  useEffect(() => {
+    if (watchGateway === "lemon-squeezy") {
+      setValue("paymentType", "fixed");
+      setValue("paymentCurrency", "USD");
+    }
+  }, [watchGateway, setValue]);
+
   useEffect(() => {
     if (watchCourse && !hasSelectedCourse) {
       setHasSelectedCourse(true);
@@ -233,12 +264,12 @@ export default function ContactInfo() {
     { skip: !watchCountry }
   );
 
-  // Get Course Details
   const { data: courseDetail, isLoading: detailLoading } =
     useGetAllCourseDetalsQuery(watchCourse, {
       skip: !watchCourse,
     });
 
+  // Payment mutations
   const [
     payment,
     {
@@ -255,6 +286,16 @@ export default function ContactInfo() {
     { data: coinsubData, isLoading: coinsubLoading, isSuccess: coinsubSuccess },
   ] = usePayWithCoinsubMutation();
 
+  const [
+    payWithBlockradar,
+    {
+      data: blockradarData,
+      isLoading: blockradarLoading,
+      isSuccess: blockradarSuccess,
+    },
+  ] = usePayWithBlockradarMutation();
+
+  // Handle payment success
   useEffect(() => {
     if (isSuccess) {
       const message = paymentData?.message || "Payment successful";
@@ -280,8 +321,22 @@ export default function ContactInfo() {
     }
   }, [paymentData?.message, isSuccess, error, reset]);
 
+  // Handle coinsub success
+  useEffect(() => {
+    if (coinsubSuccess && coinsubData) {
+      setShowCoinsubModal(true);
+    }
+  }, [coinsubSuccess, coinsubData]);
+
+  // Handle blockradar success
+  useEffect(() => {
+    if (blockradarSuccess && blockradarData) {
+      setShowBlockradarModal(true);
+    }
+  }, [blockradarSuccess, blockradarData]);
+
   const onSubmit = async (values: z.infer<typeof schema>) => {
-    const basePayload: BasePayload = {
+    const basePayload: BasePayload & { gateway: string } = {
       firstName: values.firstName,
       lastName: values.lastName,
       discordUserName: values.discordUserName,
@@ -294,25 +349,27 @@ export default function ContactInfo() {
       cohort: values.cohort,
       referralSource: values.referralSource,
       referralCode: values.referralCode,
+      gateway: values.gateway,
     };
 
-    if (values.paymentMethod === "paystack") {
-      const paystackPayload = {
-        ...basePayload,
-        paymentType: values.paymentType,
-        paymentCurrency: values.paymentCurrency,
-      };
-      await payment(paystackPayload).unwrap();
-    } else {
-      await payWithCoinsub(basePayload).unwrap();
+    try {
+      if (values.gateway === "paystack" || values.gateway === "lemon-squeezy") {
+        // For fiat payments, add payment type and currency
+        const fiatPayload = {
+          ...basePayload,
+          paymentType: values.paymentType,
+          paymentCurrency: values.paymentCurrency,
+        };
+        await payment(fiatPayload).unwrap();
+      } else if (values.gateway === "coinsub") {
+        await payWithCoinsub(basePayload).unwrap();
+      } else if (values.gateway === "blockradar") {
+        await payWithBlockradar(basePayload).unwrap();
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
     }
   };
-
-  useEffect(() => {
-    if (coinsubSuccess && coinsubData) {
-      setShowCoinsubModal(true);
-    }
-  }, [coinsubSuccess, coinsubData]);
 
   const handleCoinsubSubmission = useCallback(() => {
     const { link, customerData } = coinsubData?.data || {};
@@ -334,6 +391,20 @@ export default function ContactInfo() {
     }
     setShowCoinsubModal(false);
   }, [coinsubData]);
+
+  const handleBlockradarSubmission = useCallback(() => {
+    const { link, customerData } = blockradarData?.data || {};
+    if (link) {
+      let url = link.startsWith("http") ? link : `https://${link}`;
+      if (customerData) {
+        const params = new URLSearchParams();
+        params.append("customerData", JSON.stringify(customerData));
+        url += `?${params.toString()}`;
+      }
+      window.open(url, "_blank");
+    }
+    setShowBlockradarModal(false);
+  }, [blockradarData]);
 
   return (
     <div className="lg:px-24 md:px-8 px-4">
@@ -658,10 +729,9 @@ export default function ContactInfo() {
               )}
             </div>
 
-            {/* Referral code input */}
             <div className="space-y-2">
               <label
-                htmlFor="referralSource"
+                htmlFor="referralCode"
                 className="font-medium text-2xl block"
               >
                 Referral Code
@@ -677,109 +747,112 @@ export default function ContactInfo() {
                   />
                 )}
               />
-              {errors.referralSource && (
-                <p className="text-red-500">{errors.referralSource.message}</p>
-              )}
             </div>
 
-            {/* currency name */}
-            <div className="space-y-2">
-              <label
-                htmlFor="referralSource"
-                className="font-medium text-2xl block"
-              >
-                Currency*
-              </label>
-              <Controller
-                name="paymentCurrency"
-                control={control}
-                render={({ field }) => (
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="grid-cols-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="NGN"
-                        id="NGN"
-                        className=" border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="full-payment" className="text-white">
-                        NGN
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="USD"
-                        id="USD"
-                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="monthly-payment" className="text-white">
-                        USD
-                      </label>
-                    </div>
-                  </RadioGroup>
-                )}
-              />
-              {watchPaymentMethod === "paystack" &&
-                "paymentCurrency" in errors && (
-                  <p className="text-red-500">
-                    {errors?.paymentCurrency?.message}
-                  </p>
-                )}
-            </div>
+            {/* Currency selection - only show for fiat gateways */}
+            {(watchGateway === "paystack" ||
+              watchGateway === "lemon-squeezy") && (
+              <div className="space-y-2">
+                <label className="font-medium text-2xl block">Currency*</label>
+                <Controller
+                  name="paymentCurrency"
+                  control={control}
+                  render={({ field }) => (
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="grid-cols-2"
+                      disabled={watchGateway === "lemon-squeezy"} // Disable for lemon-squeezy
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="NGN"
+                          id="NGN"
+                          className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
+                          disabled={watchGateway === "lemon-squeezy"}
+                        />
+                        <label htmlFor="NGN" className="text-white">
+                          NGN
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="USD"
+                          id="USD"
+                          className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
+                        />
+                        <label htmlFor="USD" className="text-white">
+                          USD
+                        </label>
+                      </div>
+                    </RadioGroup>
+                  )}
+                />
+                {(watchGateway === "paystack" ||
+                  watchGateway === "lemon-squeezy") &&
+                  "paymentCurrency" in errors && (
+                    <p className="text-red-500">
+                      {errors?.paymentCurrency?.message}
+                    </p>
+                  )}
+              </div>
+            )}
 
-            {/* payment type */}
-
-            <div className="space-y-2">
-              <label
-                htmlFor="referralSource"
-                className="font-medium text-2xl block"
-              >
-                Payment Type*
-              </label>
-              <Controller
-                name="paymentType"
-                control={control}
-                render={({ field }) => (
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="grid-cols-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="recurrent"
-                        id="recurrent"
-                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="full-payment" className="text-white">
-                        Monthly
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="fixed"
-                        id="fixed"
-                        className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
-                      />
-                      <label htmlFor="monthly-payment" className="text-white">
-                        One time
-                      </label>
-                    </div>
-                  </RadioGroup>
-                )}
-              />
-              {watchPaymentMethod === "paystack" && "paymentType" in errors && (
-                <p className="text-red-500">{errors?.paymentType?.message}</p>
-              )}
-            </div>
+            {/* Payment type - only show for fiat gateways */}
+            {(watchGateway === "paystack" ||
+              watchGateway === "lemon-squeezy") && (
+              <div className="space-y-2">
+                <label className="font-medium text-2xl block">
+                  Payment Type*
+                </label>
+                <Controller
+                  name="paymentType"
+                  control={control}
+                  render={({ field }) => (
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="grid-cols-2"
+                      disabled={watchGateway === "lemon-squeezy"} // Disable for lemon-squeezy
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="recurrent"
+                          id="recurrent"
+                          className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
+                          disabled={watchGateway === "lemon-squeezy"}
+                        />
+                        <label htmlFor="recurrent" className="text-white">
+                          Monthly
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="fixed"
+                          id="fixed"
+                          className="border-white text-white focus:ring-white data-[state=checked]:bg-white w-2.5 h-2.5"
+                        />
+                        <label htmlFor="fixed" className="text-white">
+                          One time
+                        </label>
+                      </div>
+                    </RadioGroup>
+                  )}
+                />
+                {(watchGateway === "paystack" ||
+                  watchGateway === "lemon-squeezy") &&
+                  "paymentType" in errors && (
+                    <p className="text-red-500">
+                      {errors?.paymentType?.message}
+                    </p>
+                  )}
+              </div>
+            )}
           </div>
 
+          {/* Dialogs */}
           <Dialog open={paymentDialogOpen} onOpenChange={setPaymentDialogOpen}>
-            {/* <DialogTrigger>Open</DialogTrigger> */}
-            <DialogContent className=" rounded-lg">
+            <DialogContent className="rounded-lg">
               <DialogHeader>
                 <DialogTitle>Do you want to proceed?</DialogTitle>
                 <DialogDescription className="flex items-center justify-center">
@@ -794,13 +867,32 @@ export default function ContactInfo() {
           </Dialog>
 
           <Dialog open={showCoinsubDialog} onOpenChange={setShowCoinsubModal}>
-            <DialogContent className=" rounded-lg">
+            <DialogContent className="rounded-lg">
               <DialogHeader>
                 <DialogTitle>Do you want to proceed?</DialogTitle>
                 <DialogDescription className="flex items-center justify-center">
                   <Button
                     className="flex items-center justify-center mt-5"
                     onClick={handleCoinsubSubmission}
+                  >
+                    Proceed
+                  </Button>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog
+            open={showBlockradarDialog}
+            onOpenChange={setShowBlockradarModal}
+          >
+            <DialogContent className="rounded-lg">
+              <DialogHeader>
+                <DialogTitle>Do you want to proceed?</DialogTitle>
+                <DialogDescription className="flex items-center justify-center">
+                  <Button
+                    className="flex items-center justify-center mt-5"
+                    onClick={handleBlockradarSubmission}
                   >
                     Proceed
                   </Button>
@@ -818,10 +910,10 @@ export default function ContactInfo() {
               currencyName={currencyName}
               isPaystackLoading={paystackLoading}
               isCoinsubLoading={coinsubLoading}
-              onPaymentMethodSelect={(method) =>
-                setValue("paymentMethod", method)
-              }
+              isBlockradarLoading={blockradarLoading}
+              onGatewaySelect={(gateway) => setValue("gateway", gateway)}
               isValid={isValid}
+              selectedGateway={watchGateway}
             />
           ) : (
             <div className="text-center py-10">

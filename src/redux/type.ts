@@ -105,4 +105,5 @@ export type BasePayload = {
   cohort: string;
   referralSource: string;
   referralCode?: string;
+  gateway: string;
 };

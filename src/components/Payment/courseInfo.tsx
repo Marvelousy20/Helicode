@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { ChevronRight, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronDown, ChevronRight, Loader2 } from "lucide-react";
 
 interface payment {
   paymentPlan: string;
@@ -30,8 +30,12 @@ interface CoursesProps {
   currencyName: string;
   isPaystackLoading: boolean;
   isCoinsubLoading: boolean;
-  onPaymentMethodSelect: (method: "paystack" | "coinsub") => void;
+  isBlockradarLoading: boolean;
+  onGatewaySelect: (
+    gateway: "paystack" | "lemon-squeezy" | "coinsub" | "blockradar"
+  ) => void;
   isValid: boolean;
+  selectedGateway: string;
 }
 
 export default function CourseInfo({
@@ -40,9 +44,14 @@ export default function CourseInfo({
   currencyName,
   isCoinsubLoading,
   isPaystackLoading,
-  onPaymentMethodSelect,
+  isBlockradarLoading,
+  onGatewaySelect,
   isValid,
+  selectedGateway,
 }: CoursesProps) {
+  const [showFiatOptions, setShowFiatOptions] = useState(false);
+  const [showCryptoOptions, setShowCryptoOptions] = useState(false);
+
   // Determine price based on selected payment type and currency
   const getCurrencySymbol = () => (currencyName === "NGN" ? "₦" : "$");
 
@@ -51,17 +60,6 @@ export default function CourseInfo({
       ? courses.data[0].price?.[currencyName]
       : courses.data[0].recurrentPrice?.[currencyName]
     : "";
-
-  // const price =
-  //   paymentType === "fixed" && currencyName === "NGN"
-  //     ? courses?.data[0]?.price?.NGN
-  //     : paymentType === "fixed" && currencyName === "USD"
-  //     ? courses?.data[0]?.price?.USD
-  //     : paymentType === "recurrent" && currencyName === "NGN"
-  //     ? courses?.data[0]?.recurrentPrice?.NGN
-  //     : paymentType === "recurrent" && currencyName === "USD"
-  //     ? courses?.data[0]?.recurrentPrice?.USD
-  //     : "";
 
   useEffect(() => {
     if (typeof window !== "undefined" && !window.fbq) {
@@ -79,41 +77,54 @@ export default function CourseInfo({
     }
   }, []);
 
-  // Track payment method selection
-  const handlePaymentSelection = (method: "paystack" | "coinsub") => {
+  // Track gateway selection
+  const handleGatewaySelection = (
+    gateway: "paystack" | "lemon-squeezy" | "coinsub" | "blockradar"
+  ) => {
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "InitiateCheckout", {
-        paymentMethod: method,
+        paymentGateway: gateway,
       });
-    }
 
-    onPaymentMethodSelect(method);
+      onGatewaySelect(gateway);
+      setShowFiatOptions(false);
+      setShowCryptoOptions(false);
+    }
   };
 
-  // Render payment button with loading state
-  const renderPaymentButton = (
-    method: "paystack" | "coinsub",
-    label: string,
-    isLoading: boolean
-  ) => (
-    <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
-      <button
-        className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
-        role="button"
-        type="submit"
-        disabled={isPaystackLoading || isCoinsubLoading || !isValid}
-        onClick={() => handlePaymentSelection(method)}
-      >
-        {isLoading ? (
-          <Loader2 className="animate-spin" />
-        ) : (
-          <p className="flex items-center gap-2">
-            {label} <ChevronRight size={20} />
-          </p>
-        )}
-      </button>
-    </div>
-  );
+  // Loading state based on selected gateway
+  const getLoadingState = () => {
+    switch (selectedGateway) {
+      case "paystack":
+      case "lemon-squeezy":
+        return isPaystackLoading;
+      case "coinsub":
+        return isCoinsubLoading;
+      case "blockradar":
+        return isBlockradarLoading;
+      default:
+        return false;
+    }
+  };
+
+  const getButtonText = () => {
+    switch (selectedGateway) {
+      case "paystack":
+        return "Pay with Paystack";
+      case "lemon-squeezy":
+        return "Pay with Lemon Squeezy";
+      case "coinsub":
+        return "Pay with Coinsub";
+      case "blockradar":
+        return "Pay with Blockradar";
+      default:
+        return "Select Payment Method";
+    }
+  };
+
+  const isLoading = getLoadingState();
+  const isAnyLoading =
+    isPaystackLoading || isCoinsubLoading || isBlockradarLoading;
 
   return (
     <div>
@@ -131,20 +142,114 @@ export default function CourseInfo({
               </p>
             </div>
 
-            <div>
-              {renderPaymentButton(
-                "paystack",
-                "Make Payment",
-                isPaystackLoading
+            <div className="space-y-4">
+              {/* FIAT Payment Section */}
+              <div className="space-y-2">
+                <div
+                  className="flex items-center justify-between p-4 border border-[#454545] rounded-lg cursor-pointer hover:bg-[#1a1a2e] transition-colors"
+                  onClick={() => setShowFiatOptions(!showFiatOptions)}
+                >
+                  <span className="text-white font-medium">Pay with FIAT</span>
+                  <ChevronDown
+                    className={`transform transition-transform ${
+                      showFiatOptions ? "rotate-180" : ""
+                    }`}
+                    size={20}
+                  />
+                </div>
+
+                {showFiatOptions && (
+                  <div className="ml-4 space-y-2">
+                    <button
+                      type="button"
+                      className="w-full text-left p-3 border border-[#353535] rounded-md hover:bg-[#2a2a3e] transition-colors text-white"
+                      onClick={() => handleGatewaySelection("paystack")}
+                    >
+                      Pay with Paystack
+                    </button>
+                    <button
+                      type="button"
+                      className="w-full text-left p-3 border border-[#353535] rounded-md hover:bg-[#2a2a3e] transition-colors text-white"
+                      onClick={() => handleGatewaySelection("lemon-squeezy")}
+                    >
+                      Pay with Lemon Squeezy
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Crypto Payment Section */}
+              <div className="space-y-2">
+                <div
+                  className="flex items-center justify-between p-4 border border-[#454545] rounded-lg cursor-pointer hover:bg-[#1a1a2e] transition-colors"
+                  onClick={() => setShowCryptoOptions(!showCryptoOptions)}
+                >
+                  <span className="text-white font-medium">
+                    Pay with Crypto
+                  </span>
+                  <ChevronDown
+                    className={`transform transition-transform ${
+                      showCryptoOptions ? "rotate-180" : ""
+                    }`}
+                    size={20}
+                  />
+                </div>
+
+                {showCryptoOptions && (
+                  <div className="ml-4 space-y-2">
+                    <button
+                      type="button"
+                      className="w-full text-left p-3 border border-[#353535] rounded-md hover:bg-[#2a2a3e] transition-colors text-white"
+                      onClick={() => handleGatewaySelection("coinsub")}
+                    >
+                      Pay with Coinsub
+                    </button>
+                    <button
+                      type="button"
+                      className="w-full text-left p-3 border border-[#353535] rounded-md hover:bg-[#2a2a3e] transition-colors text-white"
+                      onClick={() => handleGatewaySelection("blockradar")}
+                    >
+                      Pay with Blockradar
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Selected Payment Method Display */}
+              {selectedGateway && (
+                <div className="mt-6 p-3 bg-[#1a1a2e] border border-[#454545] rounded-lg">
+                  <p className="text-sm text-gray-400 mb-2">
+                    Selected Payment Method:
+                  </p>
+                  <p className="text-white font-medium">{getButtonText()}</p>
+                  {selectedGateway === "lemon-squeezy" && (
+                    <p className="text-xs text-yellow-400 mt-1">
+                      * Lemon Squeezy only supports one-time payments in USD
+                    </p>
+                  )}
+                </div>
               )}
 
-              <div className="text-center my-6">OR</div>
-
-              {renderPaymentButton(
-                "coinsub",
-                "Pay with Crypto",
-                isCoinsubLoading
-              )}
+              {/* Submit Button */}
+              <div className="mt-6 flex items-center justify-center w-full bg-[#8D58FF4D] rounded-xl p-[6px] text-center">
+                <button
+                  className="border border-dashed border-[#4B0CF14D] bg-[#8D58FF] hover:bg-black rounded-md py-3 px-6 w-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  role="button"
+                  type="submit"
+                  disabled={isAnyLoading || !isValid || !selectedGateway}
+                >
+                  {isLoading ? (
+                    <Loader2 className="animate-spin" />
+                  ) : (
+                    <p className="flex items-center gap-2">
+                      {selectedGateway
+                        ? getButtonText()
+                        : "Select Payment Method"}{" "}
+                      <ChevronRight size={20} />
+                    </p>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </>

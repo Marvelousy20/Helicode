@@ -14,4 +14,5 @@ export const endpoints = {
   makePayment: "applications",
   newsletter: "/subscribers",
   payWithCoinsub: "crypto/application",
+  payWithBlockradar: "crypto/blockradar/application",
 };
