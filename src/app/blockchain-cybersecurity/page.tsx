@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 const blockchainModules = [
   {
     number: 1,
-    title: "Basic Concepts of Blockchain",
+    title: "Intro to Blockchain & Threat Landscape",
     topics: [
       {
         content:
@@ -32,7 +32,7 @@ const blockchainModules = [
   },
   {
     number: 2,
-    title: "Blockchain Security Foundation",
+    title: "Blockchain Architecture & Conensus Attacks.",
     topics: [
       {
         content:
@@ -50,7 +50,7 @@ const blockchainModules = [
   },
   {
     number: 3,
-    title: "Smart Contract Security Audit Basics",
+    title: "Smart Contracts 101 + Vulnerabilities.",
     topics: [
       {
         content:
@@ -60,7 +60,7 @@ const blockchainModules = [
   },
   {
     number: 4,
-    title: "Blockchain Security Testing Technology",
+    title: "Smart Contract Auditing Tools.",
     topics: [
       {
         content:
@@ -70,7 +70,7 @@ const blockchainModules = [
   },
   {
     number: 5,
-    title: "Comprehensive Security Audit of Blockchain Projects",
+    title: "Blockchain PenTesting & Secure Deployment.",
     topics: [
       {
         content:
@@ -80,7 +80,7 @@ const blockchainModules = [
   },
   {
     number: 6,
-    title: "Case analysis and practical exercises",
+    title: "Capture-the-Flag Style Audi Challenge.",
     topics: [
       {
         content:
@@ -94,7 +94,7 @@ const blockchainModules = [
   },
   {
     number: 7,
-    title: "Career Development and Industry Trends",
+    title: "Careers, Certifications & Trends",
     topics: [
       {
         content:
