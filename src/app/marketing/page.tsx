@@ -217,7 +217,6 @@ export default function Page() {
             </div>
             <div className="px-4">
               <h1 className=" text-[1.9rem] font-medium lg:text-7xl pt-3 lg:pt-4">
-                {/* {`${data?.data?.map((item) => item.name)}`} */}
                 Web3 Marketing
               </h1>
               <p className=" text-white opacity-80 mt-6 max-w-3xl mx-auto lg:text-lg">
@@ -274,7 +273,7 @@ export default function Page() {
                 : "N/A"
             }
             buttonLabel="Apply now"
-            discountPrice="50"
+            discountPrice="80"
             // onClick={handleApplyClick}
           />
         </div>

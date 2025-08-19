@@ -252,7 +252,7 @@ export default function Page() {
                 : ""
             }
             buttonLabel="Apply now"
-            discountPrice="60"
+            discountPrice="80"
           />
         </div>
       </section>

@@ -196,9 +196,8 @@ export default function Page() {
                 ? `$${data.data[0].price?.USD}`
                 : "N/A"
             }
-            discountPrice="50"
+            discountPrice="80"
             buttonLabel="Apply now"
-            // onClick={handleApplyClick}
           />
         </div>
       </section>
