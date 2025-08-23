@@ -73,6 +73,26 @@ export default function Page() {
           src="/courses/ai-agents.svg"
           job="AI Agent"
         />
+        <CourseCard
+          course="Machine Learning"
+          duration="3 Months"
+          location="Online"
+          note="Through practical projects, you'll master core algorithms and deployment techniques."
+          level="Beginner"
+          link="/machine-learning"
+          src="/courses/machine-learning.svg"
+          job="Machine Learning"
+        />
+        <CourseCard
+          course="Data Analytics"
+          duration="3 Months"
+          location="Online"
+          note="This is designed to equip you with the skills to transform raw data into meaningful insights."
+          level="Beginner"
+          link="/data-analytics"
+          src="/courses/data-analytics.svg"
+          job="Data Analytics"
+        />
       </div>
     </div>
   );

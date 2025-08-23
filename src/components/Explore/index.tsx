@@ -47,6 +47,20 @@ export default function Explore() {
       image: "/research.svg",
       to: "/ai-agent",
     },
+    {
+      name: "Machine Learning",
+      description:
+        "This course takes you from the foundations to advanced applications, teaching you how to build intelligent systems that learn from data.",
+      image: "/ml.svg",
+      to: "/machine-learning",
+    },
+    {
+      name: "Data Analytics",
+      description:
+        "This course is designed to equip you with the skills to transform raw data into meaningful insights.",
+      image: "/da.svg",
+      to: "/data-analytics",
+    },
   ];
 
   return (

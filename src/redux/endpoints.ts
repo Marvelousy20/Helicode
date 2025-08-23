@@ -8,6 +8,8 @@ export const endpoints = {
   getTechnicalWriting: "course?name=Web3 Technical Writing",
   getMarketing: "course?name=Web3 Marketing",
   getSmartContractDevelopment: "course?name=Smart Contract Development",
+  getMachineLearning: "course?name=Machine Learning",
+  getDataAnalytics: "course?name=Data Analytics",
   getWeb3Research: "course?name=Web3 Research",
   getAiAgent: "course?name=AI Agent",
   getCourseDetails: (course: string) => `course?name=${course}`,

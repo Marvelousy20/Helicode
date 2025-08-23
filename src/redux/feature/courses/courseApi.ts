@@ -60,6 +60,22 @@ export const courseApi = apiSlice.injectEndpoints({
       }),
       //   transformResponse: (response: { data: any }, meta, arg) => response.data,
     }),
+    getMachineLearning: builder.query<Single, void>({
+      query: () => ({
+        url: endpoints.getMachineLearning,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+      //   transformResponse: (response: { data: any }, meta, arg) => response.data,
+    }),
+    getDataAnalytics: builder.query<Single, void>({
+      query: () => ({
+        url: endpoints.getDataAnalytics,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+      //   transformResponse: (response: { data: any }, meta, arg) => response.data,
+    }),
 
     getWeb3Research: builder.query<Single, void>({
       query: () => ({
@@ -160,4 +176,6 @@ export const {
   usePayWithCoinsubMutation,
   useGetAIAgentQuery,
   usePayWithBlockradarMutation,
+  useGetDataAnalyticsQuery,
+  useGetMachineLearningQuery,
 } = courseApi;

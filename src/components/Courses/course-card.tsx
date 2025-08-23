@@ -39,6 +39,8 @@ export const CourseCard = ({
           width={340}
           height={238}
           className="w-full object-cover"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 340px"
         />
       </div>
 
