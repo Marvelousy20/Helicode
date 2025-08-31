@@ -25,7 +25,7 @@ export default function Home() {
         <WorkWithUs />
         <Testimonial />
         <NewsLetter />
-        {/* <Others /> */}
+      {/* <Others /> */}
       </div>
     </main>
   );
