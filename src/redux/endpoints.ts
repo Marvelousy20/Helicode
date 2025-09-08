@@ -17,4 +17,5 @@ export const endpoints = {
   newsletter: "/subscribers",
   payWithCoinsub: "crypto/application",
   payWithBlockradar: "crypto/blockradar/application",
+  submitTalent: "talents",
 };

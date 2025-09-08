@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
+import Link from "next/link";
 
 const WorkWithUs = () => {
   return (
@@ -51,11 +52,17 @@ const WorkWithUs = () => {
             </p>
 
             <div className="mt-10">
-              <div className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5">
-                <Button className="">
-                  Learn More <MdArrowForwardIos size={16} className="ml-1" />
-                </Button>
-              </div>
+              <Link
+                href="/talent-application"
+                className="flex items-center gap-2"
+              >
+                <div className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5">
+                  <Button className="">
+                    Apply Now
+                    <MdArrowForwardIos size={16} className="ml-1" />
+                  </Button>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

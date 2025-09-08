@@ -55,11 +55,18 @@ const config = {
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
   			}
   		},
   		backgroundImage: {
   			'others-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(153, 153, 153, 0) 100%)',
-  			'custom-gradient': '`\n          linear-gradient(0deg, rgba(212, 232, 255, 0.08), rgba(212, 232, 255, 0.08)),\n          linear-gradient(180deg, rgba(212, 232, 255, 0.08) 0%, rgba(212, 232, 255, 0) 100%)\n        `',
+  			'custom-gradient': '`\\n          linear-gradient(0deg, rgba(212, 232, 255, 0.08), rgba(212, 232, 255, 0.08)),\\n          linear-gradient(180deg, rgba(212, 232, 255, 0.08) 0%, rgba(212, 232, 255, 0) 100%)\\n        `',
   			'newsletter-gradient': 'linear-gradient(172.01deg, #570AFF -101.1%, #8044FF 79.42%)',
   			'hero-gradient': 'linear-gradient(180deg, rgba(141, 88, 255, 0) 14.78%, #553599 183.65%)',
   			'part-gradient': 'linear-gradient(180deg, #8D58FF -21.54%, rgba(8, 8, 33, 0) 66.71%);'

@@ -7,6 +7,7 @@ import {
   Single,
   SingleCourse,
   PayWithCoinsub,
+  TalentPayload,
 } from "@/redux/type";
 
 interface State {
@@ -160,6 +161,15 @@ export const courseApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+
+    submitTalent: builder.mutation<any, FormData>({
+      query: (formData: FormData) => ({
+        url: endpoints.submitTalent,
+        method: "POST",
+        body: formData,
+        credentials: "include" as const,
+      }),
+    }),
   }),
 });
 export const {
@@ -178,4 +188,5 @@ export const {
   usePayWithBlockradarMutation,
   useGetDataAnalyticsQuery,
   useGetMachineLearningQuery,
+  useSubmitTalentMutation,
 } = courseApi;

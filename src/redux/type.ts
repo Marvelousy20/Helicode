@@ -78,7 +78,6 @@ export interface Payment {
   paymentCurrency: string;
 }
 
-
 export interface PayWithCoinsub {
   firstName: string;
   lastName: string;
@@ -107,3 +106,23 @@ export type BasePayload = {
   referralCode?: string;
   gateway: string;
 };
+
+// export type TalentPayload = {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   country: string;
+//   city: string;
+//   role: string;
+//   twitter: string;
+//   jobStatus: string;
+//   githubLink: string;
+//   portfolioLink: string;
+//   yearsOfExperience: string;
+//   salaryExpectation: string;
+//   referral: string;
+//   linkedInUrl: string;
+//   resume: File | null;
+// };
+
+export type TalentPayload = FormData;
