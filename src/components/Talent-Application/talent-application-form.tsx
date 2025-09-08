@@ -685,7 +685,7 @@ export default function TalentApplicationForm() {
       </Form>
 
       <Dialog open={!showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="sm:max-w-md bg-card border-border">
+        <DialogContent className="max-w-sm sm:max-w-md bg-card border-border">
           <DialogHeader className="text-center">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
               <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
