@@ -684,7 +684,7 @@ export default function TalentApplicationForm() {
         </form>
       </Form>
 
-      <Dialog open={!showSuccessModal} onOpenChange={setShowSuccessModal}>
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="max-w-sm sm:max-w-md bg-card border-border">
           <DialogHeader className="text-center">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
