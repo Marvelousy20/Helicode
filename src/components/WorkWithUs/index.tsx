@@ -35,11 +35,13 @@ const WorkWithUs = () => {
             </p>
 
             <div className="mt-10">
-              <div className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5">
-                <Button className="">
-                  Hire Talent <MdArrowForwardIos size={16} className="ml-1" />
-                </Button>
-              </div>
+              <Link href="/business">
+                <div className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5">
+                  <Button className="">
+                    Hire Talent <MdArrowForwardIos size={16} className="ml-1" />
+                  </Button>
+                </div>
+              </Link>
             </div>
           </div>
 
