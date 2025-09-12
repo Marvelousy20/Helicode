@@ -27,16 +27,17 @@ const WorkWithUs = () => {
               height={60}
             />
 
-            <h3 className="mt-10 font-bold text-2xl">For Businesses</h3>
+            <h3 className="mt-10 font-bold text-2xl">For Startups</h3>
             <p className="mt-6 text-[#8B8B8B]">
-              Tailored solutions for businesses seeking to harness the power of
-              blockchain technology to drive innovation, efficiency, and growth.
+              Hire world-class talent, super fast. We help companies instantly
+              connect with top 1% vetted professionals across AI, blockchain,
+              and emerging technologies.
             </p>
 
             <div className="mt-10">
               <div className="bg-[#8D58FF4D] rounded-[12px] inline-flex items-center p-1.5">
                 <Button className="">
-                  Learn More <MdArrowForwardIos size={16} className="ml-1" />
+                  Hire Talent <MdArrowForwardIos size={16} className="ml-1" />
                 </Button>
               </div>
             </div>
@@ -47,8 +48,9 @@ const WorkWithUs = () => {
 
             <h3 className="mt-10 font-bold text-2xl">For Talents</h3>
             <p className="mt-6 text-[#8B8B8B]">
-              Unlock your FULL potential with a wide range career paths and
-              opportunities for career development and growth.
+              Work with leading global companies in AI and Web3. Set your own
+              rates and get paid what you&apos;re worth while building products
+              that shape the future.
             </p>
 
             <div className="mt-10">
