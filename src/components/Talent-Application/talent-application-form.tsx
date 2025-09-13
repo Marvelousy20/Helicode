@@ -250,7 +250,7 @@ export default function TalentApplicationForm() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-6">
           <FormField
             control={form.control}
             name="email"
@@ -259,7 +259,7 @@ export default function TalentApplicationForm() {
                 <FormLabel className="font-medium">Email</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="First Name"
+                    placeholder="Email"
                     {...field}
                     className="border border-[#454545] data-[placeholder]:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14"
                   />
