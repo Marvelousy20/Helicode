@@ -100,6 +100,8 @@ const roleOptions = [
   "Product Manager",
   "UX/UI Designer",
   "Quality Assurance Engineer",
+  "Growth Marketing",
+  "Graphic Design",
   "Mobile Developer",
   "Security Specialist",
   "Cloud Engineer",
