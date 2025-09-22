@@ -112,6 +112,15 @@ const roleOptions = [
   "Network Engineer",
   "Database Administrator",
   "Technical Support Specialist",
+  "Web3 Marketer",
+  "Ambassador",
+  "Smart Contract Developer",
+  "Web3 Researcher",
+  "Community Manager",
+  "Technical Writer",
+  "Discord Moderator",
+  "Socaial Media Manager",
+  "Other",
 ];
 
 const jobStatusOptions = [
