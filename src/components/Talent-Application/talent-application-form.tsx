@@ -28,7 +28,7 @@ import { Button } from "../ui/button";
 import { Upload, X, CheckCircle } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { useSubmitTalentMutation } from "@/redux/feature/courses/courseApi";
-import { TalentPayload } from "@/redux/type";
+import { toast } from "react-hot-toast";
 import {
   Dialog,
   DialogContent,
@@ -166,6 +166,7 @@ export default function TalentApplicationForm() {
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const { data: countries = [], isLoading: countriesLoading } =
     useGetCountryQuery();
@@ -224,6 +225,7 @@ export default function TalentApplicationForm() {
   };
 
   const onSubmit = async (data: TalentFormData) => {
+    setErrorMessage("");
     try {
       const formData = new FormData();
 
@@ -242,7 +244,13 @@ export default function TalentApplicationForm() {
       form.reset();
       setUploadedFile(null);
       setSelectedCountry("");
-    } catch (error) {
+    } catch (error: any) {
+      const backendErrorMessage =
+        error?.data.message ||
+        error?.message ||
+        "An unexpected error occurred. Please try again.";
+      setErrorMessage(backendErrorMessage);
+      // toast.error(backendErrorMessage);
       console.error("Error submitting form:", error);
     }
   };
@@ -361,7 +369,7 @@ export default function TalentApplicationForm() {
               name="country"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground">Country*</FormLabel>
+                  <FormLabel className="text-white">Country*</FormLabel>
                   <Select
                     onValueChange={(value) => {
                       field.onChange(value);
@@ -399,11 +407,11 @@ export default function TalentApplicationForm() {
               name="city"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground">City*</FormLabel>
+                  <FormLabel className="text-white">City*</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="border-[#454545] data-[placeholder]:text-[#454545] bg-transparent w-full rounded-[8px] py-4 px-6 h-14">
-                        <SelectValue placeholder="Lagos Island" />
+                        <SelectValue placeholder="Lagos" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -432,7 +440,7 @@ export default function TalentApplicationForm() {
             name="resume"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-foreground">Resume*</FormLabel>
+                <FormLabel className="text-white">Resume*</FormLabel>
                 <FormControl>
                   <div className="space-y-4">
                     {!uploadedFile ? (
@@ -443,13 +451,13 @@ export default function TalentApplicationForm() {
                         }`}
                       >
                         <input {...getInputProps()} />
-                        <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                        <p className="text-muted-foreground">
+                        <Upload className="mx-auto h-12 w-12 text-white mb-4" />
+                        <p className="text-white">
                           {isDragActive
                             ? "Drop your resume here"
                             : "Upload Resume"}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-2">
+                        <p className="text-sm text-white mt-2">
                           Drag and drop or click to browse (PDF, DOC, DOCX)
                         </p>
                       </div>
@@ -670,10 +678,10 @@ export default function TalentApplicationForm() {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-sm text-muted-foreground">
+                  <FormLabel className="text-sm text-white">
                     Terms and Conditions*
                   </FormLabel>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-white">
                     I understand that Helicode has no obligation to connect me
                     with potential employers or to notify me if an application
                     has not been accepted. I also understand that I may have to
@@ -720,6 +728,12 @@ export default function TalentApplicationForm() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {errorMessage && (
+        <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 }
