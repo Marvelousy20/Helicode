@@ -262,9 +262,8 @@ export default function TalentApplicationForm() {
           Talent Application
         </h1>
         <p className="text-lg font-normal mt-2">
-          Work with leading global companies in AI and Web3. Set your own rates
-          and get paid what you’re worth while building products that shape the
-          future.
+          Work with leading global companies. Set your own rates and get paid
+          what you’re worth while building products that shape the future.
         </p>
       </div>
 
